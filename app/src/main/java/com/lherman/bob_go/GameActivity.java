@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity
@@ -25,6 +26,11 @@ public class GameActivity extends AppCompatActivity
 
         TextView clickText = (TextView)findViewById(R.id.clickText);
         clickText.setText("You clicked the screen!");
+
+        ImageView bobImage = (ImageView)findViewById(R.id.bobImage);
+        bobImage.setX(bobImage.getX() + 30);
+
+        //  Below just has to be there for some reason:
         return true;
     }
 }
