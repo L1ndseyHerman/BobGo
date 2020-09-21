@@ -15,6 +15,9 @@ public class GameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        //  Should hide border at top:
+        getSupportActionBar().hide();
     }
 
     //  This method recognises a tap gesture anywhere on the current screen (Activity).
