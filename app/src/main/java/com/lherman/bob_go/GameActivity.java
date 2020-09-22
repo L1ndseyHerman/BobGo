@@ -27,10 +27,10 @@ public class GameActivity extends AppCompatActivity
         //  Where tf is the console?! Doesn't show anywhere....
         //System.out.println("A tap!");
 
-        TextView clickText = (TextView)findViewById(R.id.clickText);
+        TextView clickText = findViewById(R.id.clickText);
         clickText.setText("You clicked the screen!");
 
-        ImageView bobImage = (ImageView)findViewById(R.id.bobImage);
+        ImageView bobImage = findViewById(R.id.bobImage);
         bobImage.setX(bobImage.getX() + 30);
 
         //  Below just has to be there for some reason:

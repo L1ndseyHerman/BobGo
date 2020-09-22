@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
-        Button beginButton = (Button)findViewById(R.id.beginButton);
+        Button beginButton = findViewById(R.id.beginButton);
         beginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //  Goes to TutorialActivity:
-        Button tutorialButton = (Button)findViewById(R.id.tutorialButton);
+        Button tutorialButton = findViewById(R.id.tutorialButton);
         tutorialButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
