@@ -68,6 +68,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //  Goes to RandomActivity:
+        Button randomButton = findViewById(R.id.randomButton);
+        randomButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //  This is a variable of type "Intent"... idk....
+                //                                                      Tells it to go to that screen
+                Intent startIntent = new Intent(getApplicationContext(), RandomActivity.class);
+                //  Passing stuff betw screens:
+                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
+                //  Going to that screen now:
+                startActivity(startIntent);
+            }
+        });
+
 
     }
 }
