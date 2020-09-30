@@ -31,4 +31,12 @@
         app:srcCompat="@drawable/square"
         tools:layout_editor_absoluteX="314dp"
         tools:layout_editor_absoluteY="134dp" />
+
+    <ImageView
+        android:id="@+id/square4"
+        android:layout_width="518dp"
+        android:layout_height="344dp"
+        app:srcCompat="@drawable/square"
+        tools:layout_editor_absoluteX="-251dp"
+        tools:layout_editor_absoluteY="33dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,8 +36,8 @@ public class RandomActivity extends AppCompatActivity
         square1.setY(0);
         square1.getLayoutParams().height = height/7;
         square1.getLayoutParams().width = width/12;
-        //square1.setMaxWidth(width/5);
-        //square1.setMaxHeight(height/5);
+        //square1.setMaxWidth(width/12);
+        //square1.setMaxHeight(height/7);
         /*LinearLayout.LayoutParams params =  new LinearLayout
                 .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         square1.setLayoutParams(params);*/
@@ -64,5 +64,34 @@ public class RandomActivity extends AppCompatActivity
         square3.getLayoutParams().height = height/7;
         square3.getLayoutParams().width = width/12;
         //theConstraintLayout.addView(square3);
+
+
+        ImageView square4 = findViewById(R.id.square4);
+        //ImageView square3 = new ImageView(this);
+        //square1.setImageResource(R.drawable.square);
+        square4.setX(width/12);
+        square4.setY(height/7);
+        square4.getLayoutParams().height = height/7;
+        square4.getLayoutParams().width = width/12;
+        //theConstraintLayout.addView(square3);
+
+
+       /* ImageView square4 = new ImageView(this);
+
+        //ImageView square1 = findViewById(R.id.square1);
+        square4.setImageResource(R.drawable.square);
+        //square4.setX(width/12);
+        //square4.setY(height/7);
+        //square4.layout(140, 140, 210, 210);
+        square4.getLayoutParams().height = height/7;
+        square4.getLayoutParams().width = width/12;
+        //square4.setMaxWidth(width/12);
+        //square4.setMaxHeight(height/7);
+
+
+        //LinearLayout myLayout = (LinearLayout)findViewById(R.id.aLayout);
+        //myLayout.addView(square1);
+        ConstraintLayout theConstraintLayout = findViewById(R.id.theConstraintLayout);
+        theConstraintLayout.addView(square4); */
     }
 }
