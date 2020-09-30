@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Button"
-        app:layout_constraintTop_toBottomOf="@+id/randomButton"
-        tools:layout_editor_absoluteX="161dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/randomButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
