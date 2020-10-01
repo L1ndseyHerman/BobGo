@@ -2,8 +2,10 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
@@ -18,6 +20,10 @@ public class TimerTesting extends AppCompatActivity
     private float bobY = 0;
     private ImageView bobSeventy;
     private boolean jumpingNow = false;
+    private boolean fallingNow = false;
+    private int height = 0;
+    private int width = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,9 +34,21 @@ public class TimerTesting extends AppCompatActivity
         //  Should hide border at top:
         getSupportActionBar().hide();
 
+        //  Screen size stuff:
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        width = size.x;
+        height = size.y;
+        bobY = 5*height/7;
+        //bobY = 70*6;
+        //System.out.println(bobY);
+
         bobSeventy = findViewById(R.id.babybob);
         bobSeventy.setX(bobX);
         bobSeventy.setY(bobY);
+        bobSeventy.getLayoutParams().height = height/7;
+        bobSeventy.getLayoutParams().width = width/12;
 
         timer.schedule(new TimerTask() {
             @Override
@@ -43,7 +61,7 @@ public class TimerTesting extends AppCompatActivity
                 });
             }
         //},0, 20);
-        },0, 35);
+        },0, 40);
     }
 
     public void methodName()
@@ -54,24 +72,33 @@ public class TimerTesting extends AppCompatActivity
         //System.out.println("Woo hoo!");
         if (jumpingNow == true)
         {
-            bobY = bobY + 7;
+            //bobY = bobY + 7;
+            bobY = bobY - 7;
             bobSeventy.setY(bobY);
-            if (bobY > 151)
+            //if (bobY > 151)
+            if (bobY < 3*height/7)
             {
                 jumpingNow = false;
+                fallingNow = true;
+            }
+        }
+        if (fallingNow == true)
+        {
+            bobY = bobY + 7;
+            bobSeventy.setY(bobY);
+            if (bobY > 5*height/7)
+            {
+                fallingNow = false;
             }
         }
     }
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        System.out.println("A tap!");
+        System.out.println("BobY = " + bobY + " Bob Height = " + height);
 
-        if (bobY > 151)
-        {
-            jumpingNow = false;
-        }
-        else
+        //if (bobY > 151)
+        if (jumpingNow==false && fallingNow==false)
         {
             jumpingNow = true;
         }
