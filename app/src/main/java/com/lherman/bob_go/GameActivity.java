@@ -43,17 +43,23 @@ public class GameActivity extends AppCompatActivity
         moveDownwards.setRepeatCount(-1);
         findViewById(R.id.bobImage).startAnimation(moveDownwards);*/
         //final TextView clickText = findViewById(R.id.clickText);
+        //final ImageView bobImage = findViewById(R.id.bobImage);
         Timer timer = new Timer();
-        TimerTask t = new TimerTask() {
-            @Override
-            public void run() {
 
-                System.out.println("Woo hoo!");
-                //clickText.setText();
-            }
-        };
         timer.scheduleAtFixedRate(t,1000,1000);
     }
+    TimerTask t = new TimerTask() {
+        @Override
+        public void run() {
+
+            System.out.println("Woo hoo!");
+            ImageView bobImage = findViewById(R.id.bobImage);
+            //bobImage.setX(bobImage.getX() + 30);
+            bobImage.setX(0);
+            System.out.println(bobImage.getX());
+            //clickText.setText();
+        }
+    };
 
     //  This method recognises a tap gesture anywhere on the current screen (Activity).
     @Override

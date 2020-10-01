@@ -101,5 +101,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        //  Goes to ?:
+        Button button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //  This is a variable of type "Intent"... idk....
+                //                                                      Tells it to go to that screen
+                Intent startIntent = new Intent(getApplicationContext(), TimerTesting.class);
+                //  Passing stuff betw screens:
+                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
+                //  Going to that screen now:
+                startActivity(startIntent);
+            }
+        });
     }
 }
