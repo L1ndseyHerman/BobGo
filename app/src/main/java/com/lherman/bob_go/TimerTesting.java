@@ -61,22 +61,22 @@ public class TimerTesting extends AppCompatActivity
         });
     }
     //},0, 20);
-},0, 40);
+},0, 35);
 }
 
     public void methodName()
     {
         //bobX = bobX + 7;
-        //  12 timer calls per one grid square crossing, 12*12=142
-        bobX = bobX + width/142;
+        //  14 timer calls per one grid square crossing, 12*14=166
+        bobX = bobX + width/166;
         bobSeventy.setX(bobX);
         //  BTS Idol :)
         //System.out.println("Woo hoo!");
         if (jumpingNow == true)
         {
             //bobY = bobY - 7;
-            //  Same proportion for y-direction, 7*12=84
-            bobY = bobY - height/84;
+            //  Same proportion for y-direction, 7*14=98
+            bobY = bobY - height/98;
             bobSeventy.setY(bobY);
             //if (bobY > 151)
             if (bobY < 3*height/7)
@@ -88,8 +88,8 @@ public class TimerTesting extends AppCompatActivity
         if (fallingNow == true)
         {
             //bobY = bobY + 7;
-            //  Same proportion for y-direction, 7*12=84
-            bobY = bobY + height/84;
+            //  Same proportion for y-direction, 7*14=98
+            bobY = bobY + height/98;
             bobSeventy.setY(bobY);
             if (bobY > 5*height/7)
             {
