@@ -4,13 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class HighScoresActivity extends AppCompatActivity
 {
+
+    private Handler handler2 = new Handler();
+    private Timer timer2 = new Timer();
+    private float bobX2 = 0;
+    private float bobY2 = 0;
+    private ImageView bobHighScore;
+    private boolean jumpingNow2 = false;
+    private boolean fallingNow2 = false;
+    private int height2 = 0;
+    private int width2 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,36 +41,86 @@ public class HighScoresActivity extends AppCompatActivity
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
-        int height = size.y;
+        width2 = size.x;
+        height2 = size.y;
+        bobY2 = 5*height2/7;
 
-        int halfWidth = size.x/2;
-        int halfHeight = size.y/2;
+        bobHighScore = findViewById(R.id.bobHighScore);
+        bobHighScore.setX(bobX2);
+        bobHighScore.setY(bobY2);
+        bobHighScore.getLayoutParams().height = height2/7;
+        bobHighScore.getLayoutParams().width = width2/12;
 
-        //  Is this showing up anywhere?
-        //Log.e("Width", "" + width);
-        //Log.e("height", "" + height);
-        String stringWidth = Integer.toString(width);
-        String stringHeight = Integer.toString(height);
+        timer2.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler2.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        movementStuff();
+                    }
+                });
+            }
+            //},0, 40);
+        },0, 80);
+    }
 
-        String halfStringWidth = Integer.toString(halfWidth);
-        String halfStringHeight = Integer.toString(halfHeight);
 
-        //  Resizing square based on screen size.
-        ImageView squareLeft = findViewById(R.id.squareLeft);
-        ImageView squareRight = findViewById(R.id.squareRight);
-        squareLeft.getLayoutParams().height = height/2;
-        squareLeft.getLayoutParams().width = width/2;
-        squareRight.getLayoutParams().height = height/2;
-        squareRight.getLayoutParams().width = width/2;
+    public void movementStuff()
+    {
+        //bobX2 = bobX2 + 7;
+
+        //  6 timer calls per one grid square crossing:
+        bobX2 = bobX2 + width2/72;
+        bobHighScore.setX(bobX2);
+        //  BTS Idol :)
+        //System.out.println("Woo hoo!");
+        if (jumpingNow2 == true)
+        {
+            //bobY2 = bobY2 - 7;
+            //  Same proportion for y-direction, 7*6=42
+            bobY2 = bobY2 - height2/42;
+            bobHighScore.setY(bobY2);
+            //if (bobY > 151)
+            if (bobY2 < 3*height2/7)
+            {
+                jumpingNow2 = false;
+                fallingNow2 = true;
+            }
+        }
+        if (fallingNow2 == true)
+        {
+            //bobY2 = bobY2 + 7;
+            bobY2 = bobY2 + height2/42;
+            bobHighScore.setY(bobY2);
+            if (bobY2 > 5*height2/7)
+            {
+                fallingNow2 = false;
+            }
+        }
+    }
+
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        //System.out.println("BobY = " + bobY2 + " Bob Height = " + height2);
+
+        //if (bobY > 151)
+        if (jumpingNow2==false && fallingNow2==false)
+        {
+            jumpingNow2 = true;
+        }
+
 
         TextView theText = findViewById(R.id.textViewTest);
-        int x = (int) squareRight.getX();
-        String xString = Integer.toString(x);
 
         //theText.setText(theText.getText() + stringWidth + "," + stringHeight + "," + xString + "," + squareRight.getY() + "," + squareRight.getWidth() + "," + squareRight.getHeight());
-        theText.setText("squareRightLeft = " + halfStringWidth + " squareRightRight = " + stringWidth);
+        theText.setText("Some Text");
+
+        //  Below just has to be there for some reason:
+        return true;
     }
+
+
 
 
 }
