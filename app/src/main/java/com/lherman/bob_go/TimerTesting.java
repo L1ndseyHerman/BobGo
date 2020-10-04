@@ -40,7 +40,8 @@ public class TimerTesting extends AppCompatActivity
         display.getSize(size);
         width = size.x;
         height = size.y;
-        bobY = 5*height/7;
+        //bobY = 5*height/7;
+        bobY = 11*height/14;
         //bobY = 70*6;
         //System.out.println(bobY);
 
@@ -79,7 +80,8 @@ public class TimerTesting extends AppCompatActivity
             bobY = bobY - height/98;
             bobSeventy.setY(bobY);
             //if (bobY > 151)
-            if (bobY < 3*height/7)
+            //if (bobY < 3*height/7)
+            if (bobY <= 7*height/14)
             {
                 jumpingNow = false;
                 fallingNow = true;
@@ -91,7 +93,8 @@ public class TimerTesting extends AppCompatActivity
             //  Same proportion for y-direction, 7*14=98
             bobY = bobY + height/98;
             bobSeventy.setY(bobY);
-            if (bobY > 5*height/7)
+            //if (bobY > 5*height/7)
+            if (bobY >= 11*height/14)
             {
                 fallingNow = false;
             }
