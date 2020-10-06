@@ -3,6 +3,7 @@ package com.lherman.bob_go;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -22,10 +23,13 @@ public class HighScoresActivity extends AppCompatActivity
     private float bobX2 = 0;
     private float bobY2 = 0;
     private ImageView bobHighScore;
+
+    private ImageView maneuverSquare1;
     private boolean jumpingNow2 = false;
     private boolean fallingNow2 = false;
     private int height2 = 0;
     private int width2 = 0;
+    TextView theText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,7 +47,18 @@ public class HighScoresActivity extends AppCompatActivity
         display.getSize(size);
         width2 = size.x;
         height2 = size.y;
-        bobY2 = 5*height2/7;
+        //bobY2 = 5*height2/7;
+        bobY2 = 11*height2/14;
+
+        maneuverSquare1 = findViewById(R.id.manuverSquare1);
+
+        maneuverSquare1.getLayoutParams().height = height2 / 7;
+        maneuverSquare1.getLayoutParams().width = width2 / 12;
+        //squares[index][index2].setX(index*width/12);
+        maneuverSquare1.setX(6*width2/12);
+        //maneuverSquare1.setY((height2 / 14) + (5 * height2 / 7));
+        maneuverSquare1.setY((height2 / 14) + (4 * height2 / 7));
+
 
         bobHighScore = findViewById(R.id.bobHighScore);
         bobHighScore.setX(bobX2);
@@ -62,27 +77,55 @@ public class HighScoresActivity extends AppCompatActivity
                 });
             }
             //},0, 40);
-        },0, 80);
+        },0, 35);
     }
 
 
     public void movementStuff()
     {
-        //bobX2 = bobX2 + 7;
+        //  14 timer calls per one grid square crossing, 12*14=166
+        //bobX2 = bobX2 + width2/166;
+        //bobHighScore.setX(bobX2);
+        //  Moving the grid instead of Bob:
+        //maneuverSquare1 = maneuverSquare1 + width2/166;
 
-        //  6 timer calls per one grid square crossing:
-        bobX2 = bobX2 + width2/72;
-        bobHighScore.setX(bobX2);
+        //  BobX = 0, width = like 55dp or whatever,
+
+        //imageView.setImageResource(R.drawable.ic_left_arrow_blue);
+        //maneuverSquare1.setImageResource(R.drawable.squareseventy);
+        //  THERE IS NO GET VERSION OF THIS!!
+        //if (maneuverSquare1.getImageResource() maneuverSquare1.getX() > (bobHighScore.getX()+bobHighScore.getLayoutParams().width) + (width2/166))
+
+
+
+
+        //if (((maneuverSquare1.getX() > ((bobX2+width2)-(width2/166)))) || ((maneuverSquare1.getY() > bobY2+height2)))
+
+
+        //if (maneuverSquare1.getX() > ((bobHighScore.getX()+bobHighScore.getLayoutParams().width) + (width2/166)))
+        if ((maneuverSquare1.getX()>((bobHighScore.getX()+bobHighScore.getLayoutParams().width)+(width2/166))) || (maneuverSquare1.getY() >= bobHighScore.getY()+bobHighScore.getLayoutParams().height) || (maneuverSquare1.getY()+maneuverSquare1.getLayoutParams().height <= bobHighScore.getY()))
+        {
+            maneuverSquare1.setX(maneuverSquare1.getX() - width2 / 166);
+        }
+        else
+        {
+            theText = findViewById(R.id.textViewTest);
+            int aNumber = width2/166;
+            theText.setText("Bobx=" + bobHighScore.getX() + " Bobw=" + bobHighScore.getLayoutParams().width + " Squarex=" + maneuverSquare1.getX() + " Distancepertimer=" + aNumber + " BobY=" + bobHighScore.getY() + " Bobh=" + bobHighScore.getLayoutParams().height + " Squarey=" + maneuverSquare1.getY() + " Squareh=" + maneuverSquare1.getLayoutParams().height);
+        }
+
         //  BTS Idol :)
         //System.out.println("Woo hoo!");
         if (jumpingNow2 == true)
         {
-            //bobY2 = bobY2 - 7;
-            //  Same proportion for y-direction, 7*6=42
-            bobY2 = bobY2 - height2/42;
+            //  Same proportion for y-direction, 7*14=98
+            bobY2 = bobY2 - height2/98;
             bobHighScore.setY(bobY2);
-            //if (bobY > 151)
-            if (bobY2 < 3*height2/7)
+
+
+            //if (bobY2 <= 7*height2/14)
+            //  Increasing jump height from 2 grid spaces to 2.5:
+            if (bobY2 <= 6*height2/14)
             {
                 jumpingNow2 = false;
                 fallingNow2 = true;
@@ -90,10 +133,10 @@ public class HighScoresActivity extends AppCompatActivity
         }
         if (fallingNow2 == true)
         {
-            //bobY2 = bobY2 + 7;
-            bobY2 = bobY2 + height2/42;
+            //  Same proportion for y-direction, 7*14=98
+            bobY2 = bobY2 + height2/98;
             bobHighScore.setY(bobY2);
-            if (bobY2 > 5*height2/7)
+            if (bobY2 >= 11*height2/14)
             {
                 fallingNow2 = false;
             }
@@ -111,10 +154,10 @@ public class HighScoresActivity extends AppCompatActivity
         }
 
 
-        TextView theText = findViewById(R.id.textViewTest);
+
 
         //theText.setText(theText.getText() + stringWidth + "," + stringHeight + "," + xString + "," + squareRight.getY() + "," + squareRight.getWidth() + "," + squareRight.getHeight());
-        theText.setText("Some Text");
+        //theText.setText("Some Text");
 
         //  Below just has to be there for some reason:
         return true;
