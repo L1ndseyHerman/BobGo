@@ -27,8 +27,10 @@ public class HighScoresActivity extends AppCompatActivity
     private ImageView maneuverSquare1;
     private boolean jumpingNow2 = false;
     private boolean fallingNow2 = false;
+    private boolean onTopOfSquare2 = false;
     private int height2 = 0;
     private int width2 = 0;
+    private float startHeight2 = 0;
     TextView theText;
 
     @Override
@@ -56,8 +58,8 @@ public class HighScoresActivity extends AppCompatActivity
         maneuverSquare1.getLayoutParams().width = width2 / 12;
         //squares[index][index2].setX(index*width/12);
         maneuverSquare1.setX(6*width2/12);
-        //maneuverSquare1.setY((height2 / 14) + (5 * height2 / 7));
         maneuverSquare1.setY((height2 / 14) + (4 * height2 / 7));
+        //maneuverSquare1.setY((height2 / 14) + (5 * height2 / 7));
 
 
         bobHighScore = findViewById(R.id.bobHighScore);
@@ -105,6 +107,11 @@ public class HighScoresActivity extends AppCompatActivity
         //if (maneuverSquare1.getX() > ((bobHighScore.getX()+bobHighScore.getLayoutParams().width) + (width2/166)))
         if ((maneuverSquare1.getX()>((bobHighScore.getX()+bobHighScore.getLayoutParams().width)+(width2/166))) || (maneuverSquare1.getY() >= bobHighScore.getY()+bobHighScore.getLayoutParams().height) || (maneuverSquare1.getY()+maneuverSquare1.getLayoutParams().height <= bobHighScore.getY()))
         {
+            if ((onTopOfSquare2 == true) && (jumpingNow2 == false) && ((maneuverSquare1.getX()+maneuverSquare1.getLayoutParams().width)+(width2/166) <= bobHighScore.getX()))
+            {
+                fallingNow2 = true;
+                onTopOfSquare2 = false;
+            }
             maneuverSquare1.setX(maneuverSquare1.getX() - width2 / 166);
         }
         else
@@ -125,7 +132,11 @@ public class HighScoresActivity extends AppCompatActivity
 
             //if (bobY2 <= 7*height2/14)
             //  Increasing jump height from 2 grid spaces to 2.5:
-            if (bobY2 <= 6*height2/14)
+            //if (bobY2 <= 6*height2/14)
+            //  Or if Bob collides with a Square:
+            //if ((bobY2 <= 6*height2/14) || ((maneuverSquare1.getY()+maneuverSquare1.getLayoutParams().height+height2/98 >= bobHighScore.getY()) && (maneuverSquare1.getY()+height2/98 <= bobHighScore.getY()+bobHighScore.getLayoutParams().height) && (maneuverSquare1.getX() <= bobHighScore.getX()+bobHighScore.getLayoutParams().width) && (maneuverSquare1.getX()+maneuverSquare1.getLayoutParams().width >= bobHighScore.getX()) ))
+            //  Or if Bob starts his jump ON a Square:
+            if ((bobHighScore.getY() <= startHeight2-(5*height2/14)) || ((maneuverSquare1.getY()+maneuverSquare1.getLayoutParams().height+height2/98 >= bobHighScore.getY()) && (maneuverSquare1.getY()+height2/98 <= bobHighScore.getY()+bobHighScore.getLayoutParams().height) && (maneuverSquare1.getX() <= bobHighScore.getX()+bobHighScore.getLayoutParams().width) && (maneuverSquare1.getX()+maneuverSquare1.getLayoutParams().width >= bobHighScore.getX()) ))
             {
                 jumpingNow2 = false;
                 fallingNow2 = true;
@@ -136,10 +147,28 @@ public class HighScoresActivity extends AppCompatActivity
             //  Same proportion for y-direction, 7*14=98
             bobY2 = bobY2 + height2/98;
             bobHighScore.setY(bobY2);
-            if (bobY2 >= 11*height2/14)
+
+            //if (bobY2 >= 11*height2/14)
+            //  Or if he lands on a square:
+            if ((bobHighScore.getY() >= 11*height2/14) || ((maneuverSquare1.getY()-height2/98 <= bobHighScore.getY()+bobHighScore.getLayoutParams().height) && (maneuverSquare1.getY()+maneuverSquare1.getLayoutParams().height-height2/98 >= bobHighScore.getY()) && (maneuverSquare1.getX() <= bobHighScore.getX()+bobHighScore.getLayoutParams().width) && (maneuverSquare1.getX()+maneuverSquare1.getLayoutParams().width >= bobHighScore.getX()) ))
             {
                 fallingNow2 = false;
+                if (bobY2 < 11*height2/14)
+                {
+                    onTopOfSquare2 = true;
+                }
             }
+
+            /*if ((bobHighScore.getY() < 11*height2/14) || (maneuverSquare1.getY()-height2/98 > bobHighScore.getY()+bobHighScore.getLayoutParams().height) || (maneuverSquare1.getX() > bobHighScore.getX()+bobHighScore.getLayoutParams().width+(width2/166)) || (maneuverSquare1.getX()+maneuverSquare1.getLayoutParams().width < bobHighScore.getX()+(width2/166)) )
+            {
+                bobY2 = bobY2 + height2/98;
+                bobHighScore.setY(bobY2);
+            }
+            else
+            {
+                fallingNow2 = false;
+            }*/
+
         }
     }
 
@@ -151,6 +180,8 @@ public class HighScoresActivity extends AppCompatActivity
         if (jumpingNow2==false && fallingNow2==false)
         {
             jumpingNow2 = true;
+            //startHeight2 = bobHighScore.getY()+bobHighScore.getLayoutParams().height;
+            startHeight2 = bobHighScore.getY();
         }
 
 
