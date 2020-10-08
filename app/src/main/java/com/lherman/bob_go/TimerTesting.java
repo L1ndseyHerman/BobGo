@@ -69,6 +69,7 @@ public class TimerTesting extends AppCompatActivity
     {
         //bobX = bobX + 7;
         //  14 timer calls per one grid square crossing, 12*14=166
+        //  NOPE 12*14 = 168!!!!!!!!
         bobX = bobX + width/166;
         bobSeventy.setX(bobX);
         //  BTS Idol :)
