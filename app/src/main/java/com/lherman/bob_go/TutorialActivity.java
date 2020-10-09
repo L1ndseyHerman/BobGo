@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,12 @@ public class TutorialActivity extends AppCompatActivity
     private Handler handler4 = new Handler();
     private Timer timer4 = new Timer();
 
+    private boolean jumpingNow4 = false;
+    private boolean fallingNow4 = false;
+
+    private int height4 = 0;
+    private int width4 = 0;
+
     //private int minEnemyX;
     //private int maxEnemyX;
 
@@ -27,16 +34,20 @@ public class TutorialActivity extends AppCompatActivity
     //  28 means the Hater will go 2 grid spaces in front of the square, then come back under the square
     //  once the square moves two grid spaces.
     private int timerCallsTillSwitchLeft = 28;
-    private int timerCallsTillSwitchRight = timerCallsTillSwitchLeft/2;
+    //private int timerCallsTillSwitchRight = timerCallsTillSwitchLeft/2;
+    private int timerCallsTillSwitchRight = timerCallsTillSwitchLeft;
     private int timerCounter = 0;
     private String currentDirection = "left";
 
     private int enemySpeedX;
     private int gridSpeedX;
 
+    private int bobSpeedY;
+
     ImageView enemyEnemyEnemy;
     ImageView duhSquare;
     TextView enemyTextStuff;
+    ImageView tutorialBob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,8 +63,8 @@ public class TutorialActivity extends AppCompatActivity
         Point size = new Point();
         display.getSize(size);
         //int width = size.x;
-        int width4 = size.x;
-        int height4 = size.y;
+        width4 = size.x;
+        height4 = size.y;
 
         //ImageView duhSquare = findViewById(R.id.duhSquare);
         duhSquare = findViewById(R.id.duhSquare);
@@ -71,6 +82,15 @@ public class TutorialActivity extends AppCompatActivity
 
         //minEnemyX = 5*width4/12;
         //maxEnemyX = 7*width4/12;
+
+        tutorialBob = findViewById(R.id.tutorialBob);
+        tutorialBob.setX(0);
+        tutorialBob.setY((height4 / 14) + (5 * height4 / 7));
+        tutorialBob.getLayoutParams().height = height4 / 7;
+        tutorialBob.getLayoutParams().width = width4 / 12;
+
+        //  Same proportion for y-direction, 7*14=98
+        bobSpeedY = height4/98;
 
 
         //maneuverSquare1.setX(maneuverSquare1.getX() - width2 / 166);
@@ -97,6 +117,36 @@ public class TutorialActivity extends AppCompatActivity
 
     public void enemyMoveStuff()
     {
+        //  Bob code from previous tests:
+        if (jumpingNow4 == true)
+        {
+            //bobY = bobY - 7;
+            //  Same proportion for y-direction, 7*14=98
+            //bobY = bobY - height/98;
+            tutorialBob.setY(tutorialBob.getY()-bobSpeedY);
+            //if (bobY > 151)
+            //if (bobY < 3*height/7)
+            if (tutorialBob.getY() <= 6*height4/14)
+            {
+                jumpingNow4 = false;
+                fallingNow4 = true;
+            }
+        }
+        if (fallingNow4 == true)
+        {
+            //bobY = bobY + 7;
+            //  Same proportion for y-direction, 7*14=98
+            //bobY = bobY + height/98;
+            tutorialBob.setY(tutorialBob.getY()+bobSpeedY);
+            //if (bobY > 5*height/7)
+            if (tutorialBob.getY() >= 11*height4/14)
+            {
+                fallingNow4 = false;
+            }
+        }
+
+
+        //  New enemy code below:
         timerCounter++;
         enemyTextStuff.setText("timerCounter=" + timerCounter);
 
@@ -118,7 +168,8 @@ public class TutorialActivity extends AppCompatActivity
             //enemySpeedX = -enemySpeedX;*/
         if (currentDirection=="left" && timerCounter>=timerCallsTillSwitchLeft)
         {
-            enemySpeedX = -gridSpeedX;
+            //enemySpeedX = -gridSpeedX;
+            enemySpeedX = 0;
             currentDirection = "right";
             timerCounter = 0;
         }
@@ -135,6 +186,26 @@ public class TutorialActivity extends AppCompatActivity
         enemyEnemyEnemy.setX(enemyEnemyEnemy.getX() + enemySpeedX);
         //enemyEnemyEnemy.setX(enemyEnemyEnemy.getX() + enemySpeedX + gridSpeedX);
         duhSquare.setX(duhSquare.getX() + gridSpeedX);
+
+
+        //if (tutorialBob >)
+
+    }
+
+
+
+
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        //System.out.println("BobY = " + bobY + " Bob Height = " + height);
+
+        //if (bobY > 151)
+        if (jumpingNow4==false && fallingNow4==false)
+        {
+            jumpingNow4 = true;
+        }
+        //  Below just has to be there for some reason:
+        return true;
     }
 
 }
