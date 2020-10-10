@@ -148,7 +148,7 @@ public class TutorialActivity extends AppCompatActivity
 
         //  New enemy code below:
         timerCounter++;
-        enemyTextStuff.setText("timerCounter=" + timerCounter);
+        //enemyTextStuff.setText("timerCounter=" + timerCounter);
 
         /*if ((enemyEnemyEnemy.getX()+enemySpeedX >= maxEnemyX) || (enemyEnemyEnemy.getX()+enemySpeedX <= minEnemyX))
         {
@@ -188,7 +188,20 @@ public class TutorialActivity extends AppCompatActivity
         duhSquare.setX(duhSquare.getX() + gridSpeedX);
 
 
-        //if (tutorialBob >)
+        if ((tutorialBob.getX()+tutorialBob.getLayoutParams().width > enemyEnemyEnemy.getX() && tutorialBob.getX() < enemyEnemyEnemy.getX() && tutorialBob.getY() < enemyEnemyEnemy.getY()+enemyEnemyEnemy.getLayoutParams().height && tutorialBob.getY()+tutorialBob.getLayoutParams().height > enemyEnemyEnemy.getY())
+        || (tutorialBob.getX() < enemyEnemyEnemy.getX()+enemyEnemyEnemy.getLayoutParams().width && tutorialBob.getX() > enemyEnemyEnemy.getX() && tutorialBob.getY() < enemyEnemyEnemy.getY()+enemyEnemyEnemy.getLayoutParams().height && tutorialBob.getY()+tutorialBob.getLayoutParams().height > enemyEnemyEnemy.getY())
+        || (tutorialBob.getY()+tutorialBob.getLayoutParams().height > enemyEnemyEnemy.getY() && tutorialBob.getY() < enemyEnemyEnemy.getY() && tutorialBob.getX() < enemyEnemyEnemy.getX()+enemyEnemyEnemy.getWidth() && tutorialBob.getX()+tutorialBob.getLayoutParams().width > enemyEnemyEnemy.getX())
+        || (tutorialBob.getY() < enemyEnemyEnemy.getY()+enemyEnemyEnemy.getLayoutParams().height && tutorialBob.getY() > enemyEnemyEnemy.getY() && tutorialBob.getX() < enemyEnemyEnemy.getX()+enemyEnemyEnemy.getLayoutParams().width && tutorialBob.getX()+tutorialBob.getLayoutParams().width > enemyEnemyEnemy.getX()))
+        {
+            //enemyTextStuff.setText("Game over!");
+            enemyTextStuff.setText("BobX=" + tutorialBob.getX() + " BobW=" + tutorialBob.getLayoutParams().width +
+                    " BobY=" + tutorialBob.getY() + " BobH=" + tutorialBob.getLayoutParams().height +
+                    " HaterX=" + enemyEnemyEnemy.getX() + " HaterW=" + enemyEnemyEnemy.getLayoutParams().width +
+                    " HaterY=" + enemyEnemyEnemy.getY() + " HaterH=" + enemyEnemyEnemy.getLayoutParams().height +
+            "                                            GAME OVER! TIMER CANCELLED!!");
+
+            timer4.cancel();
+        }
 
     }
 
