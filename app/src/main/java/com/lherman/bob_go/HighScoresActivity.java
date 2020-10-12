@@ -39,10 +39,6 @@ public class HighScoresActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_scores);
 
-        //  Will this work on a tablet?
-        //  Should hide border at top:
-        getSupportActionBar().hide();
-
         //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

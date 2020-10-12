@@ -14,9 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //  Should hide border at top:
-        getSupportActionBar().hide();
-
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
         Button beginButton = findViewById(R.id.beginButton);
         beginButton.setOnClickListener(new View.OnClickListener()

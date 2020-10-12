@@ -31,9 +31,6 @@ public class TimerTesting extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_testing);
 
-        //  Should hide border at top:
-        getSupportActionBar().hide();
-
         //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

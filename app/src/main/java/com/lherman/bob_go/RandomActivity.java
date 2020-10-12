@@ -27,9 +27,6 @@ public class RandomActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random);
 
-        //  Should hide border at top:
-        getSupportActionBar().hide();
-
         //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

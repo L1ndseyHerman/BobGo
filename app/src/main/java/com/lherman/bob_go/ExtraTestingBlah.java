@@ -16,9 +16,6 @@ public class ExtraTestingBlah extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extra_testing_blah);
 
-        //  Should hide border at top:
-        getSupportActionBar().hide();
-
         //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

@@ -55,9 +55,6 @@ public class TutorialActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
 
-        //  Should hide border at top:
-        getSupportActionBar().hide();
-
         //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
