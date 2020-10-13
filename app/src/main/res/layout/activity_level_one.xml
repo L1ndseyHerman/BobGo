@@ -7,4 +7,596 @@
     android:background="@drawable/plainbackgroundseventy"
     tools:context=".LevelOneActivity">
 
+    <ImageView
+        android:id="@+id/grid4x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy" />
+
+    <TextView
+        android:id="@+id/levelOneTestText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/grid0x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid0x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid0x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid0x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid0x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid0x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid1x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid1x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="7dp" />
+
+    <ImageView
+        android:id="@+id/grid1x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid1x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid1x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid1x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        app:srcCompat="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <ImageView
+        android:id="@+id/bob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bobseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid2x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid2x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid2x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid2x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid2x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid2x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid3x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid3x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="7dp" />
+
+    <ImageView
+        android:id="@+id/grid3x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid3x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid3x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid3x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid4x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid4x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid4x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid4x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid4x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid5x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid5x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid5x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid5x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid5x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid5x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid6x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <ImageView
+        android:id="@+id/grid6x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid6x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid6x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid6x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid6x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid7x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid7x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid7x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid7x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid7x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid7x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid8x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid8x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid8x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid8x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid8x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid8x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid9x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid9x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid9x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid9x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid9x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid9x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid10x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <ImageView
+        android:id="@+id/grid10x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid10x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid10x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp" />
+
+    <ImageView
+        android:id="@+id/grid10x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid10x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/grid11x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid11x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid11x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid11x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <ImageView
+        android:id="@+id/grid11x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/grid11x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gridbackgroundseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="5dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
