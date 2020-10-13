@@ -4,13 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Display;
 import android.widget.ImageView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LevelOneActivity extends AppCompatActivity
 {
     private ImageView[][] daGrid = new ImageView[12][6];
     private ImageView bob;
+    private int xLevelMove;
+    private Handler handler = new Handler();
+    private Timer timer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,6 +31,8 @@ public class LevelOneActivity extends AppCompatActivity
         display.getSize(size);
         int width = size.x;
         int height = size.y;
+
+        xLevelMove = width/166;
 
         //  The number in the left brackets is the x and the right is the y,
         //  so like "theSquares[0][3]" is all the way to the left, but three squares down.
@@ -132,5 +141,38 @@ public class LevelOneActivity extends AppCompatActivity
         bob.getLayoutParams().width = width/12;
 
 
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        levelMoveStuff();
+                    }
+                });
+            }
+            //},0, 20);
+        },1000, 35);
+
     }
+
+
+
+
+    public void levelMoveStuff()
+    {
+        for (int index=0; index<daGrid.length; index++)
+        {
+            for (int index2=0; index2<daGrid[index].length; index2++)
+            {
+                daGrid[index][index2].setX(daGrid[index][index2].getX() - xLevelMove);
+            }
+        }
+
+        //  Bob needs to redraw even though staying still to be over top of the grid backgrounds.
+        //bob.setX(bob.getX());
+        //  Never mind, that doesn't work at all! Apparently, the image at the bottom of the Component Tree
+        //  is the foreground/forwardmost, so moved bob to bottom, and now he appears on top of grid.
+    }
+
 }
