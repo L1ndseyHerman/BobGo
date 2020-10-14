@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import java.util.Timer;
@@ -16,8 +17,13 @@ public class LevelOneActivity extends AppCompatActivity
     private ImageView[][] daGrid = new ImageView[12][6];
     private ImageView bob;
     private int xLevelMove;
+    private int yBobJump;
     private Handler handler = new Handler();
     private Timer timer = new Timer();
+    private boolean jumpingNow = false;
+    private boolean fallingNow = false;
+    int width;
+    int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,10 +35,13 @@ public class LevelOneActivity extends AppCompatActivity
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
-        int height = size.y;
+        width = size.x;
+        height = size.y;
 
-        xLevelMove = width/166;
+        //  14 timer calls per one grid square crossing, 12*14=168
+        xLevelMove = width/168;
+        //  Same proportion for y-direction, 7*14=98
+        yBobJump = height/98;
 
         //  The number in the left brackets is the x and the right is the y,
         //  so like "theSquares[0][3]" is all the way to the left, but three squares down.
@@ -173,6 +182,46 @@ public class LevelOneActivity extends AppCompatActivity
         //bob.setX(bob.getX());
         //  Never mind, that doesn't work at all! Apparently, the image at the bottom of the Component Tree
         //  is the foreground/forwardmost, so moved bob to bottom, and now he appears on top of grid.
+
+
+
+        if (jumpingNow == true)
+        {
+            //bobY = bobY - height/98;
+            bob.setY(bob.getY()-yBobJump);
+            //if (bobY > 151)
+            //if (bobY < 3*height/7)
+            //if (bobY <= 7*height/14)
+            if (bob.getY() <= 6*height/14)
+            {
+                jumpingNow = false;
+                fallingNow = true;
+            }
+        }
+        if (fallingNow == true)
+        {
+            //bobY = bobY + height/98;
+            bob.setY(bob.getY()+yBobJump);
+            //if (bobY > 5*height/7)
+            if (bob.getY() >= 11*height/14)
+            {
+                fallingNow = false;
+            }
+        }
+    }
+
+
+
+    public boolean onTouchEvent(MotionEvent event)
+    {
+
+        //if (bobY > 151)
+        if (jumpingNow==false && fallingNow==false)
+        {
+            jumpingNow = true;
+        }
+        //  Below just has to be there for some reason:
+        return true;
     }
 
 }
