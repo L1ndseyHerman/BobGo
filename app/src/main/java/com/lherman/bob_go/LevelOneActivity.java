@@ -25,6 +25,8 @@ public class LevelOneActivity extends AppCompatActivity
     int width;
     int height;
 
+    Bob thisLevelsBob;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -143,11 +145,14 @@ public class LevelOneActivity extends AppCompatActivity
         }
 
 
-        bob = findViewById(R.id.bob);
+        /*bob = findViewById(R.id.bob);
         bob.setX(0);
         bob.setY(11*height/14);
         bob.getLayoutParams().height = height/7;
-        bob.getLayoutParams().width = width/12;
+        bob.getLayoutParams().width = width/12;*/
+
+        bob = findViewById(R.id.bob);
+        thisLevelsBob = new Bob(bob, width, height);
 
 
         timer.schedule(new TimerTask() {
@@ -185,7 +190,7 @@ public class LevelOneActivity extends AppCompatActivity
 
 
 
-        if (jumpingNow == true)
+        /*if (jumpingNow == true)
         {
             //bobY = bobY - height/98;
             bob.setY(bob.getY()-yBobJump);
@@ -207,7 +212,11 @@ public class LevelOneActivity extends AppCompatActivity
             {
                 fallingNow = false;
             }
-        }
+        }*/
+
+        thisLevelsBob.midJumpStuff();
+
+
     }
 
 
@@ -215,11 +224,14 @@ public class LevelOneActivity extends AppCompatActivity
     public boolean onTouchEvent(MotionEvent event)
     {
 
-        //if (bobY > 151)
+        /*//if (bobY > 151)
         if (jumpingNow==false && fallingNow==false)
         {
             jumpingNow = true;
-        }
+        }*/
+
+        thisLevelsBob.startJumpMaybe();
+
         //  Below just has to be there for some reason:
         return true;
     }
