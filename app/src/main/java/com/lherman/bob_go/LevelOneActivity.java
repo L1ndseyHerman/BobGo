@@ -14,8 +14,8 @@ import java.util.TimerTask;
 
 public class LevelOneActivity extends AppCompatActivity
 {
-    private ImageView[][] daGrid = new ImageView[12][6];
-    private ImageView bob;
+    private ImageView[][] daGrid = new ImageView[13][6];
+    private ImageView bobImage;
     private int xLevelMove;
     private int yBobJump;
     private Handler handler = new Handler();
@@ -25,7 +25,8 @@ public class LevelOneActivity extends AppCompatActivity
     int width;
     int height;
 
-    Bob thisLevelsBob;
+    Bob bob;
+    SquareObstacle onlySquare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -131,6 +132,17 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[11][4] = findViewById(R.id.grid11x4);
         daGrid[11][5] = findViewById(R.id.grid11x5);
 
+        daGrid[12][0] = findViewById(R.id.grid12x0);
+        daGrid[12][1] = findViewById(R.id.grid12x1);
+        daGrid[12][2] = findViewById(R.id.grid12x2);
+        daGrid[12][3] = findViewById(R.id.grid12x3);
+        daGrid[12][4] = findViewById(R.id.grid12x4);
+
+        //  daGrid[12][4] is the one with the SquareObstacle:
+
+
+        daGrid[12][5] = findViewById(R.id.grid12x5);
+
 
         for (int index=0; index<daGrid.length; index++)
         {
@@ -151,8 +163,10 @@ public class LevelOneActivity extends AppCompatActivity
         bob.getLayoutParams().height = height/7;
         bob.getLayoutParams().width = width/12;*/
 
-        bob = findViewById(R.id.bob);
-        thisLevelsBob = new Bob(bob, width, height);
+        bobImage = findViewById(R.id.bob);
+        bob = new Bob(bobImage, width, height);
+
+        onlySquare = new SquareObstacle(daGrid[12][4], width, height, bobImage, xLevelMove, bob, daGrid);
 
 
         timer.schedule(new TimerTask() {
@@ -175,13 +189,14 @@ public class LevelOneActivity extends AppCompatActivity
 
     public void levelMoveStuff()
     {
-        for (int index=0; index<daGrid.length; index++)
+        // Square Obstacle decides whether to move grid, or stop it bec Bob collided w something!
+        /*for (int index=0; index<daGrid.length; index++)
         {
             for (int index2=0; index2<daGrid[index].length; index2++)
             {
                 daGrid[index][index2].setX(daGrid[index][index2].getX() - xLevelMove);
             }
-        }
+        }*/
 
         //  Bob needs to redraw even though staying still to be over top of the grid backgrounds.
         //bob.setX(bob.getX());
@@ -214,7 +229,10 @@ public class LevelOneActivity extends AppCompatActivity
             }
         }*/
 
-        thisLevelsBob.midJumpStuff();
+
+        //  Switching with the Square:
+        //bob.midJumpStuff();
+        onlySquare.checkCollision();
 
 
     }
@@ -230,7 +248,7 @@ public class LevelOneActivity extends AppCompatActivity
             jumpingNow = true;
         }*/
 
-        thisLevelsBob.startJumpMaybe();
+        bob.startJumpMaybe();
 
         //  Below just has to be there for some reason:
         return true;

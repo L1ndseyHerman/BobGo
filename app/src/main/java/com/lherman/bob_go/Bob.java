@@ -36,13 +36,18 @@ public class Bob
         yBob = 11*hBob/14;
     }*/
 
-    private ImageView bob;
-    private boolean jumpingNow, fallingNow;
-    private int yJumpSpeedBob, screenWidth, screenHeight;
 
-    public Bob(ImageView bob, int screenWidth, int screenHeight)
+
+    //  DO SOMETHING W ON TOP OF SQUARE!!
+
+    private ImageView bobImage;
+    private boolean jumpingNow, fallingNow, onTopOfSquare;
+    private int yJumpSpeedBob, screenWidth, screenHeight, jumpHeightBob, lowestBobY;
+    private float startHeightBob;
+
+    public Bob(ImageView bobImage, int screenWidth, int screenHeight)
     {
-        this.bob = bob;
+        this.bobImage = bobImage;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
 
@@ -50,12 +55,22 @@ public class Bob
         //  write my own getters and setters.
 
         //bob = findViewById(R.id.bob);
-        bob.setX(0);
-        bob.setY(11*screenHeight/14);
-        bob.getLayoutParams().height = screenHeight/7;
-        bob.getLayoutParams().width = screenWidth/12;
+        bobImage.setX(0);
+        //bob.setY(11*screenHeight/14);
+        //  Put the number for the bottom of the screen in one place:
+        lowestBobY = 11*screenHeight/14;
+        bobImage.setY(lowestBobY);
+        bobImage.getLayoutParams().height = screenHeight/7;
+        bobImage.getLayoutParams().width = screenWidth/12;
 
         yJumpSpeedBob = screenHeight/98;
+
+        jumpingNow = false;
+        fallingNow = false;
+        onTopOfSquare = false;
+
+        //  How high Bob will jump before he starts falling:
+        jumpHeightBob = 5*screenHeight/14;
     }
 
 
@@ -64,10 +79,12 @@ public class Bob
         if (jumpingNow==false && fallingNow==false)
         {
             jumpingNow = true;
+            startHeightBob = bobImage.getY();
         }
     }
 
-    public void midJumpStuff()
+    //  Made some changes when coding SquareObstacle:
+    /*public void midJumpStuff()
     {
 
         if (jumpingNow == true)
@@ -77,6 +94,8 @@ public class Bob
             //if (bobY > 151)
             //if (bobY < 3*height/7)
             //if (bobY <= 7*height/14)
+
+
             if (bob.getY() <= 6*screenHeight/14)
             {
                 jumpingNow = false;
@@ -94,6 +113,58 @@ public class Bob
             }
         }
 
+    }*/
+
+    public boolean getJumpingNow()
+    {
+        return jumpingNow;
+    }
+    public void setJumpingNow(boolean jumpingNow)
+    {
+        this.jumpingNow = jumpingNow;
+    }
+
+
+    public boolean getFallingNow()
+    {
+        return fallingNow;
+    }
+    public void setFallingNow(boolean fallingNow)
+    {
+        this.fallingNow = fallingNow;
+    }
+
+    public boolean getOnTopOfSquare()
+    {
+        return onTopOfSquare;
+    }
+    public void setOnTopOfSquare(boolean onTopOfSquare)
+    {
+        this.onTopOfSquare = onTopOfSquare;
+    }
+
+    public int getBobJumpSpeed()
+    {
+        return yJumpSpeedBob;
+    }
+    //  Should never need to change the jump speed from a SquareObstacle, so no setter.
+
+    //  Whoa! The IDE suggested this method name! How did it know I'd do a getter for that?!
+    public float getStartHeightBob()
+    {
+        return startHeightBob;
+    }
+    //  Once again, no setter. Bob finds out his own height when the user taps screen.
+
+    public int getJumpHeightBob()
+    {
+        return jumpHeightBob;
+    }
+
+    //  AGAIN! This is where Bob should stop falling to avoid going off the bottom of the screen:
+    public int getLowestBobY()
+    {
+        return lowestBobY;
     }
 
 
