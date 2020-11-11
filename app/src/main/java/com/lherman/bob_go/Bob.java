@@ -2,6 +2,7 @@ package com.lherman.bob_go;
 
 import android.widget.ImageView;
 
+//  The adorable main character that the user controls.
 public class Bob
 {
     /*  Bob needs to jump, so needs to have his y-value updated.
@@ -13,36 +14,13 @@ public class Bob
         unlock the next level. But what he collided with will be decided in the other classes.
      */
 
-    //  Maybe include jump speed
-    //  Maybe set image here?
-    //  WOW! DON'T FORGET JUMPING AND FALLING!!
-    //  And Bob's image
-
-
-    /*private int xBob, yBob, wBob, hBob, yJumpSpeedBob;
-    private boolean jumpingNow, fallingNow;
-    private ImageView bob;
-
-
-    //public Bob(int xBob, int yBob, int wBob, int hBob, int yJumpSpeedBob)
-    public Bob(int wBob, int hBob, ImageView bob)
-    {
-        this.wBob = wBob;
-        this.hBob = hBob;
-        this.bob = bob;
-        xBob = 0;
-        jumpingNow = false;
-        fallingNow = false;
-        yBob = 11*hBob/14;
-    }*/
-
-
-
-    //  DO SOMETHING W ON TOP OF SQUARE!!
-
+    //  The ImageView of Bob from activity_level_one.xml, or whatever other levels use.
     private ImageView bobImage;
+    //  These will change in the SquareObstacle class when Bob lands on squares and things.
     private boolean jumpingNow, fallingNow, onTopOfSquare;
+    //  These always stay the same after they get declared in the constructor
     private int yJumpSpeedBob, screenWidth, screenHeight, jumpHeightBob, lowestBobY;
+    //  This changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
     private float startHeightBob;
 
     public Bob(ImageView bobImage, int screenWidth, int screenHeight)

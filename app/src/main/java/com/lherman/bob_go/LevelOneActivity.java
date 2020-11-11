@@ -14,20 +14,31 @@ import java.util.TimerTask;
 
 public class LevelOneActivity extends AppCompatActivity
 {
+    //  The grid of SquareObstacles and BlankGridSpaces.
     private ImageView[][] daGrid = new ImageView[13][6];
+    //  The one and only Image of Bob! :D
     private ImageView bobImage;
+    //  The amount that everything in daGrid and the enemies move every timer call.
     private int xLevelMove;
+    //  The height Bob can jump (2.5 SquareObstacles high).
     private int yBobJump;
+    //  A Timer needs a Handler in Android Studio
     private Handler handler = new Handler();
+    //  Moves the level each time it gets called:
     private Timer timer = new Timer();
+    //  For Bob:
     private boolean jumpingNow = false;
     private boolean fallingNow = false;
+    //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
     int width;
     int height;
 
+    //  The one and only object of Bob! :D
     Bob bob;
+    //  Only one for now....
     SquareObstacle onlySquare;
 
+    //  Android Studio's Main Method:
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -139,11 +150,11 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[12][4] = findViewById(R.id.grid12x4);
 
         //  daGrid[12][4] is the one with the SquareObstacle:
-
-
         daGrid[12][5] = findViewById(R.id.grid12x5);
 
-
+        //  Loops through everything in daGrid and decides where to put it on the screen...
+        //  or off of the screen! (stuff to the right that will gradually move left
+        //  onto the screen)
         for (int index=0; index<daGrid.length; index++)
         {
             for (int index2=0; index2<daGrid[index].length; index2++)
@@ -163,12 +174,15 @@ public class LevelOneActivity extends AppCompatActivity
         bob.getLayoutParams().height = height/7;
         bob.getLayoutParams().width = width/12;*/
 
+        //  Stuff for the one and only Bob
         bobImage = findViewById(R.id.bob);
         bob = new Bob(bobImage, width, height);
 
+        //  Only Square for now
         onlySquare = new SquareObstacle(daGrid[12][4], width, height, bobImage, xLevelMove, bob, daGrid);
 
-
+        //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+        //  but the first timer call isn't until after a second (1,000) of delay.
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -232,6 +246,8 @@ public class LevelOneActivity extends AppCompatActivity
 
         //  Switching with the Square:
         //bob.midJumpStuff();
+
+        //  Probobly everything will stay here.
         onlySquare.checkCollision();
 
 
@@ -248,6 +264,7 @@ public class LevelOneActivity extends AppCompatActivity
             jumpingNow = true;
         }*/
 
+        //  Checks to see if Bob can jump or if there's like a SquareObstacle or something in the way.
         bob.startJumpMaybe();
 
         //  Below just has to be there for some reason:
