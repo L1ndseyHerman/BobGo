@@ -54,6 +54,7 @@ public class Bob
 
     public void startJumpMaybe()
     {
+        System.out.println("Got here");
         if (jumpingNow==false && fallingNow==false)
         {
             jumpingNow = true;

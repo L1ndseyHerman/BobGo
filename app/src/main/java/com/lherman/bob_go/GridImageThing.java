@@ -19,4 +19,19 @@ public interface GridImageThing
 
     public void checkCollision();
 
+
+    //  Oh shit, need all these now that daGrid isn't of type ImageView:
+    public float getImageX();
+    public void setImageX(float xImage);
+
+    public float getImageY();
+    public void setImageY(float yImage);
+
+    public int getImageWidth();
+    public void setImageWidth(int widthImage);
+
+    public int getImageHeight();
+    public void setImageHeight(int heightImage);
+
+
 }
