@@ -16,16 +16,14 @@ public class BlankGridSpace implements GridImageThing
 
     @Override
     public boolean checkCollision()
-    //public void checkCollision()
     {
+        //  Wait... should it be true that Bob collides w nothing? Maybe switch the trues and falses?
         return true;
     }
 
     @Override
     public void move()
     {
-        //  Do nothing! Can't collide with blank space.
-        //  Actually, do need to move these still:
         space.setX(space.getX() - xMoveSpeedScreen);
     }
 

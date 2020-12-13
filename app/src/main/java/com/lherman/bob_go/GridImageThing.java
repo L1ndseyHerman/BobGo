@@ -16,24 +16,23 @@ public interface GridImageThing
     method to stop the timer and do some win thing.
      */
 
-
-    //public void checkCollision();
-    public boolean checkCollision();
-    public void move();
+    //  Deleted the "public" in front of all these when the commit warnings said it was redundant.
+    boolean checkCollision();
+    void move();
 
 
     //  Oh shit, need all these now that daGrid isn't of type ImageView:
-    public float getImageX();
-    public void setImageX(float xImage);
+    float getImageX();
+    void setImageX(float xImage);
 
-    public float getImageY();
-    public void setImageY(float yImage);
+    float getImageY();
+    void setImageY(float yImage);
 
-    public int getImageWidth();
-    public void setImageWidth(int widthImage);
+    int getImageWidth();
+    void setImageWidth(int widthImage);
 
-    public int getImageHeight();
-    public void setImageHeight(int heightImage);
+    int getImageHeight();
+    void setImageHeight(int heightImage);
 
 
 }

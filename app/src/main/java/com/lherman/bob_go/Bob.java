@@ -32,9 +32,7 @@ public class Bob
         //  Most of this stuff can use the pre-coded Image View methods, don't need to
         //  write my own getters and setters.
 
-        //bob = findViewById(R.id.bob);
         bobImage.setX(0);
-        //bob.setY(11*screenHeight/14);
         //  Put the number for the bottom of the screen in one place:
         lowestBobY = 11*screenHeight/14;
         bobImage.setY(lowestBobY);
@@ -54,45 +52,12 @@ public class Bob
 
     public void startJumpMaybe()
     {
-        System.out.println("Got here");
         if (jumpingNow==false && fallingNow==false)
         {
             jumpingNow = true;
             startHeightBob = bobImage.getY();
         }
     }
-
-    //  Made some changes when coding SquareObstacle:
-    /*public void midJumpStuff()
-    {
-
-        if (jumpingNow == true)
-        {
-            //bobY = bobY - height/98;
-            bob.setY(bob.getY()-yJumpSpeedBob);
-            //if (bobY > 151)
-            //if (bobY < 3*height/7)
-            //if (bobY <= 7*height/14)
-
-
-            if (bob.getY() <= 6*screenHeight/14)
-            {
-                jumpingNow = false;
-                fallingNow = true;
-            }
-        }
-        if (fallingNow == true)
-        {
-            //bobY = bobY + height/98;
-            bob.setY(bob.getY()+yJumpSpeedBob);
-            //if (bobY > 5*height/7)
-            if (bob.getY() >= 11*screenHeight/14)
-            {
-                fallingNow = false;
-            }
-        }
-
-    }*/
 
     public boolean getJumpingNow()
     {
