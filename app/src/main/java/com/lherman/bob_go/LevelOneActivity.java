@@ -276,7 +276,7 @@ public class LevelOneActivity extends AppCompatActivity
                 //daGrid[index][index2].setX(index*width/12);
                 daGrid[index][index2].setImageX(index*width/12);
                 //daGrid[index][index2].setY((height / 14) + (index2 * height / 7));
-                daGrid[index][index2].setImageY(index2*height/7);
+                daGrid[index][index2].setImageY((height / 14) + (index2*height/7));
             }
         }
 
@@ -370,13 +370,34 @@ public class LevelOneActivity extends AppCompatActivity
     //  Unlike the grid placement double for-loop, this one moves the grid.
     private void moveDaGrid()
     {
+        boolean gridShouldMove = true;
         for (int index=0; index<daGrid.length; index++)
         {
             for (int index2=0; index2<daGrid[index].length; index2++)
             {
                 //daGrid[index][index2].setX(daGrid[index][index2].getX() - xMoveSpeedScreen);
                 //daGrid[index][index2].setImageX(daGrid[index][index2].getImageX() - xLevelMove);
-                daGrid[index][index2].checkCollision();
+
+                //  NEW NEW NEW NEW NEW ENW
+                //  Whoops, this is probably getting reset to true after the Square the next BlandSpace.
+                gridShouldMove = daGrid[index][index2].checkCollision();
+                //  Hopefully this will exit this loop and immediately go to the if-statement below.
+                if (gridShouldMove == false)
+                {
+                    break;
+                }
+            }
+        }
+
+        //  Move all of the grid if Bob isn't colliding w any of the grid.
+        if (gridShouldMove)
+        {
+            for (int index=0; index<daGrid.length; index++)
+            {
+                for (int index2=0; index2<daGrid[index].length; index2++)
+                {
+                    daGrid[index][index2].move();
+                }
             }
         }
     }

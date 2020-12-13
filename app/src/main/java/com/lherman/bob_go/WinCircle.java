@@ -4,9 +4,16 @@ package com.lherman.bob_go;
 public class WinCircle implements GridImageThing
 {
     @Override
-    public void checkCollision()
+    public boolean checkCollision()
     {
         //  Do the code for stopping the timer and winning the game later.
+        return true;
+    }
+
+    //  Whoa! It put it above the other methods like where I have this in the other classes! :D
+    @Override
+    public void move() {
+
     }
 
     @Override

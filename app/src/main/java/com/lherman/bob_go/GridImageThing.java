@@ -17,7 +17,9 @@ public interface GridImageThing
      */
 
 
-    public void checkCollision();
+    //public void checkCollision();
+    public boolean checkCollision();
+    public void move();
 
 
     //  Oh shit, need all these now that daGrid isn't of type ImageView:

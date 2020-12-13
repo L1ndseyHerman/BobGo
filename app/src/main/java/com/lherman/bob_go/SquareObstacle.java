@@ -31,30 +31,9 @@ public class SquareObstacle implements GridImageThing
     }
 
     @Override
-    public void checkCollision()
+    public boolean checkCollision()
+    //public void checkCollision()
     {
-        //System.out.println(square.getX() + " " + square.getY() + " " + square.getLayoutParams().width + " " + square.getLayoutParams().height);
-        //System.out.println(square.getImageX() + " " + square.getY() + " " + square.getLayoutParams().width + " " + square.getLayoutParams().height);
-        //  If the square's left side is less than Bob's right side                               or the square's top side is >= Bob's bottom side                          or the square's bottom side <= Bob's top side
-        if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height)) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY())))
-        {
-            //  If Bob is coasting to the right on top of a square             and the next time the square moves, its right side will be <= Bob's left side,
-            if ((bob.getOnTopOfSquare()==true) && (bob.getJumpingNow()==false) && (square.getX()+square.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
-            {
-                //  Make Bob fall down instead of walking on air.
-                bob.setFallingNow(true);
-                bob.setOnTopOfSquare(false);
-                System.out.println("Not walking on sunshine");
-            }
-            //  Nope! The array is already moving the squares, want the empty grid spaces to move too.
-            //  But wait! This decides whether to keep moving the square or stop bec Bob collided w it! Need to do entire grid here!
-            square.setX(square.getX() - xMoveSpeedScreen);
-            //moveDaGrid();
-        }
-        else
-        {
-            //  Collision test code text thing
-        }
 
         if (bob.getJumpingNow() == true)
         {
@@ -92,7 +71,47 @@ public class SquareObstacle implements GridImageThing
         }
 
 
+
+
+
+
+        //System.out.println(square.getX() + " " + square.getY() + " " + square.getLayoutParams().width + " " + square.getLayoutParams().height);
+        //System.out.println(square.getImageX() + " " + square.getY() + " " + square.getLayoutParams().width + " " + square.getLayoutParams().height);
+        //  If the square's left side is less than Bob's right side                               or the square's top side is >= Bob's bottom side                          or the square's bottom side <= Bob's top side
+        if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height)) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY())))
+        {
+            //  If Bob is coasting to the right on top of a square             and the next time the square moves, its right side will be <= Bob's left side,
+            if ((bob.getOnTopOfSquare()==true) && (bob.getJumpingNow()==false) && (square.getX()+square.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+            {
+                //  Make Bob fall down instead of walking on air.
+                bob.setFallingNow(true);
+                bob.setOnTopOfSquare(false);
+                System.out.println("Not walking on sunshine");
+            }
+            //  Nope! The array is already moving the squares, want the empty grid spaces to move too.
+            //  But wait! This decides whether to keep moving the square or stop bec Bob collided w it! Need to do entire grid here!
+            //square.setX(square.getX() - xMoveSpeedScreen);
+            //moveDaGrid();
+        }
+        else
+        {
+            //  Collision test code text thing
+
+            //  This is where Bob collides w something on his right, right?
+            return false;
+        }
+
+
+
+        return true;
     }
+
+    @Override
+    public void move()
+    {
+        square.setX(square.getX() - xMoveSpeedScreen);
+    }
+
 
     @Override
     public float getImageX() {
