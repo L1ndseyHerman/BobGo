@@ -149,7 +149,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[12][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x1), xLevelMove);
         daGrid[12][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x2), xLevelMove);
         daGrid[12][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x3), xLevelMove);
-        //  daGrid[12][4] is a SquareObstacle: 
+        //  daGrid[12][4] is a SquareObstacle:
         daGrid[12][4] = new SquareObstacle((ImageView) findViewById(R.id.grid12x4), width, height, bobImage, xLevelMove, bob);
         daGrid[12][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x5), xLevelMove);
 
@@ -180,6 +180,8 @@ public class LevelOneActivity extends AppCompatActivity
 
         //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
         //  but the first timer call isn't until after a second (1,000) of delay.
+
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -190,8 +192,8 @@ public class LevelOneActivity extends AppCompatActivity
                     }
                 });
             }
-            //},0, 20);
-        },1000, 35);
+            },1000, 35);
+        //},1000, 200);
 
     }
 
@@ -211,6 +213,11 @@ public class LevelOneActivity extends AppCompatActivity
                     break;
                 }
             }
+            //  Whoops, and one for the outer loop too!
+            if (gridShouldMove == false)
+            {
+                break;
+            }
         }
 
         //  Move all of the grid if Bob isn't colliding w any of the grid.
@@ -224,6 +231,21 @@ public class LevelOneActivity extends AppCompatActivity
                 }
             }
         }
+
+
+        //  NEW! Checking to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
+        if (bob.getJumpingNow() == true)
+        {
+            //  Bob jumps
+            bobImage.setY(bobImage.getY() - bob.getBobJumpSpeed());
+        }
+        else if (bob.getFallingNow() == true)
+        {
+            //  Bob falls
+            bobImage.setY(bobImage.getY() + bob.getBobJumpSpeed());
+        }
+
+
     }
 
 

@@ -29,7 +29,7 @@ public class SquareObstacle implements GridImageThing
         if (bob.getJumpingNow() == true)
         {
             //  Bob jumps
-            bobImage.setY(bobImage.getY()-bob.getBobJumpSpeed());
+            //bobImage.setY(bobImage.getY()-bob.getBobJumpSpeed());
 
             //  If Bob's current y-value <= where Bob started jumping from minus where he's allowed to jump to || the next timer call the square's bottom side will be >= Bob's top side && the next timer call the square's top side will be <= Bob's bottom side             and the square's left side is currently <= Bob's right side            and the square's right side is currently >= Bob's left side
             if ((bobImage.getY() <= bob.getStartHeightBob()-bob.getJumpHeightBob()) || ((square.getY()+square.getLayoutParams().height+bob.getBobJumpSpeed() >= bobImage.getY()) && (square.getY()+bob.getBobJumpSpeed() <= bobImage.getY()+bobImage.getLayoutParams().height) && (square.getX() <= bobImage.getX()+bobImage.getLayoutParams().width) && (square.getX()+square.getLayoutParams().width >= bobImage.getX())))
@@ -43,7 +43,7 @@ public class SquareObstacle implements GridImageThing
         if (bob.getFallingNow() == true)
         {
             //  Bob falls
-            bobImage.setY(bobImage.getY()+bob.getBobJumpSpeed());
+            //bobImage.setY(bobImage.getY()+bob.getBobJumpSpeed());
 
             //  Summary: If Bob is falling off the bottom of the screen, or lands on a Square, stop falling.
             //  If Bob's current y-value >= the lowest y-value before he starts to go off the screen || the square's top side - Bob's y-value the next timer call <= Bob's bottom side && the square's bottom side - Bob's y-value the next timer call >= Bob's top side && the square's left side <= Bob's right side     and the square's right side >= Bob's left side
@@ -58,23 +58,78 @@ public class SquareObstacle implements GridImageThing
             }
         }
 
-
-        //  If the square's left side is less than Bob's right side                               or the square's top side is >= Bob's bottom side                          or the square's bottom side <= Bob's top side
-        if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height)) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY())))
+        //  Right collision code if Bob is jumping:
+        if (bob.getJumpingNow() == true)
         {
-            //  If Bob is coasting to the right on top of a square             and the next time the square moves, its right side will be <= Bob's left side,
-            if ((bob.getOnTopOfSquare()==true) && (bob.getJumpingNow()==false) && (square.getX()+square.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+
+
+            //  If the square's left side is less than Bob's right side                               or the square's top side is >= Bob's bottom side                          or the square's bottom side <= Bob's top side
+            //if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height-bob.getBobJumpSpeed())) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY()-bob.getBobJumpSpeed())))
+            //  If the square's left side is >  Bob's right side                                        DON'T FORGET THE RIGHT SIDE!!                                                        or the square's top side is >= Bob's bottom side                                                    or the square's bottom side <= Bob's top side
+            if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || ((square.getX()+square.getLayoutParams().width) < (bobImage.getX()+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height-bob.getBobJumpSpeed())) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY()-bob.getBobJumpSpeed())))
             {
-                //  Make Bob fall down instead of walking on air.
-                bob.setFallingNow(true);
-                bob.setOnTopOfSquare(false);
+                //  If Bob is coasting to the right on top of a square             and the next time the square moves, its right side will be <= Bob's left side,
+                if ((bob.getOnTopOfSquare()==true) && (bob.getJumpingNow()==false) && (square.getX()+square.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+                {
+                    //  Make Bob fall down instead of walking on air.
+                    bob.setFallingNow(true);
+                    bob.setOnTopOfSquare(false);
+                }
+            }
+            else
+            {
+                //  This is where Bob collides w something on his right, right?
+                System.out.println("Right collision jumping");
+                return false;
             }
         }
+
+        //  Right collision code if Bob is falling:
+        else if (bob.getFallingNow() == true)
+        {
+            //  If the square's left side is less than Bob's right side                               or the square's top side is >= Bob's bottom side                          or the square's bottom side <= Bob's top side
+            //  If the square's left side is >  Bob's right side                                        DON'T FORGET THE RIGHT SIDE!!                                                        or the square's top side is >= Bob's bottom side                                                    or the square's bottom side <= Bob's top side
+            if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || ((square.getX()+square.getLayoutParams().width) < (bobImage.getX()+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height+bob.getBobJumpSpeed())) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY()+bob.getBobJumpSpeed())))
+            {
+                //  If Bob is coasting to the right on top of a square             and the next time the square moves, its right side will be <= Bob's left side,
+                if ((bob.getOnTopOfSquare()==true) && (bob.getJumpingNow()==false) && (square.getX()+square.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+                {
+                    //  Make Bob fall down instead of walking on air.
+                    bob.setFallingNow(true);
+                    bob.setOnTopOfSquare(false);
+                }
+            }
+            else
+            {
+                //  This is where Bob collides w something on his right, right?
+                System.out.println("Right collision falling");
+                return false;
+            }
+        }
+
+        //  Not jumping or falling
         else
         {
-            //  This is where Bob collides w something on his right, right?
-            return false;
+            //  If the square's left side is less than Bob's right side                               or the square's top side is >= Bob's bottom side                          or the square's bottom side <= Bob's top side
+            //  If the square's left side is >  Bob's right side                                        DON'T FORGET THE RIGHT SIDE!!                                                        or the square's top side is >= Bob's bottom side                                                    or the square's bottom side <= Bob's top side
+            if ((square.getX() > (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) || ((square.getX()+square.getLayoutParams().width) < (bobImage.getX()+xMoveSpeedScreen)) || (square.getY() >= (bobImage.getY()+bobImage.getLayoutParams().height)) || ((square.getY()+square.getLayoutParams().height) <= (bobImage.getY())))
+            {
+                //  If Bob is coasting to the right on top of a square             and the next time the square moves, its right side will be <= Bob's left side,
+                if ((bob.getOnTopOfSquare()==true) && (bob.getJumpingNow()==false) && (square.getX()+square.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+                {
+                    //  Make Bob fall down instead of walking on air.
+                    bob.setFallingNow(true);
+                    bob.setOnTopOfSquare(false);
+                }
+            }
+            else
+            {
+                //  This is where Bob collides w something on his right, right?
+                System.out.println("Right collision no height");
+                return false;
+            }
         }
+
 
 
 
