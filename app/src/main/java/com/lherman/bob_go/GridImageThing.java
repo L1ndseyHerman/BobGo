@@ -19,6 +19,8 @@ public interface GridImageThing
     //  Deleted the "public" in front of all these when the commit warnings said it was redundant.
     boolean checkCollision();
     void move();
+    //  This one is for moving just a little bit, like the gap amount:
+    void move(float amount);
 
 
     //  Oh shit, need all these now that daGrid isn't of type ImageView:

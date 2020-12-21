@@ -17,6 +17,11 @@ public class WinCircle implements GridImageThing
     }
 
     @Override
+    public void move(float amount) {
+
+    }
+
+    @Override
     public float getImageX() {
         return 0;
     }

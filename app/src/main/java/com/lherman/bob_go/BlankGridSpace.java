@@ -27,6 +27,11 @@ public class BlankGridSpace implements GridImageThing
         space.setX(space.getX() - xMoveSpeedScreen);
     }
 
+    @Override
+    public void move(float amount)
+    {
+        space.setX(space.getX() - amount);
+    }
 
 
     @Override

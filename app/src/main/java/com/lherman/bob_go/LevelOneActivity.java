@@ -15,7 +15,7 @@ import java.util.TimerTask;
 public class LevelOneActivity extends AppCompatActivity
 {
     //  The grid of SquareObstacles and BlankGridSpaces
-    private GridImageThing[][] daGrid = new GridImageThing[14][6];
+    private GridImageThing[][] daGrid = new GridImageThing[15][6];
     //  The one and only Image of Bob! :D
     private ImageView bobImage;
     //  The amount that everything in daGrid and the enemies move every timer call.
@@ -161,6 +161,13 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[13][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x4), xLevelMove);
         daGrid[13][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x5), xLevelMove);
 
+        daGrid[14][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x0), xLevelMove);
+        daGrid[14][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x1), xLevelMove);
+        daGrid[14][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x2), xLevelMove);
+        daGrid[14][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x3), xLevelMove);
+        daGrid[14][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x4), xLevelMove);
+        //  3rd SquareObstacle:
+        daGrid[14][5] = new SquareObstacle((ImageView) findViewById(R.id.grid14x5), width, height, bobImage, xLevelMove, bob);
 
 
 
@@ -200,6 +207,7 @@ public class LevelOneActivity extends AppCompatActivity
 
     public void levelMoveStuff()
     {
+        System.out.println("Next loop");
         boolean gridShouldMove = true;
         for (int index=0; index<daGrid.length; index++)
         {
