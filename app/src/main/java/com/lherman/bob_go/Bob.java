@@ -17,11 +17,11 @@ public class Bob
     //  The ImageView of Bob from activity_level_one.xml, or whatever other levels use.
     private ImageView bobImage;
     //  These will change in the SquareObstacle class when Bob lands on squares and things.
-    private boolean jumpingNow, fallingNow, onTopOfSquare;
+    private boolean jumpingNow, fallingNow, onTopOfSquare, jumpingLittleNow, fallingLittleNow;
     //  These always stay the same after they get declared in the constructor
     private int yJumpSpeedBob, screenWidth, screenHeight, jumpHeightBob, lowestBobY;
     //  This changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
-    private float startHeightBob;
+    private float startHeightBob, littleAmount;
 
     public Bob(ImageView bobImage, int screenWidth, int screenHeight)
     {
@@ -40,8 +40,14 @@ public class Bob
         bobImage.getLayoutParams().width = screenWidth/12;
 
         yJumpSpeedBob = screenHeight/98;
+        //  Half speed:
+        //yJumpSpeedBob = screenHeight/196;
+
+        System.out.println("YJUMPSPEEDBOB: " + yJumpSpeedBob);
 
         jumpingNow = false;
+        jumpingLittleNow = false;
+        fallingLittleNow = false;
         fallingNow = false;
         onTopOfSquare = false;
 
@@ -67,6 +73,34 @@ public class Bob
     {
         this.jumpingNow = jumpingNow;
     }
+
+    public boolean getJumpingLittleNow()
+    {
+        return jumpingLittleNow;
+    }
+    public void setJumpingLittleNow(boolean jumpingLittleNow)
+    {
+        this.jumpingLittleNow = jumpingLittleNow;
+    }
+
+    public boolean getFallingLittleNow()
+    {
+        return fallingLittleNow;
+    }
+    public void setFallingLittleNow(boolean fallingLittleNow)
+    {
+        this.fallingLittleNow = fallingLittleNow;
+    }
+
+    public float getLittleAmount()
+    {
+        return littleAmount;
+    }
+    public void setLittleAmount(float littleAmount)
+    {
+        this.littleAmount = littleAmount;
+    }
+
 
 
     public boolean getFallingNow()

@@ -51,6 +51,7 @@ public class LevelOneActivity extends AppCompatActivity
 
         //  14 timer calls per one grid square crossing, 12*14=168
         xLevelMove = width/168;
+        System.out.println("XLEVELMOVE: " + xLevelMove);
         //  Same proportion for y-direction, 7*14=98
         yBobJump = height/98;
 
@@ -150,14 +151,15 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[12][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x2), xLevelMove);
         daGrid[12][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x3), xLevelMove);
         //  daGrid[12][4] is a SquareObstacle:
-        daGrid[12][4] = new SquareObstacle((ImageView) findViewById(R.id.grid12x4), width, height, bobImage, xLevelMove, bob);
+        daGrid[12][4] = new SquareObstacle((ImageView) findViewById(R.id.grid12x4), width, height, bobImage, xLevelMove, bob, 1);
         daGrid[12][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x5), xLevelMove);
 
         daGrid[13][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x0), xLevelMove);
         daGrid[13][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x1), xLevelMove);
         daGrid[13][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x2), xLevelMove);
+        //daGrid[13][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x3), xLevelMove);
         //  Another SquareObstacle:
-        daGrid[13][3] = new SquareObstacle((ImageView) findViewById(R.id.grid13x3), width, height, bobImage, xLevelMove, bob);
+        daGrid[13][3] = new SquareObstacle((ImageView) findViewById(R.id.grid13x3), width, height, bobImage, xLevelMove, bob, 2);
         daGrid[13][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x4), xLevelMove);
         daGrid[13][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x5), xLevelMove);
 
@@ -167,7 +169,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[14][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x3), xLevelMove);
         daGrid[14][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x4), xLevelMove);
         //  3rd SquareObstacle:
-        daGrid[14][5] = new SquareObstacle((ImageView) findViewById(R.id.grid14x5), width, height, bobImage, xLevelMove, bob);
+        daGrid[14][5] = new SquareObstacle((ImageView) findViewById(R.id.grid14x5), width, height, bobImage, xLevelMove, bob, 3);
 
 
 
@@ -207,7 +209,7 @@ public class LevelOneActivity extends AppCompatActivity
 
     public void levelMoveStuff()
     {
-        System.out.println("Next loop");
+        //System.out.println("Next loop");
         boolean gridShouldMove = true;
         for (int index=0; index<daGrid.length; index++)
         {
@@ -246,6 +248,25 @@ public class LevelOneActivity extends AppCompatActivity
         {
             //  Bob jumps
             bobImage.setY(bobImage.getY() - bob.getBobJumpSpeed());
+        }
+        //  This is for if Bob needs to jump less than his jump speed, but more than 0:
+        else if (bob.getJumpingLittleNow() == true)
+        {
+            //  Need to set it to one pixel less than that SquareObstacle:
+            //bobImage.setY(bobImage.getY()+bob.getLittleAmount());
+            bobImage.setY(bobImage.getY()-bob.getLittleAmount());
+            //  -2 if -
+            //System.out.println(bob.getLittleAmount());
+            //  Should only happen one time
+            bob.setJumpingLittleNow(false);
+        }
+        else if (bob.getFallingLittleNow() == true)
+        {
+            //  Need to set it to one pixel less than that SquareObstacle:
+            bobImage.setY(bobImage.getY()+bob.getLittleAmount());
+            //bobImage.setY(bobImage.getY()-bob.getLittleAmount());
+            //  Should only happen one time
+            bob.setFallingLittleNow(false);
         }
         else if (bob.getFallingNow() == true)
         {
