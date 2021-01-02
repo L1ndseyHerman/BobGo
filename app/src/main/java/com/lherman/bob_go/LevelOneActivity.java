@@ -241,7 +241,8 @@ public class LevelOneActivity extends AppCompatActivity
                 }
             }
         }
-
+        //  ELSE IF (GRIDSHOULDLITTLEMOVE)
+        //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //  NEW! Checking to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
         if (bob.getJumpingNow() == true)
@@ -252,17 +253,13 @@ public class LevelOneActivity extends AppCompatActivity
         //  This is for if Bob needs to jump less than his jump speed, but more than 0:
         else if (bob.getJumpingLittleNow() == true)
         {
-            //  Need to set it to one pixel less than that SquareObstacle:
-            //bobImage.setY(bobImage.getY()+bob.getLittleAmount());
+            //  LittleAmount is positive here (2dp on tablet), so subtract it to make Bob jump up.
             bobImage.setY(bobImage.getY()-bob.getLittleAmount());
-            //  -2 if -
-            //System.out.println(bob.getLittleAmount());
             //  Should only happen one time
             bob.setJumpingLittleNow(false);
         }
         else if (bob.getFallingLittleNow() == true)
         {
-            //  Need to set it to one pixel less than that SquareObstacle:
             bobImage.setY(bobImage.getY()+bob.getLittleAmount());
             //bobImage.setY(bobImage.getY()-bob.getLittleAmount());
             //  Should only happen one time
@@ -282,7 +279,6 @@ public class LevelOneActivity extends AppCompatActivity
     {
         //  Checks to see if Bob can jump or if there's like a SquareObstacle or something in the way.
         bob.startJumpMaybe();
-
         //  Below just has to be there for some reason:
         return true;
     }
