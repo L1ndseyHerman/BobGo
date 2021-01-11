@@ -298,6 +298,7 @@ public class LevelOneActivity extends AppCompatActivity
         }
 
         //  Move all of the grid if Bob isn't colliding w any of the grid.
+        //  Maybe set the BlankGridSpace's visibility to false, and only move GridImageThings if their visibility is true?
         if (gridShouldMove)
         {
             for (int index=0; index<daGrid.length; index++)
@@ -311,11 +312,6 @@ public class LevelOneActivity extends AppCompatActivity
 
         else if (bob.getRightLittleNow() == true)
         {
-            //someText.setText("Little amount = " + bob.getXLittleAmount());
-
-            //someText.setText(bob.getXLittleAmount() + " " + bobImage.getX()+ " " + bobImage.getLayoutParams().width + " " +
-                    //bobImage.getY() + " " + bobImage.getLayoutParams().height + " " + SquareObstacle(daGrid[14][5].getX()));
-
             for (int index=0; index<daGrid.length; index++)
             {
                 for (int index2=0; index2<daGrid[index].length; index2++)
@@ -326,7 +322,7 @@ public class LevelOneActivity extends AppCompatActivity
             bob.setRightLittleNow(false);
         }
 
-        //  NEW! Checking to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
+        //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
         if (bob.getJumpingNow() == true)
         {
             //  Bob jumps
@@ -345,7 +341,6 @@ public class LevelOneActivity extends AppCompatActivity
         else if (bob.getFallingLittleNow() == true)
         {
             bobImage.setY(bobImage.getY()+bob.getLittleAmount());
-            //bobImage.setY(bobImage.getY()-bob.getLittleAmount());
             //  Should only happen one time
             bob.setFallingLittleNow(false);
             bob.setFallingNow(false);

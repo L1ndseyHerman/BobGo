@@ -1,5 +1,6 @@
 package com.lherman.bob_go;
 
+import android.view.View;
 import android.widget.ImageView;
 
 //  Have white outlines for now for testing, will eventually just match the background
@@ -12,6 +13,8 @@ public class BlankGridSpace implements GridImageThing
     {
         this.space = space;
         this.xMoveSpeedScreen = xMoveSpeedScreen;
+        //  Uncomment to turn BlankGridSpaces invisible when done w level testing:
+        //space.setVisibility(View.INVISIBLE);
     }
 
     @Override
