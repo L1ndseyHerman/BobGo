@@ -19,20 +19,23 @@ public class Bob
     //  These will change in the SquareObstacle class when Bob lands on squares and things.
     private boolean jumpingNow, fallingNow, onTopOfSquare, jumpingLittleNow, fallingLittleNow, rightLittleNow;
     //  These always stay the same after they get declared in the constructor
-    private int yJumpSpeedBob, screenWidth, screenHeight, jumpHeightBob, lowestBobY;
+    private int yJumpSpeedBob, screenWidth, screenHeight, jumpHeightBob, lowestBobY, daGridX;
     //  This changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
     private float startHeightBob, littleAmount, xLittleAmount;
 
-    public Bob(ImageView bobImage, int screenWidth, int screenHeight)
+    public Bob(ImageView bobImage, int screenWidth, int screenHeight, int daGridX)
     {
         this.bobImage = bobImage;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
+        this.daGridX = daGridX;
 
         //  Most of this stuff can use the pre-coded Image View methods, don't need to
         //  write my own getters and setters.
 
-        bobImage.setX(0);
+        //bobImage.setX(0);
+        //  2 GridImageThings to the right
+        bobImage.setX(2*screenWidth/12);
         //  Put the number for the bottom of the screen in one place:
         lowestBobY = 11*screenHeight/14;
         bobImage.setY(lowestBobY);
@@ -64,6 +67,15 @@ public class Bob
             jumpingNow = true;
             startHeightBob = bobImage.getY();
         }
+    }
+
+    public int getDaGridX()
+    {
+        return daGridX;
+    }
+    public void setDaGridX(int daGridX)
+    {
+        this.daGridX = daGridX;
     }
 
     public boolean getJumpingNow()

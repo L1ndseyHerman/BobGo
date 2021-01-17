@@ -6,13 +6,16 @@ import android.widget.ImageView;
 //  Have white outlines for now for testing, will eventually just match the background
 public class BlankGridSpace implements GridImageThing
 {
-    private ImageView space;
+    private ImageView space, bobImage;
     private int xMoveSpeedScreen;
+    private Bob bob;
 
-    public BlankGridSpace(ImageView space, int xMoveSpeedScreen)
+    public BlankGridSpace(ImageView space, int xMoveSpeedScreen, ImageView bobImage, Bob bob)
     {
         this.space = space;
         this.xMoveSpeedScreen = xMoveSpeedScreen;
+        this.bobImage = bobImage;
+        this.bob = bob;
         //  Uncomment to turn BlankGridSpaces invisible when done w level testing:
         //space.setVisibility(View.INVISIBLE);
     }
@@ -20,6 +23,23 @@ public class BlankGridSpace implements GridImageThing
     @Override
     public boolean checkCollision()
     {
+        if (bob.getJumpingNow() == true)
+        {
+            if (bobImage.getY() <= bob.getStartHeightBob()-bob.getJumpHeightBob())
+            {
+                bob.setJumpingNow(false);
+                bob.setFallingNow(true);
+            }
+        }
+        if (bob.getFallingNow() == true)
+        {
+            if (bobImage.getY() >= bob.getLowestBobY())
+            {
+                bob.setFallingNow(false);
+            }
+        }
+
+
         //  Wait... should it be true that Bob collides w nothing? Maybe switch the trues and falses?
         return true;
     }
