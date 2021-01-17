@@ -46,8 +46,6 @@ public class Bob
         //  Half speed:
         //yJumpSpeedBob = screenHeight/196;
 
-        System.out.println("YJUMPSPEEDBOB: " + yJumpSpeedBob);
-
         jumpingNow = false;
         jumpingLittleNow = false;
         fallingLittleNow = false;

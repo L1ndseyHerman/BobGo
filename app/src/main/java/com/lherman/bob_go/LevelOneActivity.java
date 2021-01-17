@@ -54,7 +54,6 @@ public class LevelOneActivity extends AppCompatActivity
 
         //  14 timer calls per one grid square crossing, 12*14=168
         xLevelMove = width/168;
-        System.out.println("XLEVELMOVE: " + xLevelMove);
         //  Same proportion for y-direction, 7*14=98
         yBobJump = height/98;
 
@@ -256,8 +255,6 @@ public class LevelOneActivity extends AppCompatActivity
 
         //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
         //  but the first timer call isn't until after a second (1,000) of delay.
-
-
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -276,9 +273,7 @@ public class LevelOneActivity extends AppCompatActivity
 
     public void levelMoveStuff()
     {
-        System.out.println("Next loop Bob grid=" + bob.getDaGridX());
         boolean gridShouldMove = true;
-        //for (int index=0; index<daGrid.length; index++)
         //  Only check the row behind Bob, Bob's row, and the row after Bob, for a total of 18 GridImageThings.
         //  Actually, needs to be 25 GridImageThings, but close enough.
         for (int index=bob.getDaGridX()-2; index<bob.getDaGridX()+2; index++)
@@ -312,7 +307,7 @@ public class LevelOneActivity extends AppCompatActivity
                 }
             }
 
-            //  NEW! Declare that Bob moved one GridImageThing:                              // Doesn't matter what the y is.
+            //  Declare that Bob moved one GridImageThing:                                 // Doesn't matter what the y is.
             if (bobImage.getX()+bobImage.getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
             {
                 bob.setDaGridX(bob.getDaGridX()+1);
@@ -356,7 +351,6 @@ public class LevelOneActivity extends AppCompatActivity
             if (bobImage.getY() < bob.getLowestBobY())
             {
                 bob.setOnTopOfSquare(true);
-                System.out.println("ON TOP OF SQUARE! :D");
             }
         }
         else if (bob.getFallingNow() == true)

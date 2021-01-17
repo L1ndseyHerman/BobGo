@@ -31,7 +31,6 @@ public class SquareObstacle implements GridImageThing
     @Override
     public boolean checkCollision()
     {
-        System.out.println(tempN);
 
         if (bob.getJumpingNow() == true)
         {
@@ -43,27 +42,20 @@ public class SquareObstacle implements GridImageThing
                 //  but greater than 0.
                 if (square.getY()+square.getLayoutParams().height < bobImage.getY()-1)
                 {
-                    System.out.println("Jumping a little more");
                     bob.setJumpingLittleNow(true);
                     //  Gets 3.0 wo -1
                     bob.setLittleAmount(bobImage.getY()-(square.getY()+square.getLayoutParams().height)-1);
-                    //bob.setLittleAmount(bobImage.getY()-(square.getY()+square.getLayoutParams().height));
-                    System.out.println("Jumping Little amount = " + bob.getLittleAmount());
                 }
                 else
                 {
                     bob.setJumpingNow(false);
                     bob.setFallingNow(true);
-                    System.out.println("Jumping to falling.");
                 }
             }
         }
 
-
-
         if (bob.getFallingNow() == true)
         {
-            System.out.println("Fell after jumped");
             //  Summary: If Bob is falling off the bottom of the screen, or lands on a Square, stop falling.
             //  If Bob's current y-value >= the lowest y-value before he starts to go off the screen || the square's top side - Bob's y-value the next timer call <= Bob's bottom side && the square's bottom side - Bob's y-value the next timer call >= Bob's top side && the square's left side <= Bob's right side     and the square's right side >= Bob's left side
             if ((bobImage.getY() >= bob.getLowestBobY()) || ((square.getY()-bob.getBobJumpSpeed() <= bobImage.getY()+bobImage.getLayoutParams().height) && (square.getY()+square.getLayoutParams().height-bob.getBobJumpSpeed() >= bobImage.getY()) && (square.getX() < bobImage.getX()+bobImage.getLayoutParams().width) && (square.getX()+square.getLayoutParams().width > bobImage.getX())))
@@ -71,20 +63,16 @@ public class SquareObstacle implements GridImageThing
 
                 if (square.getY() > bobImage.getY()+bobImage.getLayoutParams().height)
                 {
-                    System.out.println("Falling a little more");
                     bob.setFallingLittleNow(true);
-                    //  6.0
                     bob.setLittleAmount(square.getY()-(bobImage.getY()+bobImage.getLayoutParams().height));
                 }
                 else
                     {
-                    System.out.println("Not falling anymore.");
                     bob.setFallingNow(false);
                     //  If Bob didn't land on the bottom of the screen, then he must have landed on a square.
                     if (bobImage.getY() < bob.getLowestBobY())
                     {
                         bob.setOnTopOfSquare(true);
-                        System.out.println("ON TOP OF SQUARE! :D");
                     }
                 }
             }
@@ -107,16 +95,13 @@ public class SquareObstacle implements GridImageThing
             }
             else if (square.getX() > bobImage.getX()+bobImage.getLayoutParams().width)
             {
-                System.out.println("Right Little");
                 bob.setRightLittleNow(true);
                 bob.setXLittleAmount(square.getX()-(bobImage.getX()+bobImage.getLayoutParams().width));
-                System.out.println("Right Little amount = " + bob.getXLittleAmount());
                 return false;
             }
             else
             {
                 //  This is where Bob collides w something on his right
-                System.out.println("Right collision jumping");
                 return false;
             }
         }
@@ -137,17 +122,13 @@ public class SquareObstacle implements GridImageThing
             }
             else if (square.getX() > bobImage.getX()+bobImage.getLayoutParams().width)
             {
-                System.out.println("Right Little");
                 bob.setRightLittleNow(true);
                 bob.setXLittleAmount(square.getX()-(bobImage.getX()+bobImage.getLayoutParams().width));
-                System.out.println("Right Little amount = " + bob.getXLittleAmount());
                 return false;
             }
             else
             {
                 //  This is where Bob collides w something on his right
-                System.out.println(bobImage.getX() + " " + bobImage.getLayoutParams().width + " " + square.getX() + " " + square.getLayoutParams().width);
-                System.out.println("Right collision falling");
                 return false;
             }
         }
@@ -166,21 +147,16 @@ public class SquareObstacle implements GridImageThing
                     bob.setOnTopOfSquare(false);
                 }
             }
-            //  Code RightLittle here:
             else if (square.getX() > bobImage.getX()+bobImage.getLayoutParams().width)
             {
-                System.out.println("Right Little");
                 bob.setRightLittleNow(true);
                 bob.setXLittleAmount(square.getX()-(bobImage.getX()+bobImage.getLayoutParams().width));
-                System.out.println("Right Little amount = " + bob.getXLittleAmount());
                 return false;
             }
 
             else
             {
                 //  This is where Bob collides w something on his right
-                System.out.println("Right collision no height");
-                System.out.println("SquareX = " + square.getX() + " Bob width = " + bobImage.getLayoutParams().width + "Bob right side = " + bobImage.getX());
                 return false;
             }
         }
