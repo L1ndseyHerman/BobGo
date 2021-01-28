@@ -23,26 +23,27 @@ public class Bob
     //  This changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
     private float startHeightBob, littleAmount, xLittleAmount;
 
-    public Bob(ImageView bobImage, int screenWidth, int screenHeight, int daGridX)
+    //public Bob(ImageView bobImage, int screenWidth, int screenHeight, int daGridX)
+    public Bob(ImageView bobImage)
     {
         this.bobImage = bobImage;
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
-        this.daGridX = daGridX;
+        //this.screenWidth = screenWidth;
+        //this.screenHeight = screenHeight;
+        //this.daGridX = daGridX;
 
         //  Most of this stuff can use the pre-coded Image View methods, don't need to
         //  write my own getters and setters.
 
         //bobImage.setX(0);
         //  2 GridImageThings to the right
-        bobImage.setX(2*screenWidth/12);
+        //bobImage.setX(2*screenWidth/12);
         //  Put the number for the bottom of the screen in one place:
-        lowestBobY = 11*screenHeight/14;
-        bobImage.setY(lowestBobY);
-        bobImage.getLayoutParams().height = screenHeight/7;
-        bobImage.getLayoutParams().width = screenWidth/12;
+        //lowestBobY = 11*screenHeight/14;
+        //bobImage.setY(lowestBobY);
+        //bobImage.getLayoutParams().height = screenHeight/7;
+        //bobImage.getLayoutParams().width = screenWidth/12;
 
-        yJumpSpeedBob = screenHeight/98;
+        //yJumpSpeedBob = screenHeight/98;
         //  Half speed:
         //yJumpSpeedBob = screenHeight/196;
 
@@ -54,7 +55,7 @@ public class Bob
         rightLittleNow = false;
 
         //  How high Bob will jump before he starts falling:
-        jumpHeightBob = 5*screenHeight/14;
+        //jumpHeightBob = 5*screenHeight/14;
     }
 
 
@@ -156,6 +157,11 @@ public class Bob
         return yJumpSpeedBob;
     }
     //  Should never need to change the jump speed from a SquareObstacle, so no setter.
+    //  Actually, doing it in LevelOneActivity now.
+    public void setBobJumpSpeed(int yJumpSpeedBob)
+    {
+        this.yJumpSpeedBob = yJumpSpeedBob;
+    }
 
     //  Whoa! The IDE suggested this method name! How did it know I'd do a getter for that?!
     public float getStartHeightBob()
@@ -168,10 +174,28 @@ public class Bob
     {
         return jumpHeightBob;
     }
+    public void setJumpHeightBob(int jumpHeightBob)
+    {
+        this.jumpHeightBob = jumpHeightBob;
+    }
 
     //  AGAIN! This is where Bob should stop falling to avoid going off the bottom of the screen:
     public int getLowestBobY()
     {
         return lowestBobY;
     }
+    public void setLowestBobY(int lowestBobY)
+    {
+        this.lowestBobY = lowestBobY;
+    }
+
+    public void setScreenWidth(int screenWidth)
+    {
+        this.screenWidth = screenWidth;
+    }
+    public void setScreenHeight(int screenHeight)
+    {
+        this.screenHeight = screenHeight;
+    }
+
 }

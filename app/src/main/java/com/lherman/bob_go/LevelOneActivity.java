@@ -60,12 +60,48 @@ public class LevelOneActivity extends AppCompatActivity
         //  Stuff for the one and only Bob
         //  REALLY DON'T FORGET TO PUT IT ABOVE THE SQUAREOBSTACLES THAT REFERENCE IT!!
         bobImage = findViewById(R.id.bob);
-        bob = new Bob(bobImage, width, height, 2);
+        //bob = new Bob(bobImage, width, height, 2);
+        bob = new Bob(bobImage);
+
+        //this.screenWidth = screenWidth;
+        bob.setScreenWidth(width);
+        //this.screenHeight = screenHeight;
+        bob.setScreenHeight(height);
+        //this.daGridX = daGridX;
+        bob.setDaGridX(2);
+
+        //bobImage.setX(0);
+        //  2 GridImageThings to the right
+        bobImage.setX(2*width/12);
+        //  Put the number for the bottom of the screen in one place:
+        //lowestBobY = 11*screenHeight/14;
+        //bobImage.setY(lowestBobY);
+        bob.setLowestBobY(11*height/14);
+        bobImage.setY(11*height/14);
+
+        bobImage.getLayoutParams().height = height/7;
+        bobImage.getLayoutParams().width = width/12;
+
+        //yJumpSpeedBob = screenHeight/98;
+        //  Half speed:
+        //yJumpSpeedBob = screenHeight/196;
+        bob.setBobJumpSpeed(height/98);
+
+        //  How high Bob will jump before he starts falling:
+        //jumpHeightBob = 5*screenHeight/14;
+        bob.setJumpHeightBob(5*height/14);
+
+
+
 
         someText = findViewById(R.id.levelOneTestText);
 
         //  The number in the left brackets is the x and the right is the y,
         //  so like "daGrid[0][3]" is all the way to the left, but three squares down.
+
+        //  Let's start with only constructing BlankGridSpaces with the Image (like grid0x0); 1 param.
+        //  Square Obstacle also has those three extra params, so make setters in GridImageThing.
+        //  Also, should only need bobImage as a param for Bob. Rest can be setters.
         daGrid[0][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x0), xLevelMove, bobImage, bob);
         daGrid[0][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x1), xLevelMove, bobImage, bob);
         daGrid[0][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x2), xLevelMove, bobImage, bob);
