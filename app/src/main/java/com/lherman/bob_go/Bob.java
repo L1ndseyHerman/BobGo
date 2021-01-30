@@ -156,8 +156,6 @@ public class Bob
     {
         return yJumpSpeedBob;
     }
-    //  Should never need to change the jump speed from a SquareObstacle, so no setter.
-    //  Actually, doing it in LevelOneActivity now.
     public void setBobJumpSpeed(int yJumpSpeedBob)
     {
         this.yJumpSpeedBob = yJumpSpeedBob;

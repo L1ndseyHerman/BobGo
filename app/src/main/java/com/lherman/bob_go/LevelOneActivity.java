@@ -21,22 +21,16 @@ public class LevelOneActivity extends AppCompatActivity
     private ImageView bobImage;
     //  The amount that everything in daGrid and the enemies move every timer call.
     private int xLevelMove;
-    //  The height Bob can jump (2.5 SquareObstacles high).
-    private int yBobJump;
     //  A Timer needs a Handler in Android Studio
     private Handler handler = new Handler();
     //  Moves the level each time it gets called:
     private Timer timer = new Timer();
-    //  For Bob:
-    private boolean jumpingNow = false;
-    private boolean fallingNow = false;
     //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
-    int width;
-    int height;
+    private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
-    Bob bob;
-
-    TextView someText;
+    private Bob bob;
+    //  Either delete or make it about coins or something.
+    private TextView someText;
 
     //  Android Studio's Main Method:
     @Override
@@ -49,50 +43,34 @@ public class LevelOneActivity extends AppCompatActivity
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        width = size.x;
-        height = size.y;
+        screenWidth = size.x;
+        screenHeight = size.y;
 
         //  14 timer calls per one grid square crossing, 12*14=168
-        xLevelMove = width/168;
-        //  Same proportion for y-direction, 7*14=98
-        yBobJump = height/98;
+        xLevelMove = screenWidth/168;
 
         //  Stuff for the one and only Bob
         //  REALLY DON'T FORGET TO PUT IT ABOVE THE SQUAREOBSTACLES THAT REFERENCE IT!!
         bobImage = findViewById(R.id.bob);
-        //bob = new Bob(bobImage, width, height, 2);
         bob = new Bob(bobImage);
 
-        //this.screenWidth = screenWidth;
-        bob.setScreenWidth(width);
-        //this.screenHeight = screenHeight;
-        bob.setScreenHeight(height);
-        //this.daGridX = daGridX;
-        bob.setDaGridX(2);
-
+        bob.setScreenWidth(screenWidth);
+        bob.setScreenHeight(screenHeight);
         //bobImage.setX(0);
         //  2 GridImageThings to the right
-        bobImage.setX(2*width/12);
-        //  Put the number for the bottom of the screen in one place:
-        //lowestBobY = 11*screenHeight/14;
-        //bobImage.setY(lowestBobY);
-        bob.setLowestBobY(11*height/14);
-        bobImage.setY(11*height/14);
-
-        bobImage.getLayoutParams().height = height/7;
-        bobImage.getLayoutParams().width = width/12;
-
-        //yJumpSpeedBob = screenHeight/98;
+        bobImage.setX(2*screenWidth/12);
+        bob.setDaGridX(2);
+        //  This is the "ground" in the game, lowest place Bob can fall to.
+        bob.setLowestBobY(11*screenHeight/14);
+        bobImage.setY(11*screenHeight/14);
+        bobImage.getLayoutParams().height = screenHeight/7;
+        bobImage.getLayoutParams().width = screenWidth/12;
         //  Half speed:
         //yJumpSpeedBob = screenHeight/196;
-        bob.setBobJumpSpeed(height/98);
-
-        //  How high Bob will jump before he starts falling:
-        //jumpHeightBob = 5*screenHeight/14;
-        bob.setJumpHeightBob(5*height/14);
-
-
-
+        //  Same proportion for y-direction, 7*14=98
+        bob.setBobJumpSpeed(screenHeight/98);
+        //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
+        bob.setJumpHeightBob(5*screenHeight/14);
 
         someText = findViewById(R.id.levelOneTestText);
 
@@ -191,7 +169,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[12][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x2), xLevelMove, bobImage, bob);
         daGrid[12][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x3), xLevelMove, bobImage, bob);
         //  daGrid[12][4] is a SquareObstacle:
-        daGrid[12][4] = new SquareObstacle((ImageView) findViewById(R.id.grid12x4), width, height, bobImage, xLevelMove, bob, 1, someText);
+        daGrid[12][4] = new SquareObstacle((ImageView) findViewById(R.id.grid12x4), screenWidth, screenHeight, bobImage, xLevelMove, bob, 1, someText);
         daGrid[12][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid12x5), xLevelMove, bobImage, bob);
 
         daGrid[13][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x0), xLevelMove, bobImage, bob);
@@ -199,7 +177,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[13][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x2), xLevelMove, bobImage, bob);
         //daGrid[13][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x3), xLevelMove);
         //  Another SquareObstacle:
-        daGrid[13][3] = new SquareObstacle((ImageView) findViewById(R.id.grid13x3), width, height, bobImage, xLevelMove, bob, 2, someText);
+        daGrid[13][3] = new SquareObstacle((ImageView) findViewById(R.id.grid13x3), screenWidth, screenHeight, bobImage, xLevelMove, bob, 2, someText);
         daGrid[13][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x4), xLevelMove, bobImage, bob);
         daGrid[13][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid13x5), xLevelMove, bobImage, bob);
 
@@ -209,7 +187,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[14][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x3), xLevelMove, bobImage, bob);
         daGrid[14][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid14x4), xLevelMove, bobImage, bob);
         //  3rd SquareObstacle:
-        daGrid[14][5] = new SquareObstacle((ImageView) findViewById(R.id.grid14x5), width, height, bobImage, xLevelMove, bob, 3, someText);
+        daGrid[14][5] = new SquareObstacle((ImageView) findViewById(R.id.grid14x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 3, someText);
 
         daGrid[15][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid15x0), xLevelMove, bobImage, bob);
         daGrid[15][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid15x1), xLevelMove, bobImage, bob);
@@ -238,42 +216,42 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[18][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid18x3), xLevelMove, bobImage, bob);
         daGrid[18][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid18x4), xLevelMove, bobImage, bob);
         //  4th SquareObstacle:
-        daGrid[18][5] = new SquareObstacle((ImageView) findViewById(R.id.grid18x5), width, height, bobImage, xLevelMove, bob, 4, someText);
+        daGrid[18][5] = new SquareObstacle((ImageView) findViewById(R.id.grid18x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 4, someText);
 
         daGrid[19][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid19x0), xLevelMove, bobImage, bob);
         daGrid[19][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid19x1), xLevelMove, bobImage, bob);
         daGrid[19][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid19x2), xLevelMove, bobImage, bob);
-        daGrid[19][3] = new SquareObstacle((ImageView) findViewById(R.id.grid19x3), width, height, bobImage, xLevelMove, bob, 5, someText);
-        daGrid[19][4] = new SquareObstacle((ImageView) findViewById(R.id.grid19x4), width, height, bobImage, xLevelMove, bob, 6, someText);
-        daGrid[19][5] = new SquareObstacle((ImageView) findViewById(R.id.grid19x5), width, height, bobImage, xLevelMove, bob, 7, someText);
+        daGrid[19][3] = new SquareObstacle((ImageView) findViewById(R.id.grid19x3), screenWidth, screenHeight, bobImage, xLevelMove, bob, 5, someText);
+        daGrid[19][4] = new SquareObstacle((ImageView) findViewById(R.id.grid19x4), screenWidth, screenHeight, bobImage, xLevelMove, bob, 6, someText);
+        daGrid[19][5] = new SquareObstacle((ImageView) findViewById(R.id.grid19x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 7, someText);
 
         daGrid[20][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid20x0), xLevelMove, bobImage, bob);
         daGrid[20][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid20x1), xLevelMove, bobImage, bob);
         daGrid[20][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid20x2), xLevelMove, bobImage, bob);
         daGrid[20][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid20x3), xLevelMove, bobImage, bob);
         daGrid[20][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid20x4), xLevelMove, bobImage, bob);
-        daGrid[20][5] = new SquareObstacle((ImageView) findViewById(R.id.grid20x5), width, height, bobImage, xLevelMove, bob, 8, someText);
+        daGrid[20][5] = new SquareObstacle((ImageView) findViewById(R.id.grid20x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 8, someText);
 
         daGrid[21][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid21x0), xLevelMove, bobImage, bob);
         daGrid[21][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid21x1), xLevelMove, bobImage, bob);
-        daGrid[21][2] = new SquareObstacle((ImageView) findViewById(R.id.grid21x2), width, height, bobImage, xLevelMove, bob, 9, someText);
-        daGrid[21][3] = new SquareObstacle((ImageView) findViewById(R.id.grid21x3), width, height, bobImage, xLevelMove, bob, 10, someText);
+        daGrid[21][2] = new SquareObstacle((ImageView) findViewById(R.id.grid21x2), screenWidth, screenHeight, bobImage, xLevelMove, bob, 9, someText);
+        daGrid[21][3] = new SquareObstacle((ImageView) findViewById(R.id.grid21x3), screenWidth, screenHeight, bobImage, xLevelMove, bob, 10, someText);
         daGrid[21][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid21x4), xLevelMove, bobImage, bob);
-        daGrid[21][5] = new SquareObstacle((ImageView) findViewById(R.id.grid21x5), width, height, bobImage, xLevelMove, bob, 11, someText);
+        daGrid[21][5] = new SquareObstacle((ImageView) findViewById(R.id.grid21x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 11, someText);
 
         daGrid[22][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid22x0), xLevelMove, bobImage, bob);
         daGrid[22][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid22x1), xLevelMove, bobImage, bob);
         daGrid[22][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid22x2), xLevelMove, bobImage, bob);
         daGrid[22][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid22x3), xLevelMove, bobImage, bob);
         daGrid[22][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid22x4), xLevelMove, bobImage, bob);
-        daGrid[22][5] = new SquareObstacle((ImageView) findViewById(R.id.grid22x5), width, height, bobImage, xLevelMove, bob, 12, someText);
+        daGrid[22][5] = new SquareObstacle((ImageView) findViewById(R.id.grid22x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 12, someText);
 
         daGrid[23][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x0), xLevelMove, bobImage, bob);
         daGrid[23][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x1), xLevelMove, bobImage, bob);
         daGrid[23][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x2), xLevelMove, bobImage, bob);
         daGrid[23][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x3), xLevelMove, bobImage, bob);
         daGrid[23][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x4), xLevelMove, bobImage, bob);
-        daGrid[23][5] = new SquareObstacle((ImageView) findViewById(R.id.grid23x5), width, height, bobImage, xLevelMove, bob, 13, someText);
+        daGrid[23][5] = new SquareObstacle((ImageView) findViewById(R.id.grid23x5), screenWidth, screenHeight, bobImage, xLevelMove, bob, 13, someText);
 
         //  Loops through everything in daGrid and decides where to put it on the screen...
         //  or off of the screen! (stuff to the right that will gradually move left
@@ -282,10 +260,10 @@ public class LevelOneActivity extends AppCompatActivity
         {
             for (int index2=0; index2<daGrid[index].length; index2++)
             {
-                daGrid[index][index2].setImageHeight(height/7);
-                daGrid[index][index2].setImageWidth(width/12);
-                daGrid[index][index2].setImageX(index*width/12);
-                daGrid[index][index2].setImageY((height / 14) + (index2*height/7));
+                daGrid[index][index2].setImageHeight(screenHeight/7);
+                daGrid[index][index2].setImageWidth(screenWidth/12);
+                daGrid[index][index2].setImageX(index*screenWidth/12);
+                daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
             }
         }
 
@@ -311,7 +289,7 @@ public class LevelOneActivity extends AppCompatActivity
     {
         boolean gridShouldMove = true;
         //  Only check the row behind Bob, Bob's row, and the row after Bob, for a total of 18 GridImageThings.
-        //  Actually, needs to be 25 GridImageThings, but close enough.
+        //  Actually, needs to be 30 GridImageThings (5*6), but close enough.
         for (int index=bob.getDaGridX()-2; index<bob.getDaGridX()+2; index++)
         {
             for (int index2=0; index2<daGrid[index].length; index2++)
@@ -332,7 +310,6 @@ public class LevelOneActivity extends AppCompatActivity
         }
 
         //  Move all of the grid if Bob isn't colliding w any of the grid.
-        //  Maybe set the BlankGridSpace's visibility to false, and only move GridImageThings if their visibility is true?
         if (gridShouldMove)
         {
             for (int index=0; index<daGrid.length; index++)
@@ -349,7 +326,6 @@ public class LevelOneActivity extends AppCompatActivity
                 bob.setDaGridX(bob.getDaGridX()+1);
             }
         }
-
         else if (bob.getRightLittleNow() == true)
         {
             for (int index=0; index<daGrid.length; index++)
@@ -361,7 +337,6 @@ public class LevelOneActivity extends AppCompatActivity
             }
             bob.setRightLittleNow(false);
         }
-
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
         if (bob.getJumpingNow() == true)
         {
@@ -394,10 +369,7 @@ public class LevelOneActivity extends AppCompatActivity
             //  Bob falls
             bobImage.setY(bobImage.getY() + bob.getBobJumpSpeed());
         }
-
-
     }
-
 
     public boolean onTouchEvent(MotionEvent event)
     {
