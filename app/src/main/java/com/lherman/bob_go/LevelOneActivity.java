@@ -29,8 +29,6 @@ public class LevelOneActivity extends AppCompatActivity
     private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
     private Bob bob;
-    //  Either delete or make it about coins or something.
-    private TextView someText;
 
     //  Android Studio's Main Method:
     @Override
@@ -72,14 +70,48 @@ public class LevelOneActivity extends AppCompatActivity
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
         bob.setJumpHeightBob(5*screenHeight/14);
 
-        someText = findViewById(R.id.levelOneTestText);
+        daGrid = placeGridImages(daGrid);
 
+        //  Loops through everything in daGrid and decides where to put it on the screen...
+        //  or off of the screen! (stuff to the right that will gradually move left
+        //  onto the screen)
+        for (int index=0; index<daGrid.length; index++)
+        {
+            for (int index2=0; index2<daGrid[index].length; index2++)
+            {
+                daGrid[index][index2].setBob(bob);
+                daGrid[index][index2].setBobImage(bobImage);
+                daGrid[index][index2].setXMoveSpeedScreen(xMoveSpeedScreen);
+
+                daGrid[index][index2].setImageHeight(screenHeight/7);
+                daGrid[index][index2].setImageWidth(screenWidth/12);
+                daGrid[index][index2].setImageX(index*screenWidth/12);
+                daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
+            }
+        }
+
+        //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+        //  but the first timer call isn't until after a second (1,000) of delay.
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        levelMoveStuff();
+                    }
+                });
+            }
+            },1000, 35);
+        //},1000, 70);
+
+    }
+
+    //  Decided to separate the grid placement that will change with each level from the things that will stay the same each level.
+    public GridImageThing[][] placeGridImages(GridImageThing[][] daGrid)
+    {
         //  The number in the left brackets is the x and the right is the y,
         //  so like "daGrid[0][3]" is all the way to the left, but three squares down.
-
-        //  Let's start with only constructing BlankGridSpaces with the Image (like grid0x0); 1 param.
-        //  Square Obstacle also has those three extra params, so make setters in GridImageThing.
-        //  Also, should only need bobImage as a param for Bob. Rest can be setters.
         daGrid[0][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x0));
         daGrid[0][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x1));
         daGrid[0][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x2));
@@ -248,40 +280,9 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[23][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x4));
         daGrid[23][5] = new SquareObstacle((ImageView) findViewById(R.id.grid23x5), screenWidth, screenHeight);
 
-        //  Loops through everything in daGrid and decides where to put it on the screen...
-        //  or off of the screen! (stuff to the right that will gradually move left
-        //  onto the screen)
-        for (int index=0; index<daGrid.length; index++)
-        {
-            for (int index2=0; index2<daGrid[index].length; index2++)
-            {
-                daGrid[index][index2].setBob(bob);
-                daGrid[index][index2].setBobImage(bobImage);
-                daGrid[index][index2].setXMoveSpeedScreen(xMoveSpeedScreen);
-
-                daGrid[index][index2].setImageHeight(screenHeight/7);
-                daGrid[index][index2].setImageWidth(screenWidth/12);
-                daGrid[index][index2].setImageX(index*screenWidth/12);
-                daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
-            }
-        }
-
-        //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
-        //  but the first timer call isn't until after a second (1,000) of delay.
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        levelMoveStuff();
-                    }
-                });
-            }
-            },1000, 35);
-        //},1000, 70);
-
+        return daGrid;
     }
+
 
 
     public void levelMoveStuff()
