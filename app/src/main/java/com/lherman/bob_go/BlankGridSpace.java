@@ -10,13 +10,9 @@ public class BlankGridSpace implements GridImageThing
     private int xMoveSpeedScreen;
     private Bob bob;
 
-    //public BlankGridSpace(ImageView space, int xMoveSpeedScreen, ImageView bobImage, Bob bob)
     public BlankGridSpace(ImageView space)
     {
         this.spaceImage = space;
-        //this.xMoveSpeedScreen = xMoveSpeedScreen;
-        //this.bobImage = bobImage;
-        //this.bob = bob;
         //  Uncomment to turn BlankGridSpaces invisible when done w level testing:
         //space.setVisibility(View.INVISIBLE);
     }

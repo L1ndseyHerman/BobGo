@@ -9,23 +9,15 @@ public class SquareObstacle implements GridImageThing
     //  Images from "activity_level_one.xml", or whatever future levels use.
     private ImageView squareImage, bobImage;
     //  These get declared in "LevelOneActivity.java" and passed in here
-    private int xMoveSpeedScreen, screenWidth, screenHeight, tempN;
+    private int xMoveSpeedScreen, screenWidth, screenHeight;
     //  The Bob object:
     private Bob bob;
-    //  For testing:
-    private TextView text;
 
-
-    public SquareObstacle(ImageView squareImage, int screenWidth, int screenHeight, ImageView bobImage, int xMoveSpeedScreen, Bob bob, int tempN, TextView text)
+    public SquareObstacle(ImageView squareImage, int screenWidth, int screenHeight)
     {
         this.squareImage = squareImage;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        this.bobImage = bobImage;
-        this.xMoveSpeedScreen = xMoveSpeedScreen;
-        this.bob = bob;
-        this.tempN = tempN;
-        this.text = text;
     }
 
     @Override
