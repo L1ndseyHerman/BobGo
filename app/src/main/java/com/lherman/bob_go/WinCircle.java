@@ -1,5 +1,7 @@
 package com.lherman.bob_go;
 
+import android.widget.ImageView;
+
 //  A green circle. If Bob touches it, he wins the level.
 public class WinCircle implements GridImageThing
 {
@@ -32,18 +34,8 @@ public class WinCircle implements GridImageThing
     }
 
     @Override
-    public float getImageY() {
-        return 0;
-    }
-
-    @Override
     public void setImageY(float yImage) {
 
-    }
-
-    @Override
-    public int getImageWidth() {
-        return 0;
     }
 
     @Override
@@ -52,12 +44,22 @@ public class WinCircle implements GridImageThing
     }
 
     @Override
-    public int getImageHeight() {
-        return 0;
+    public void setImageHeight(int heightImage) {
+
     }
 
     @Override
-    public void setImageHeight(int heightImage) {
+    public void setBob(Bob bob) {
+
+    }
+
+    @Override
+    public void setBobImage(ImageView bobImage) {
+
+    }
+
+    @Override
+    public void setXMoveSpeedScreen(int xMoveSpeedScreen) {
 
     }
 

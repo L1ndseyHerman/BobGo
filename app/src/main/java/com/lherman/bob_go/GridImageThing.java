@@ -1,5 +1,7 @@
 package com.lherman.bob_go;
 
+import android.widget.ImageView;
+
 public interface GridImageThing
 {
     /*  Everything in "daGrid" in LevelOneActivity will start off as this before getting cast to
@@ -27,14 +29,16 @@ public interface GridImageThing
     float getImageX();
     void setImageX(float xImage);
 
-    float getImageY();
     void setImageY(float yImage);
 
-    int getImageWidth();
     void setImageWidth(int widthImage);
 
-    int getImageHeight();
     void setImageHeight(int heightImage);
+
+    //  Making constructors 1 param:
+    void setBob(Bob bob);
+    void setBobImage(ImageView bobImage);
+    void setXMoveSpeedScreen(int xMoveSpeedScreen);
 
 
 }

@@ -6,16 +6,17 @@ import android.widget.ImageView;
 //  Have white outlines for now for testing, will eventually just match the background
 public class BlankGridSpace implements GridImageThing
 {
-    private ImageView space, bobImage;
+    private ImageView spaceImage, bobImage;
     private int xMoveSpeedScreen;
     private Bob bob;
 
-    public BlankGridSpace(ImageView space, int xMoveSpeedScreen, ImageView bobImage, Bob bob)
+    //public BlankGridSpace(ImageView space, int xMoveSpeedScreen, ImageView bobImage, Bob bob)
+    public BlankGridSpace(ImageView space)
     {
-        this.space = space;
-        this.xMoveSpeedScreen = xMoveSpeedScreen;
-        this.bobImage = bobImage;
-        this.bob = bob;
+        this.spaceImage = space;
+        //this.xMoveSpeedScreen = xMoveSpeedScreen;
+        //this.bobImage = bobImage;
+        //this.bob = bob;
         //  Uncomment to turn BlankGridSpaces invisible when done w level testing:
         //space.setVisibility(View.INVISIBLE);
     }
@@ -43,57 +44,59 @@ public class BlankGridSpace implements GridImageThing
         return true;
     }
 
+    //  For moving the full amount
     @Override
     public void move()
     {
-        space.setX(space.getX() - xMoveSpeedScreen);
+        spaceImage.setX(spaceImage.getX() - xMoveSpeedScreen);
     }
 
+    //  For moving xLittle
     @Override
     public void move(float amount)
     {
-        space.setX(space.getX() - amount);
+        spaceImage.setX(spaceImage.getX() - amount);
     }
 
 
     @Override
     public float getImageX() {
-        return space.getX();
+        return spaceImage.getX();
     }
 
     @Override
     public void setImageX(float xImage) {
-        space.setX(xImage);
-    }
-
-    @Override
-    public float getImageY() {
-        return space.getY();
+        spaceImage.setX(xImage);
     }
 
     @Override
     public void setImageY(float yImage) {
-        space.setY(yImage);
-    }
-
-    @Override
-    public int getImageWidth() {
-        return space.getLayoutParams().width;
+        spaceImage.setY(yImage);
     }
 
     @Override
     public void setImageWidth(int widthImage) {
-        space.getLayoutParams().width = widthImage;
-    }
-
-    @Override
-    public int getImageHeight() {
-        return space.getLayoutParams().height;
+        spaceImage.getLayoutParams().width = widthImage;
     }
 
     @Override
     public void setImageHeight(int heightImage) {
-        space.getLayoutParams().height = heightImage;
+        spaceImage.getLayoutParams().height = heightImage;
+    }
+
+    @Override
+    public void setBob(Bob bob) {
+        this.bob = bob;
+    }
+
+    @Override
+    public void setBobImage(ImageView bobImage) {
+        this.bobImage = bobImage;
+    }
+
+    @Override
+    public void setXMoveSpeedScreen(int xMoveSpeedScreen) {
+        this.xMoveSpeedScreen = xMoveSpeedScreen;
     }
 
 }
