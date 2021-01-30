@@ -23,22 +23,21 @@ public class BlankGridSpace implements GridImageThing
     @Override
     public boolean checkCollision()
     {
-        if (bob.getJumpingNow() == true)
+        if (bob.IsJumping())
         {
             if (bobImage.getY() <= bob.getStartHeightBob()-bob.getJumpHeightBob())
             {
-                bob.setJumpingNow(false);
-                bob.setFallingNow(true);
+                bob.setJumping(false);
+                bob.setFalling(true);
             }
         }
-        if (bob.getFallingNow() == true)
+        if (bob.IsFalling())
         {
             if (bobImage.getY() >= bob.getLowestBobY())
             {
-                bob.setFallingNow(false);
+                bob.setFalling(false);
             }
         }
-
 
         //  Wait... should it be true that Bob collides w nothing? Maybe switch the trues and falses?
         return true;

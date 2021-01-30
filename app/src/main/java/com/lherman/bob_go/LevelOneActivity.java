@@ -297,13 +297,13 @@ public class LevelOneActivity extends AppCompatActivity
                 gridShouldMove = daGrid[index][index2].checkCollision();
                 //  If Bob is about to crash into even a single square, exit the loop immediately so that this
                 //  doesn't get reset to true!
-                if (gridShouldMove == false)
+                if (!gridShouldMove)
                 {
                     break;
                 }
             }
             //  Whoops, and one for the outer loop too!
-            if (gridShouldMove == false)
+            if (!gridShouldMove)
             {
                 break;
             }
@@ -326,7 +326,8 @@ public class LevelOneActivity extends AppCompatActivity
                 bob.setDaGridX(bob.getDaGridX()+1);
             }
         }
-        else if (bob.getRightLittleNow() == true)
+        //  Move the grid somewhat, but less than the usual x-amount.
+        else if (bob.IsMovingRightLittle())
         {
             for (int index=0; index<daGrid.length; index++)
             {
@@ -335,38 +336,36 @@ public class LevelOneActivity extends AppCompatActivity
                     daGrid[index][index2].move(bob.getXLittleAmount());
                 }
             }
-            bob.setRightLittleNow(false);
+            bob.setMovingRightLittle(false);
         }
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
-        if (bob.getJumpingNow() == true)
+        if (bob.IsJumping())
         {
-            //  Bob jumps
             bobImage.setY(bobImage.getY() - bob.getBobJumpSpeed());
         }
         //  This is for if Bob needs to jump less than his jump speed, but more than 0:
-        else if (bob.getJumpingLittleNow() == true)
+        else if (bob.IsJumpingLittle())
         {
             //  LittleAmount is positive here (2dp on tablet), so subtract it to make Bob jump up.
             bobImage.setY(bobImage.getY()-bob.getLittleAmount());
             //  Should only happen one time
-            bob.setJumpingLittleNow(false);
-            bob.setJumpingNow(false);
-            bob.setFallingNow(true);
+            bob.setJumpingLittle(false);
+            bob.setJumping(false);
+            bob.setFalling(true);
         }
-        else if (bob.getFallingLittleNow() == true)
+        else if (bob.IsFallingLittle())
         {
             bobImage.setY(bobImage.getY()+bob.getLittleAmount());
             //  Should only happen one time
-            bob.setFallingLittleNow(false);
-            bob.setFallingNow(false);
+            bob.setFallingLittle(false);
+            bob.setFalling(false);
             if (bobImage.getY() < bob.getLowestBobY())
             {
                 bob.setOnTopOfSquare(true);
             }
         }
-        else if (bob.getFallingNow() == true)
+        else if (bob.IsFalling())
         {
-            //  Bob falls
             bobImage.setY(bobImage.getY() + bob.getBobJumpSpeed());
         }
     }
