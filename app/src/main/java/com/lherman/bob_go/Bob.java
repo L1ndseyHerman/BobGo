@@ -13,7 +13,7 @@ public class Bob
     //  These should always stay the same after they get set the first time.
     private int yJumpSpeed, screenWidth, screenHeight, jumpHeight, lowestY, daGridX;
     //  startHeight changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
-    private float startHeight, littleAmount, xLittleAmount;
+    private float startHeight, yLittleAmount, xLittleAmount;
 
     public Bob(ImageView bobImage)
     {
@@ -92,13 +92,13 @@ public class Bob
     }
 
 
-    public float getLittleAmount()
+    public float getYLittleAmount()
     {
-        return littleAmount;
+        return yLittleAmount;
     }
-    public void setLittleAmount(float littleAmount)
+    public void setYLittleAmount(float yLittleAmount)
     {
-        this.littleAmount = littleAmount;
+        this.yLittleAmount = yLittleAmount;
     }
 
     public float getXLittleAmount()
@@ -122,36 +122,36 @@ public class Bob
         this.IsOnTopOfSquare = IsOnTopOfSquare;
     }
 
-    public int getBobJumpSpeed()
+    public int getJumpSpeed()
     {
         return yJumpSpeed;
     }
-    public void setBobJumpSpeed(int yJumpSpeed)
+    public void setJumpSpeed(int yJumpSpeed)
     {
         this.yJumpSpeed = yJumpSpeed;
     }
 
-    public float getStartHeightBob()
+    public float getStartHeight()
     {
         return startHeight;
     }
     //  No setter. Bob finds out his own height when the user taps screen.
 
-    public int getJumpHeightBob()
+    public int getJumpHeight()
     {
         return jumpHeight;
     }
-    public void setJumpHeightBob(int jumpHeight)
+    public void setJumpHeight(int jumpHeight)
     {
         this.jumpHeight = jumpHeight;
     }
 
     //  This is where Bob should stop falling to avoid going off the bottom of the screen:
-    public int getLowestBobY()
+    public int getLowestY()
     {
         return lowestY;
     }
-    public void setLowestBobY(int lowestY)
+    public void setLowestY(int lowestY)
     {
         this.lowestY = lowestY;
     }

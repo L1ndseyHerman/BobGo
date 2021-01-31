@@ -59,16 +59,16 @@ public class LevelOneActivity extends AppCompatActivity
         bobImage.setX(2*screenWidth/12);
         bob.setDaGridX(2);
         //  This is the "ground" in the game, lowest place Bob can fall to.
-        bob.setLowestBobY(11*screenHeight/14);
+        bob.setLowestY(11*screenHeight/14);
         bobImage.setY(11*screenHeight/14);
         bobImage.getLayoutParams().height = screenHeight/7;
         bobImage.getLayoutParams().width = screenWidth/12;
         //  Half speed:
         //yJumpSpeedBob = screenHeight/196;
         //  Same proportion for y-direction, 7*14=98
-        bob.setBobJumpSpeed(screenHeight/98);
+        bob.setJumpSpeed(screenHeight/98);
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
-        bob.setJumpHeightBob(5*screenHeight/14);
+        bob.setJumpHeight(5*screenHeight/14);
 
         daGrid = placeGridImages(daGrid);
 
@@ -341,13 +341,13 @@ public class LevelOneActivity extends AppCompatActivity
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
         if (bob.IsJumping())
         {
-            bobImage.setY(bobImage.getY() - bob.getBobJumpSpeed());
+            bobImage.setY(bobImage.getY() - bob.getJumpSpeed());
         }
         //  This is for if Bob needs to jump less than his jump speed, but more than 0:
         else if (bob.IsJumpingLittle())
         {
             //  LittleAmount is positive here (2dp on tablet), so subtract it to make Bob jump up.
-            bobImage.setY(bobImage.getY()-bob.getLittleAmount());
+            bobImage.setY(bobImage.getY()-bob.getYLittleAmount());
             //  Should only happen one time
             bob.setJumpingLittle(false);
             bob.setJumping(false);
@@ -355,18 +355,18 @@ public class LevelOneActivity extends AppCompatActivity
         }
         else if (bob.IsFallingLittle())
         {
-            bobImage.setY(bobImage.getY()+bob.getLittleAmount());
+            bobImage.setY(bobImage.getY()+bob.getYLittleAmount());
             //  Should only happen one time
             bob.setFallingLittle(false);
             bob.setFalling(false);
-            if (bobImage.getY() < bob.getLowestBobY())
+            if (bobImage.getY() < bob.getLowestY())
             {
                 bob.setOnTopOfSquare(true);
             }
         }
         else if (bob.IsFalling())
         {
-            bobImage.setY(bobImage.getY() + bob.getBobJumpSpeed());
+            bobImage.setY(bobImage.getY() + bob.getJumpSpeed());
         }
     }
 

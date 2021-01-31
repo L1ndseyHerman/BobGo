@@ -22,7 +22,7 @@ public class BlankGridSpace implements GridImageThing
     {
         if (bob.IsJumping())
         {
-            if (bobImage.getY() <= bob.getStartHeightBob()-bob.getJumpHeightBob())
+            if (bobImage.getY() <= bob.getStartHeight()-bob.getJumpHeight())
             {
                 bob.setJumping(false);
                 bob.setFalling(true);
@@ -30,7 +30,7 @@ public class BlankGridSpace implements GridImageThing
         }
         if (bob.IsFalling())
         {
-            if (bobImage.getY() >= bob.getLowestBobY())
+            if (bobImage.getY() >= bob.getLowestY())
             {
                 bob.setFalling(false);
             }
