@@ -32,20 +32,16 @@ public class SquareObstacle implements GridImageThing
             checkBottomCollision();
         }
 
-        //  What gets returned from checkXCollision.
         boolean isNotColliding;
 
-        //  Right collision code if Bob is jumping:
         if (bob.IsJumping())
         {
             isNotColliding = checkRightCollision(-bob.getJumpSpeed());
         }
-        //  Right collision code if Bob is falling:
         else if (bob.IsFalling())
         {
             isNotColliding = checkRightCollision(bob.getJumpSpeed());
         }
-        //  Right collision code if not jumping or falling
         else
         {
             isNotColliding = checkRightCollision(0);
@@ -56,7 +52,6 @@ public class SquareObstacle implements GridImageThing
 
     public void checkTopCollision()
     {
-
         //  If Bob's current y-value <= where Bob started jumping from minus where he's allowed to jump to ||
         if ((bobImage.getY() <= bob.getStartHeight()-bob.getJumpHeight()) ||
                 //  the next timer call the square's bottom side will be >= Bob's top side  &&
@@ -117,17 +112,22 @@ public class SquareObstacle implements GridImageThing
         else
         {
             bob.setFalling(false);
-            //  If Bob didn't land on the bottom of the screen, then he must have landed on a square.
-            if (bobImage.getY() < bob.getLowestY())
-            {
-                bob.setOnTopOfSquare(true);
-            }
+            checkLandedOnSquare();
         }
     }
 
+    public void checkLandedOnSquare()
+    {
+        //  If Bob didn't land on the bottom of the screen, then he must have landed on a square.
+        if (bobImage.getY() < bob.getLowestY())
+        {
+            bob.setOnTopOfSquare(true);
+        }
+    }
 
     public boolean checkRightCollision(int yChange)
     {
+        //  This one is flipped. The "if" means Bob can move, "else if" means move little, "else" not at all.
         //  If the square's left side is >=  Bob's right side the next timer call ||
         if ((squareImage.getX() >= (bobImage.getX()+bobImage.getLayoutParams().width+xMoveSpeedScreen)) ||
                 //  the square's right side <= Bob's left side the next timer call ||
