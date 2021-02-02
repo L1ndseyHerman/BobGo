@@ -16,7 +16,7 @@ import java.util.TimerTask;
 public class LevelOneActivity extends AppCompatActivity
 {
     //  The grid of SquareObstacles and BlankGridSpaces
-    private GridImageThing[][] daGrid = new GridImageThing[24][6];
+    private GridImageThing[][] daGrid = new GridImageThing[30][6];
     //  The one and only Image of Bob! :D
     private ImageView bobImage;
     //  The amount that everything in daGrid and the enemies move every timer call.
@@ -280,10 +280,50 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[23][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid23x4));
         daGrid[23][5] = new SquareObstacle((ImageView) findViewById(R.id.grid23x5), screenWidth, screenHeight);
 
+        daGrid[24][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid24x0));
+        daGrid[24][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid24x1));
+        daGrid[24][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid24x2));
+        daGrid[24][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid24x3));
+        daGrid[24][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid24x4));
+        daGrid[24][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid24x5));
+
+        daGrid[25][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid25x0));
+        daGrid[25][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid25x1));
+        daGrid[25][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid25x2));
+        daGrid[25][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid25x3));
+        daGrid[25][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid25x4));
+        daGrid[25][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid25x5));
+
+        daGrid[26][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid26x0));
+        daGrid[26][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid26x1));
+        daGrid[26][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid26x2));
+        daGrid[26][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid26x3));
+        daGrid[26][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid26x4));
+        daGrid[26][5] = new SquareObstacle((ImageView) findViewById(R.id.grid26x5), screenWidth, screenHeight);
+
+        daGrid[27][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid27x0));
+        daGrid[27][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid27x1));
+        daGrid[27][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid27x2));
+        daGrid[27][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid27x3));
+        daGrid[27][4] = new SquareObstacle((ImageView) findViewById(R.id.grid27x4), screenWidth, screenHeight);
+        daGrid[27][5] = new SquareObstacle((ImageView) findViewById(R.id.grid27x5), screenWidth, screenHeight);
+
+        daGrid[28][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid28x0));
+        daGrid[28][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid28x1));
+        daGrid[28][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid28x2));
+        daGrid[28][3] = new SquareObstacle((ImageView) findViewById(R.id.grid28x3), screenWidth, screenHeight);
+        daGrid[28][4] = new SquareObstacle((ImageView) findViewById(R.id.grid28x4), screenWidth, screenHeight);
+        daGrid[28][5] = new SquareObstacle((ImageView) findViewById(R.id.grid28x5), screenWidth, screenHeight);
+
+        daGrid[29][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid29x0));
+        daGrid[29][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid29x1));
+        daGrid[29][2] = new SquareObstacle((ImageView) findViewById(R.id.grid29x2), screenWidth, screenHeight);
+        daGrid[29][3] = new SquareObstacle((ImageView) findViewById(R.id.grid29x3), screenWidth, screenHeight);
+        daGrid[29][4] = new SquareObstacle((ImageView) findViewById(R.id.grid29x4), screenWidth, screenHeight);
+        daGrid[29][5] = new SquareObstacle((ImageView) findViewById(R.id.grid29x5), screenWidth, screenHeight);
+
         return daGrid;
     }
-
-
 
     public void levelMoveStuff()
     {
