@@ -66,7 +66,9 @@ public class LevelOneActivity extends AppCompatActivity
         //  Half speed:
         //yJumpSpeedBob = screenHeight/196;
         //  Same proportion for y-direction, 7*14=98
-        bob.setJumpSpeed(screenHeight/98);
+        //bob.setJumpSpeed(screenHeight/98);
+        //  Double speed:
+        bob.setJumpSpeed(screenHeight/49);
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
         bob.setJumpHeight(5*screenHeight/14);
 
