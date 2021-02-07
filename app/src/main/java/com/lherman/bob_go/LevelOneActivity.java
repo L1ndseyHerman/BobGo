@@ -29,6 +29,7 @@ public class LevelOneActivity extends AppCompatActivity
     private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
     private Bob bob;
+    private Hater[] haters = new Hater[1];
 
     //  Android Studio's Main Method:
     @Override
@@ -72,6 +73,8 @@ public class LevelOneActivity extends AppCompatActivity
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
         bob.setJumpHeight(5*screenHeight/14);
 
+
+
         daGrid = placeGridImages(daGrid);
 
         //  Loops through everything in daGrid and decides where to put it on the screen...
@@ -90,6 +93,17 @@ public class LevelOneActivity extends AppCompatActivity
                 daGrid[index][index2].setImageX(index*screenWidth/12);
                 daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
             }
+        }
+
+        //  Placing enemy:(ImageView) findViewById(R.id.grid0x0));
+
+        haters = placeEnemies(haters);
+
+        for (int index=0; index<haters.length; index++)
+        {
+            haters[index].setImageHeight(screenHeight/7);
+            haters[index].setImageWidth(screenWidth/12);
+            haters[index].setXMoveSpeedScreen(xMoveSpeedScreen);
         }
 
         //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
@@ -362,6 +376,16 @@ public class LevelOneActivity extends AppCompatActivity
         return daGrid;
     }
 
+    //  Also separating enemy placement:
+    public Hater[] placeEnemies(Hater[] haters)
+    {
+        haters[0] = new Hater((ImageView) findViewById(R.id.hater1));
+        haters[0].setImageX(34*screenWidth/12);
+        haters[0].setImageY(11*screenHeight/14);
+
+        return haters;
+    }
+
     public void levelMoveStuff()
     {
         boolean gridShouldMove = true;
@@ -397,6 +421,12 @@ public class LevelOneActivity extends AppCompatActivity
                 }
             }
 
+            //  New! Also move the Haters:
+            for (int index=0; index<haters.length; index++)
+            {
+                haters[index].move();
+            }
+
             //  Declare that Bob moved one GridImageThing:                                 // Doesn't matter what the y is.
             if (bobImage.getX()+bobImage.getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
             {
@@ -413,6 +443,12 @@ public class LevelOneActivity extends AppCompatActivity
                     daGrid[index][index2].move(bob.getXLittleAmount());
                 }
             }
+
+            for (int index=0; index<haters.length; index++)
+            {
+                haters[index].move(bob.getXLittleAmount());
+            }
+
             bob.setMovingRightLittle(false);
         }
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
