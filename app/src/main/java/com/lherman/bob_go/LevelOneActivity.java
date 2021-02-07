@@ -16,7 +16,7 @@ import java.util.TimerTask;
 public class LevelOneActivity extends AppCompatActivity
 {
     //  The grid of SquareObstacles and BlankGridSpaces
-    private GridImageThing[][] daGrid = new GridImageThing[35][6];
+    private GridImageThing[][] daGrid = new GridImageThing[39][6];
     //  The one and only Image of Bob! :D
     private ImageView bobImage;
     //  The amount that everything in daGrid and the enemies move every timer call.
@@ -104,6 +104,8 @@ public class LevelOneActivity extends AppCompatActivity
             haters[index].setImageHeight(screenHeight/7);
             haters[index].setImageWidth(screenWidth/12);
             haters[index].setXMoveSpeedScreen(xMoveSpeedScreen);
+            haters[index].setBob(bob);
+            haters[index].setBobImage(bobImage);
         }
 
         //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
@@ -373,6 +375,34 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[34][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid34x4));
         daGrid[34][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid34x5));
 
+        daGrid[35][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x0));
+        daGrid[35][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x1));
+        daGrid[35][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x2));
+        daGrid[35][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x3));
+        daGrid[35][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x4));
+        daGrid[35][5] = new SquareObstacle((ImageView) findViewById(R.id.grid35x5), screenWidth, screenHeight);
+
+        daGrid[36][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid36x0));
+        daGrid[36][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid36x1));
+        daGrid[36][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid36x2));
+        daGrid[36][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid36x3));
+        daGrid[36][4] = new SquareObstacle((ImageView) findViewById(R.id.grid36x4), screenWidth, screenHeight);
+        daGrid[36][5] = new SquareObstacle((ImageView) findViewById(R.id.grid36x5), screenWidth, screenHeight);
+
+        daGrid[37][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid37x0));
+        daGrid[37][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid37x1));
+        daGrid[37][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid37x2));
+        daGrid[37][3] = new SquareObstacle((ImageView) findViewById(R.id.grid37x3), screenWidth, screenHeight);
+        daGrid[37][4] = new SquareObstacle((ImageView) findViewById(R.id.grid37x4), screenWidth, screenHeight);
+        daGrid[37][5] = new SquareObstacle((ImageView) findViewById(R.id.grid37x5), screenWidth, screenHeight);
+
+        daGrid[38][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid38x0));
+        daGrid[38][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid38x1));
+        daGrid[38][2] = new SquareObstacle((ImageView) findViewById(R.id.grid38x2), screenWidth, screenHeight);
+        daGrid[38][3] = new SquareObstacle((ImageView) findViewById(R.id.grid38x3), screenWidth, screenHeight);
+        daGrid[38][4] = new SquareObstacle((ImageView) findViewById(R.id.grid38x4), screenWidth, screenHeight);
+        daGrid[38][5] = new SquareObstacle((ImageView) findViewById(R.id.grid38x5), screenWidth, screenHeight);
+
         return daGrid;
     }
 
@@ -381,13 +411,25 @@ public class LevelOneActivity extends AppCompatActivity
     {
         haters[0] = new Hater((ImageView) findViewById(R.id.hater1));
         haters[0].setImageX(34*screenWidth/12);
-        haters[0].setImageY(11*screenHeight/14);
+        haters[0].setImageY(9*screenHeight/14);
 
         return haters;
     }
 
     public void levelMoveStuff()
     {
+        //  Checking to see if Bob collided with an enemy first to get a Game Over right away:
+        for (int index=0; index<haters.length; index++)
+        {
+            if (haters[index].isColliding())
+            {
+                //  STOP THE TIMER!!!
+                timer.cancel();
+            }
+        }
+
+
+
         boolean gridShouldMove = true;
         //  Only check the row behind Bob, Bob's row, and the row after Bob, for a total of 18 GridImageThings.
         //  Actually, needs to be 30 GridImageThings (5*6), but close enough.
