@@ -7,8 +7,10 @@ public class Hater
     //  The red frowny-face enemies. If Bob touches one, he will become too upset to win the level,
     //  and get a Game Over.
     private ImageView haterImage, bobImage;
-    private int xMoveSpeedScreen;
+    private int xMoveSpeedScreen, xHaterMoveSpeed, yHaterMoveSpeed;
     private Bob bob;
+    private GridImageThing[] thePath;
+    private GridImageThing nextGridImageThing;
 
     public Hater(ImageView haterImage) {
         this.haterImage = haterImage;
@@ -74,5 +76,89 @@ public class Hater
         }
 
         return false;
+    }
+
+    public void setPath(GridImageThing[] thePath)
+    {
+        this.thePath = thePath;
+    }
+
+    //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
+    public void setXHaterMoveSpeed(int xHaterMoveSpeed)
+    {
+        this.xHaterMoveSpeed = xHaterMoveSpeed;
+    }
+    //  Might not need unless for Bob collision, idk.
+    /*public int getXHaterMoveSpeed() {
+        return xHaterMoveSpeed;
+    }*/
+    public void setYHaterMoveSpeed(int yHaterMoveSpeed)
+    {
+        this.yHaterMoveSpeed = yHaterMoveSpeed;
+    }
+    /*public int getYHaterMoveSpeed() {
+        return yHaterMoveSpeed;
+    }*/
+
+    public void setNextGridImageThing(GridImageThing nextGridImageThing)
+    {
+        this.nextGridImageThing = nextGridImageThing;
+    }
+
+    public GridImageThing getNextGridImageThing()
+    {
+        return nextGridImageThing;
+    }
+
+    //  This makes the enemy move at a constant speed on whatever path it should take, or remain stationary.
+    public void movePath()
+    {
+        //  If there is only one GridImageThing, means the Hater is stationary, nowhere to move to.
+        if (thePath.length != 1)
+        {
+            //  Hater needs to move to the right.
+            if (nextGridImageThing.getImageX() - haterImage.getX() > 0)
+            {
+                if (haterImage.getX() + (xMoveSpeedScreen*xHaterMoveSpeed) <= nextGridImageThing.getImageX())
+                {
+
+                }
+            }
+            //  Hater needs to move to the left.
+            else if (nextGridImageThing.getImageX() - haterImage.getX() < 0)
+            {
+                if (haterImage.getX() - (xMoveSpeedScreen*xHaterMoveSpeed) >= nextGridImageThing.getImageX())
+                {
+
+                }
+            }
+
+            //  Hater needs to move down.
+            if (nextGridImageThing.getImageY() - haterImage.getY() > 0)
+            {
+                if (haterImage.getY() + (xMoveSpeedScreen*yHaterMoveSpeed) <= nextGridImageThing.getImageY())
+                {
+
+                }
+            }
+            //  Hater needs to move up.
+            else if (nextGridImageThing.getImageY() - haterImage.getY() < 0)
+            {
+                if (haterImage.getY() - (xMoveSpeedScreen*yHaterMoveSpeed) >= nextGridImageThing.getImageY())
+                {
+
+                }
+            }
+
+            /*//  xDifference pos if Grid to right of Hater, neg if to left.
+            float xDifference = nextGridImageThing.getImageX() - haterImage.getX();
+            //  same w yDifference
+            float yDifference = nextGridImageThing.getImageY() - haterImage.getY();
+
+            if (xDifference>0 || xDifference<0)
+            {
+
+            }*/
+        }
     }
 }

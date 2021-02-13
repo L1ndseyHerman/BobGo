@@ -17,6 +17,7 @@ public interface GridImageThing
     float getImageX();
     void setImageX(float xImage);
     void setImageY(float yImage);
+    float getImageY();
     void setImageWidth(int widthImage);
     void setImageHeight(int heightImage);
 

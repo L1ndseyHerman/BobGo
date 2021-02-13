@@ -71,6 +71,11 @@ public class BlankGridSpace implements GridImageThing
     }
 
     @Override
+    public float getImageY() {
+        return spaceImage.getY();
+    }
+
+    @Override
     public void setImageWidth(int widthImage) {
         spaceImage.getLayoutParams().width = widthImage;
     }

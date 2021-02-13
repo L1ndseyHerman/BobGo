@@ -411,7 +411,7 @@ public class LevelOneActivity extends AppCompatActivity
     {
         haters[0] = new Hater((ImageView) findViewById(R.id.hater1));
         haters[0].setImageX(34*screenWidth/12);
-        haters[0].setImageY(9*screenHeight/14);
+        haters[0].setImageY(5*screenHeight/14);
 
         return haters;
     }

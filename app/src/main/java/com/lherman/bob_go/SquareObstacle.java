@@ -196,6 +196,11 @@ public class SquareObstacle implements GridImageThing
     }
 
     @Override
+    public float getImageY() {
+        return squareImage.getY();
+    }
+
+    @Override
     public void setImageWidth(int widthImage) {
         squareImage.getLayoutParams().width = widthImage;
     }
