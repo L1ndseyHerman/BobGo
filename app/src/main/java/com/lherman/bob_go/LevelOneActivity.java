@@ -16,7 +16,7 @@ import java.util.TimerTask;
 public class LevelOneActivity extends AppCompatActivity
 {
     //  The grid of SquareObstacles and BlankGridSpaces
-    private GridImageThing[][] daGrid = new GridImageThing[39][6];
+    private GridImageThing[][] daGrid = new GridImageThing[40][6];
     //  The one and only Image of Bob! :D
     private ImageView bobImage;
     //  The amount that everything in daGrid and the enemies move every timer call.
@@ -29,7 +29,7 @@ public class LevelOneActivity extends AppCompatActivity
     private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
     private Bob bob;
-    private Hater[] haters = new Hater[1];
+    private Hater[] haters = new Hater[2];
 
     //  Android Studio's Main Method:
     @Override
@@ -403,15 +403,51 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[38][4] = new SquareObstacle((ImageView) findViewById(R.id.grid38x4), screenWidth, screenHeight);
         daGrid[38][5] = new SquareObstacle((ImageView) findViewById(R.id.grid38x5), screenWidth, screenHeight);
 
+        daGrid[39][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid39x0));
+        daGrid[39][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid39x1));
+        daGrid[39][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid39x2));
+        daGrid[39][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid39x3));
+        daGrid[39][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid39x4));
+        daGrid[39][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid39x5));
+
         return daGrid;
     }
 
     //  Also separating enemy placement:
     public Hater[] placeEnemies(Hater[] haters)
     {
+        GridImageThing[] thePath = new GridImageThing[1];
+        thePath[0] = daGrid[34][2];
+
+        int[] xHaterMoveSpeeds = new int[1];
+        xHaterMoveSpeeds[0] = 0;
+
+        int[] yHaterMoveSpeeds = new int[1];
+        yHaterMoveSpeeds[0] = 0;
+
         haters[0] = new Hater((ImageView) findViewById(R.id.hater1));
-        haters[0].setImageX(34*screenWidth/12);
-        haters[0].setImageY(5*screenHeight/14);
+        haters[0].setImageX(thePath[0].getImageX());
+        haters[0].setImageY(thePath[0].getImageY());
+        //haters[0].setImageX(34*screenWidth/12);
+        //haters[0].setImageY(5*screenHeight/14);
+        haters[0].setPath(thePath, xHaterMoveSpeeds, yHaterMoveSpeeds);
+
+        GridImageThing[] thePath2 = new GridImageThing[2];
+        thePath2[0] = daGrid[39][2];
+        thePath2[1] = daGrid[39][5];
+
+        int[] xHaterMoveSpeeds2 = new int[2];
+        xHaterMoveSpeeds2[0] = 0;
+        xHaterMoveSpeeds2[1] = 0;
+
+        int[] yHaterMoveSpeeds2 = new int[2];
+        yHaterMoveSpeeds2[0] = 1;
+        yHaterMoveSpeeds2[1] = 1;
+
+        haters[1] = new Hater((ImageView) findViewById(R.id.hater2));
+        haters[1].setImageX(thePath2[0].getImageX());
+        haters[1].setImageY(thePath2[0].getImageY());
+        haters[1].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
 
         return haters;
     }
@@ -426,6 +462,12 @@ public class LevelOneActivity extends AppCompatActivity
                 //  STOP THE TIMER!!!
                 timer.cancel();
             }
+        }
+
+        //  If no game over, always move enemies no matter what:
+        for (int index=0; index<haters.length; index++)
+        {
+            haters[index].movePath();
         }
 
 

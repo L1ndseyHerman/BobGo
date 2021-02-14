@@ -39,6 +39,11 @@ public class WinCircle implements GridImageThing
     }
 
     @Override
+    public float getImageY() {
+        return 0;
+    }
+
+    @Override
     public void setImageWidth(int widthImage) {
 
     }
