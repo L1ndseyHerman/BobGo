@@ -501,129 +501,70 @@ public class LevelOneActivity extends AppCompatActivity
     //  Also separating enemy placement:
     public Hater[] placeEnemies(Hater[] haters)
     {
-        //  Starting off all sizes as 0 bec will grow and shrink a bunch, so why bother setting it?
-        ArrayList<GridImageThing> thePath = new ArrayList<GridImageThing>();
-        ArrayList<Float> xHaterMoveSpeeds = new ArrayList<Float>();
-        ArrayList<Float> yHaterMoveSpeeds = new ArrayList<Float>();
+        GridImageThing[] thePath = new GridImageThing[1];
+        thePath[0] = daGrid[34][2];
 
+        float[] xHaterMoveSpeeds = new float[1];
+        xHaterMoveSpeeds[0] = 0;
 
-        /*GridImageThing[] thePath = new GridImageThing[1];
-        thePath[0] = daGrid[34][2];*/
-        thePath.add(daGrid[34][2]);
-
-        /*float[] xHaterMoveSpeeds = new float[1];
-        xHaterMoveSpeeds[0] = 0;*/
-        xHaterMoveSpeeds.add((float)0);
-
-        /*float[] yHaterMoveSpeeds = new float[1];
-        yHaterMoveSpeeds[0] = 0;*/
-        yHaterMoveSpeeds.add((float)0);
+        float[] yHaterMoveSpeeds = new float[1];
+        yHaterMoveSpeeds[0] = 0;
 
         haters[0] = new Hater((ImageView) findViewById(R.id.hater1));
-        haters[0].setImageX(thePath.get(0).getImageX());
-        haters[0].setImageY(thePath.get(0).getImageY());
+        haters[0].setImageX(thePath[0].getImageX());
+        haters[0].setImageY(thePath[0].getImageY());
         haters[0].setPath(thePath, xHaterMoveSpeeds, yHaterMoveSpeeds);
-        /*haters[0].setImageX(thePath[0].getImageX());
-        haters[0].setImageY(thePath[0].getImageY());*/
 
-        //  Remove all of the values in the ArrayList but keep the ArrayList itself to add the next
-        //  Hater's values below:
-        thePath.clear();
-        xHaterMoveSpeeds.clear();
-        yHaterMoveSpeeds.clear();
-
-        thePath.add(daGrid[39][2]);
-        thePath.add(daGrid[39][5]);
-        /*GridImageThing[] thePath2 = new GridImageThing[2];
+        GridImageThing[] thePath2 = new GridImageThing[2];
         thePath2[0] = daGrid[39][2];
-        thePath2[1] = daGrid[39][5];*/
+        thePath2[1] = daGrid[39][5];
 
-        xHaterMoveSpeeds.add((float)0);
-        xHaterMoveSpeeds.add((float)0);
-        /*float[] xHaterMoveSpeeds2 = new float[2];
+        float[] xHaterMoveSpeeds2 = new float[2];
         xHaterMoveSpeeds2[0] = 0;
-        xHaterMoveSpeeds2[1] = 0;*/
+        xHaterMoveSpeeds2[1] = 0;
 
-        yHaterMoveSpeeds.add((float)1);
-        yHaterMoveSpeeds.add((float)1);
-        /*float[] yHaterMoveSpeeds2 = new float[2];
+        float[] yHaterMoveSpeeds2 = new float[2];
         yHaterMoveSpeeds2[0] = 1;
-        yHaterMoveSpeeds2[1] = 1;*/
+        yHaterMoveSpeeds2[1] = 1;
 
         haters[1] = new Hater((ImageView) findViewById(R.id.hater2));
-        haters[1].setImageX(thePath.get(0).getImageX());
-        haters[1].setImageY(thePath.get(0).getImageY());
-        haters[1].setPath(thePath, xHaterMoveSpeeds, yHaterMoveSpeeds);
-        /*haters[1].setImageX(thePath2[0].getImageX());
+        haters[1].setImageX(thePath2[0].getImageX());
         haters[1].setImageY(thePath2[0].getImageY());
-        haters[1].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);*/
+        haters[1].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
 
-        thePath.clear();
-        xHaterMoveSpeeds.clear();
-        yHaterMoveSpeeds.clear();
-
-        thePath.add(daGrid[44][5]);
-        thePath.add(daGrid[50][5]);
-        /*GridImageThing[] thePath3 = new GridImageThing[2];
+        GridImageThing[] thePath3 = new GridImageThing[2];
         thePath3[0] = daGrid[44][5];
-        thePath3[1] = daGrid[50][5];*/
+        thePath3[1] = daGrid[50][5];
 
-        xHaterMoveSpeeds.add((float)0.5);
-        xHaterMoveSpeeds.add((float)0.5);
-        /*float[] xHaterMoveSpeeds3 = new float[2];
+        float[] xHaterMoveSpeeds3 = new float[2];
         xHaterMoveSpeeds3[0] = (float) 0.5;
-        xHaterMoveSpeeds3[1] = (float) 0.5;*/
-        //xHaterMoveSpeeds3[0] = 1;
-        //xHaterMoveSpeeds3[1] = 1;
+        xHaterMoveSpeeds3[1] = (float) 0.5;
 
-        yHaterMoveSpeeds.add((float)0);
-        yHaterMoveSpeeds.add((float)0);
-        /*float[] yHaterMoveSpeeds3 = new float[2];
+        float[] yHaterMoveSpeeds3 = new float[2];
         yHaterMoveSpeeds3[0] = 0;
-        yHaterMoveSpeeds3[1] = 0;*/
+        yHaterMoveSpeeds3[1] = 0;
 
         haters[2] = new Hater((ImageView) findViewById(R.id.hater3));
-        haters[2].setImageX(thePath.get(0).getImageX());
-        haters[2].setImageY(thePath.get(0).getImageY());
-        haters[2].setPath(thePath, xHaterMoveSpeeds, yHaterMoveSpeeds);
-        /*haters[2].setImageX(thePath3[0].getImageX());
+        haters[2].setImageX(thePath3[0].getImageX());
         haters[2].setImageY(thePath3[0].getImageY());
-        haters[2].setPath(thePath3, xHaterMoveSpeeds3, yHaterMoveSpeeds3);*/
+        haters[2].setPath(thePath3, xHaterMoveSpeeds3, yHaterMoveSpeeds3);
 
-        thePath.clear();
-        xHaterMoveSpeeds.clear();
-        yHaterMoveSpeeds.clear();
-
-        thePath.add(daGrid[44][0]);
-        thePath.add(daGrid[50][0]);
-        /*GridImageThing[] thePath4 = new GridImageThing[2];
+        GridImageThing[] thePath4 = new GridImageThing[2];
         thePath4[0] = daGrid[44][0];
-        thePath4[1] = daGrid[50][0];*/
+        thePath4[1] = daGrid[50][0];
 
-        xHaterMoveSpeeds.add((float)2);
-        xHaterMoveSpeeds.add((float)2);
-        /*float[] xHaterMoveSpeeds4 = new float[2];
+        float[] xHaterMoveSpeeds4 = new float[2];
         xHaterMoveSpeeds4[0] = 2;
-        xHaterMoveSpeeds4[1] = 2;*/
+        xHaterMoveSpeeds4[1] = 2;
 
-        yHaterMoveSpeeds.add((float)0);
-        yHaterMoveSpeeds.add((float)0);
-        /*float[] yHaterMoveSpeeds4 = new float[2];
+        float[] yHaterMoveSpeeds4 = new float[2];
         yHaterMoveSpeeds4[0] = 0;
-        yHaterMoveSpeeds4[1] = 0;*/
+        yHaterMoveSpeeds4[1] = 0;
 
         haters[3] = new Hater((ImageView) findViewById(R.id.hater4));
-        haters[3].setImageX(thePath.get(0).getImageX());
-        haters[3].setImageY(thePath.get(0).getImageY());
-        haters[3].setPath(thePath, xHaterMoveSpeeds, yHaterMoveSpeeds);
-        /*haters[3].setImageX(thePath4[0].getImageX());
+        haters[3].setImageX(thePath4[0].getImageX());
         haters[3].setImageY(thePath4[0].getImageY());
-        haters[3].setPath(thePath4, xHaterMoveSpeeds4, yHaterMoveSpeeds4);*/
-
-        /*thePath.clear();
-        xHaterMoveSpeeds.clear();
-        yHaterMoveSpeeds.clear();*/
-
+        haters[3].setPath(thePath4, xHaterMoveSpeeds4, yHaterMoveSpeeds4);
 
         return haters;
     }

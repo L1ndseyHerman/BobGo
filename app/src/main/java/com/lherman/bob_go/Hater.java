@@ -2,8 +2,6 @@ package com.lherman.bob_go;
 
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-
 public class Hater
 {
     //  The red frowny-face enemies. If Bob touches one, he will become too upset to win the level,
@@ -11,11 +9,9 @@ public class Hater
     private ImageView haterImage, bobImage;
     private int xMoveSpeedScreen, pathIndex;
     private float xHaterMoveSpeed, yHaterMoveSpeed;
-    //private float[] xHaterMoveSpeeds, yHaterMoveSpeeds;
-    private ArrayList<Float> xHaterMoveSpeeds, yHaterMoveSpeeds;
+    private float[] xHaterMoveSpeeds, yHaterMoveSpeeds;
     private Bob bob;
-    //private GridImageThing[] thePath;
-    private ArrayList<GridImageThing> thePath;
+    private GridImageThing[] thePath;
     private GridImageThing nextGridImageThing;
 
     public Hater(ImageView haterImage) {
@@ -86,8 +82,7 @@ public class Hater
 
     //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
     //  AND IT NEEDS TO BE A FLOAT FOR 0.5! FACEPALM!
-    //public void setPath(GridImageThing[] thePath, float[] xHaterMoveSpeeds, float[] yHaterMoveSpeeds)
-    public void setPath(ArrayList<GridImageThing> thePath, ArrayList<Float> xHaterMoveSpeeds, ArrayList<Float> yHaterMoveSpeeds)
+    public void setPath(GridImageThing[] thePath, float[] xHaterMoveSpeeds, float[] yHaterMoveSpeeds)
     {
         this.thePath = thePath;
         this.xHaterMoveSpeeds = xHaterMoveSpeeds;
@@ -95,14 +90,9 @@ public class Hater
 
         //  Might as well start the path in this method instead of LevelOneActivity:
         pathIndex = 0;
-
-        nextGridImageThing = thePath.get(pathIndex);
-        xHaterMoveSpeed = xHaterMoveSpeeds.get(pathIndex);
-        yHaterMoveSpeed = yHaterMoveSpeeds.get(pathIndex);
-
-        /*nextGridImageThing = thePath[pathIndex];
+        nextGridImageThing = thePath[pathIndex];
         xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
-        yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];*/
+        yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];
     }
 
     //  This makes the enemy move at a constant speed on whatever path it should take, or remain stationary.
@@ -175,21 +165,16 @@ public class Hater
         if (isDoneMovingX && isDoneMovingY)
         {
             //  If the Hater is on the last GridImageThing of its path, start over at the first one.
-            //if (pathIndex == thePath.length-1)
-            if (pathIndex == thePath.size()-1)
+            if (pathIndex == thePath.length-1)
             {
                 pathIndex = 0;
             }
             else {
                 pathIndex++;
             }
-            /*nextGridImageThing = thePath[pathIndex];
+            nextGridImageThing = thePath[pathIndex];
             xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
-            yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];*/
-
-            nextGridImageThing = thePath.get(pathIndex);
-            xHaterMoveSpeed = xHaterMoveSpeeds.get(pathIndex);
-            yHaterMoveSpeed = yHaterMoveSpeeds.get(pathIndex);
+            yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];
 
         }
 
