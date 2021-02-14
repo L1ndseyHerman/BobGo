@@ -2,18 +2,20 @@ package com.lherman.bob_go;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class Hater
 {
     //  The red frowny-face enemies. If Bob touches one, he will become too upset to win the level,
     //  and get a Game Over.
     private ImageView haterImage, bobImage;
-    //private int xMoveSpeedScreen, xHaterMoveSpeed, yHaterMoveSpeed, pathIndex;
     private int xMoveSpeedScreen, pathIndex;
     private float xHaterMoveSpeed, yHaterMoveSpeed;
-    //private int[] xHaterMoveSpeeds, yHaterMoveSpeeds;
-    private float[] xHaterMoveSpeeds, yHaterMoveSpeeds;
+    //private float[] xHaterMoveSpeeds, yHaterMoveSpeeds;
+    private ArrayList<Float> xHaterMoveSpeeds, yHaterMoveSpeeds;
     private Bob bob;
-    private GridImageThing[] thePath;
+    //private GridImageThing[] thePath;
+    private ArrayList<GridImageThing> thePath;
     private GridImageThing nextGridImageThing;
 
     public Hater(ImageView haterImage) {
@@ -82,49 +84,26 @@ public class Hater
         return false;
     }
 
-    //public void setPath(GridImageThing[] thePath, int[] xHaterMoveSpeeds, int[] yHaterMoveSpeeds)
     //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
     //  AND IT NEEDS TO BE A FLOAT FOR 0.5! FACEPALM!
-    public void setPath(GridImageThing[] thePath, float[] xHaterMoveSpeeds, float[] yHaterMoveSpeeds)
+    //public void setPath(GridImageThing[] thePath, float[] xHaterMoveSpeeds, float[] yHaterMoveSpeeds)
+    public void setPath(ArrayList<GridImageThing> thePath, ArrayList<Float> xHaterMoveSpeeds, ArrayList<Float> yHaterMoveSpeeds)
     {
         this.thePath = thePath;
         this.xHaterMoveSpeeds = xHaterMoveSpeeds;
         this.yHaterMoveSpeeds = yHaterMoveSpeeds;
+
         //  Might as well start the path in this method instead of LevelOneActivity:
-        //setNextGridImageThing(thePath[0]);
-        //nextGridImageThing = thePath[0];
         pathIndex = 0;
-        nextGridImageThing = thePath[pathIndex];
+
+        nextGridImageThing = thePath.get(pathIndex);
+        xHaterMoveSpeed = xHaterMoveSpeeds.get(pathIndex);
+        yHaterMoveSpeed = yHaterMoveSpeeds.get(pathIndex);
+
+        /*nextGridImageThing = thePath[pathIndex];
         xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
-        yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];
+        yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];*/
     }
-
-    //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
-    /*public void setXHaterMoveSpeed(int xHaterMoveSpeed)
-    {
-        this.xHaterMoveSpeed = xHaterMoveSpeed;
-    }*/
-    //  Might not need unless for Bob collision, idk.
-    /*public int getXHaterMoveSpeed() {
-        return xHaterMoveSpeed;
-    }*/
-    /*public void setYHaterMoveSpeed(int yHaterMoveSpeed)
-    {
-        this.yHaterMoveSpeed = yHaterMoveSpeed;
-    }*/
-    /*public int getYHaterMoveSpeed() {
-        return yHaterMoveSpeed;
-    }*/
-
-   /*public void setNextGridImageThing(GridImageThing nextGridImageThing)
-    {
-        this.nextGridImageThing = nextGridImageThing;
-    }*/
-
-    /*public GridImageThing getNextGridImageThing()
-    {
-        return nextGridImageThing;
-    }*/
 
     //  This makes the enemy move at a constant speed on whatever path it should take, or remain stationary.
     public void movePath()
@@ -132,93 +111,87 @@ public class Hater
         boolean isDoneMovingX = false;
         boolean isDoneMovingY = false;
 
-        System.out.println("Got here");
+        //  Hater needs to move to the right.
+        if (nextGridImageThing.getImageX() - haterImage.getX() > 0)
+        {
+            //  1st one about moving the full amount
+            if (haterImage.getX() + (xMoveSpeedScreen*xHaterMoveSpeed) <= nextGridImageThing.getImageX())
+            {
+                haterImage.setX(haterImage.getX()+(xMoveSpeedScreen*xHaterMoveSpeed));
+            }
+            //  2nd one about moving the little amount.
+            else if (haterImage.getX() < nextGridImageThing.getImageX())
+            {
+                haterImage.setX(haterImage.getX() + (nextGridImageThing.getImageX()-haterImage.getX()));
+            }
+        }
+        //  Hater needs to move to the left.
+        else if (nextGridImageThing.getImageX() - haterImage.getX() < 0)
+        {
+            if (haterImage.getX() - (xMoveSpeedScreen*xHaterMoveSpeed) >= nextGridImageThing.getImageX())
+            {
+                haterImage.setX(haterImage.getX()-(xMoveSpeedScreen*xHaterMoveSpeed));
+            }
+            else if (haterImage.getX() > nextGridImageThing.getImageX())
+            {
+                haterImage.setX(haterImage.getX() - (haterImage.getX()-nextGridImageThing.getImageX()));
+            }
+        }
+        //  Hater is either done moving horizontally or didn't need to in the first place.
+        else {
+            isDoneMovingX = true;
+        }
 
-        //  If there is only one GridImageThing, means the Hater is stationary, nowhere to move to.
-        //if (thePath.length != 1)
-        //{
-            //  Hater needs to move to the right.
-            if (nextGridImageThing.getImageX() - haterImage.getX() > 0)
+        //  Hater needs to move down.
+        if (nextGridImageThing.getImageY() - haterImage.getY() > 0)
+        {
+            if (haterImage.getY() + (xMoveSpeedScreen*yHaterMoveSpeed) <= nextGridImageThing.getImageY())
             {
-                //  1st one about moving the full amount
-                if (haterImage.getX() + (xMoveSpeedScreen*xHaterMoveSpeed) <= nextGridImageThing.getImageX())
-                {
-                    haterImage.setX(haterImage.getX()+(xMoveSpeedScreen*xHaterMoveSpeed));
-                }
-                //  2nd one about moving the little amount.
-                else if (haterImage.getX() < nextGridImageThing.getImageX())
-                {
-                    haterImage.setX(haterImage.getX() + (nextGridImageThing.getImageX()-haterImage.getX()));
-                }
+                haterImage.setY(haterImage.getY()+(xMoveSpeedScreen*yHaterMoveSpeed));
             }
-            //  Hater needs to move to the left.
-            else if (nextGridImageThing.getImageX() - haterImage.getX() < 0)
+            else if (haterImage.getY() < nextGridImageThing.getImageY())
             {
-                if (haterImage.getX() - (xMoveSpeedScreen*xHaterMoveSpeed) >= nextGridImageThing.getImageX())
-                {
-                    haterImage.setX(haterImage.getX()-(xMoveSpeedScreen*xHaterMoveSpeed));
-                }
-                else if (haterImage.getX() > nextGridImageThing.getImageX())
-                {
-                    haterImage.setX(haterImage.getX() - (haterImage.getX()-nextGridImageThing.getImageX()));
-                }
+                haterImage.setY(haterImage.getY() + (nextGridImageThing.getImageY()-haterImage.getY()));
             }
-            //  Hater is either done moving horizontally or didn't need to in the first place.
-            else
+        }
+        //  Hater needs to move up.
+        else if (nextGridImageThing.getImageY() - haterImage.getY() < 0)
+        {
+            if (haterImage.getY() - (xMoveSpeedScreen*yHaterMoveSpeed) >= nextGridImageThing.getImageY())
             {
-                isDoneMovingX = true;
+                haterImage.setY(haterImage.getY()-(xMoveSpeedScreen*yHaterMoveSpeed));
             }
+            else if (haterImage.getY() > nextGridImageThing.getImageY())
+            {
+                haterImage.setY(haterImage.getY() - (haterImage.getY()-nextGridImageThing.getImageY()));
+            }
+        }
+        //  Hater is either done moving vertically or didn't need to in the first place.
+        else {
+            isDoneMovingY = true;
+        }
 
-            //  Hater needs to move down.
-            if (nextGridImageThing.getImageY() - haterImage.getY() > 0)
+        //  Hater has arrived at his destination, so move on to the nextGridImageThing on the path.
+        if (isDoneMovingX && isDoneMovingY)
+        {
+            //  If the Hater is on the last GridImageThing of its path, start over at the first one.
+            //if (pathIndex == thePath.length-1)
+            if (pathIndex == thePath.size()-1)
             {
-                System.out.println("Should move down");
-                if (haterImage.getY() + (xMoveSpeedScreen*yHaterMoveSpeed) <= nextGridImageThing.getImageY())
-                {
-                    haterImage.setY(haterImage.getY()+(xMoveSpeedScreen*yHaterMoveSpeed));
-                }
-                else if (haterImage.getY() < nextGridImageThing.getImageY())
-                {
-                    haterImage.setY(haterImage.getY() + (nextGridImageThing.getImageY()-haterImage.getY()));
-                }
+                pathIndex = 0;
             }
-            //  Hater needs to move up.
-            else if (nextGridImageThing.getImageY() - haterImage.getY() < 0)
-            {
-                System.out.println("Should move up");
-                if (haterImage.getY() - (xMoveSpeedScreen*yHaterMoveSpeed) >= nextGridImageThing.getImageY())
-                {
-                    haterImage.setY(haterImage.getY()-(xMoveSpeedScreen*yHaterMoveSpeed));
-                }
-                else if (haterImage.getY() > nextGridImageThing.getImageY())
-                {
-                    haterImage.setY(haterImage.getY() - (haterImage.getY()-nextGridImageThing.getImageY()));
-                }
+            else {
+                pathIndex++;
             }
-            //  Hater is either done moving vertically or didn't need to in the first place.
-            else
-            {
-                System.out.println("Done moving");
-                isDoneMovingY = true;
-            }
+            /*nextGridImageThing = thePath[pathIndex];
+            xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
+            yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];*/
 
-            //  Hater has arrived at his destination, so move on to the nextGridImageThing on the path.
-            if (isDoneMovingX && isDoneMovingY)
-            {
-                //  If the Hater is on the last GridImageThing of its path, start over at the first one.
-                if (pathIndex == thePath.length-1)
-                {
-                    pathIndex = 0;
-                }
-                else
-                {
-                    pathIndex++;
-                }
-                nextGridImageThing = thePath[pathIndex];
-                xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
-                yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];
-            }
+            nextGridImageThing = thePath.get(pathIndex);
+            xHaterMoveSpeed = xHaterMoveSpeeds.get(pathIndex);
+            yHaterMoveSpeed = yHaterMoveSpeeds.get(pathIndex);
 
-        //}
+        }
+
     }
 }
