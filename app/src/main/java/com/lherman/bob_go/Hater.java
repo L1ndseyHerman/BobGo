@@ -7,9 +7,11 @@ public class Hater
     //  The red frowny-face enemies. If Bob touches one, he will become too upset to win the level,
     //  and get a Game Over.
     private ImageView haterImage, bobImage;
-    private int xMoveSpeedScreen, xHaterMoveSpeed, yHaterMoveSpeed, pathIndex;
-    //private int xMoveSpeedScreen, pathIndex;
-    private int[] xHaterMoveSpeeds, yHaterMoveSpeeds;
+    //private int xMoveSpeedScreen, xHaterMoveSpeed, yHaterMoveSpeed, pathIndex;
+    private int xMoveSpeedScreen, pathIndex;
+    private float xHaterMoveSpeed, yHaterMoveSpeed;
+    //private int[] xHaterMoveSpeeds, yHaterMoveSpeeds;
+    private float[] xHaterMoveSpeeds, yHaterMoveSpeeds;
     private Bob bob;
     private GridImageThing[] thePath;
     private GridImageThing nextGridImageThing;
@@ -80,7 +82,10 @@ public class Hater
         return false;
     }
 
-    public void setPath(GridImageThing[] thePath, int[] xHaterMoveSpeeds, int[] yHaterMoveSpeeds)
+    //public void setPath(GridImageThing[] thePath, int[] xHaterMoveSpeeds, int[] yHaterMoveSpeeds)
+    //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
+    //  AND IT NEEDS TO BE A FLOAT FOR 0.5! FACEPALM!
+    public void setPath(GridImageThing[] thePath, float[] xHaterMoveSpeeds, float[] yHaterMoveSpeeds)
     {
         this.thePath = thePath;
         this.xHaterMoveSpeeds = xHaterMoveSpeeds;
