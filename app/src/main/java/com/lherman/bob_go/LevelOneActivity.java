@@ -533,7 +533,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[57][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid57x2));
         daGrid[57][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid57x3));
         daGrid[57][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid57x4));
-        daGrid[57][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid57x5));
+        daGrid[57][5] = new WinCircle((ImageView) findViewById(R.id.grid57x5), timer);
 
         daGrid[58][0] = new SquareObstacle((ImageView) findViewById(R.id.grid58x0), screenWidth, screenHeight);
         daGrid[58][1] = new SquareObstacle((ImageView) findViewById(R.id.grid58x1), screenWidth, screenHeight);

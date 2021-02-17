@@ -53,6 +53,8 @@ public class Hater
 
     public boolean isColliding()
     {
+        //  Stop timer and get a Game Over.
+
         //  Bob's right colliding with Hater's left:
         if ((bobImage.getX()+bobImage.getLayoutParams().width > haterImage.getX()
                 && bobImage.getX() < haterImage.getX()
