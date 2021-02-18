@@ -88,7 +88,8 @@ public class SquareObstacle implements GridImageThing
     {
         //  Summary: If Bob is falling off the bottom of the screen, or lands on a Square, stop falling.
         //  If Bob's current y-value >= the lowest y-value before he starts to go off the screen ||
-        if ((bobImage.getY() >= bob.getLowestY()) ||
+        //if ((bobImage.getY() >= bob.getLowestY()) ||
+        if ((bobImage.getY()+bob.getJumpSpeed() >= bob.getLowestY()) ||
                 //  the square's top side - Bob's y-value the next timer call <= Bob's bottom side &&
                 ((squareImage.getY()-bob.getJumpSpeed() <= bobImage.getY()+bobImage.getLayoutParams().height) &&
                         //  the square's bottom side - Bob's y-value the next timer call >= Bob's top side &&
@@ -109,6 +110,13 @@ public class SquareObstacle implements GridImageThing
             bob.setFallingLittle(true);
             bob.setYLittleAmount(squareImage.getY()-(bobImage.getY()+bobImage.getLayoutParams().height));
         }
+        //  New!
+        else if ((bobImage.getY()+bob.getJumpSpeed() >= bob.getLowestY()) && (bob.getLowestY() > bobImage.getY()))
+        {
+            bob.setFallingLittle(true);
+            bob.setYLittleAmount(bob.getLowestY()-bobImage.getY());
+            System.out.println("Falling little bottom");
+        }
         else
         {
             bob.setFalling(false);
@@ -122,6 +130,10 @@ public class SquareObstacle implements GridImageThing
         if (bobImage.getY() < bob.getLowestY())
         {
             bob.setOnTopOfSquare(true);
+        }
+        else
+        {
+            System.out.println("Landed on bottom");
         }
     }
 

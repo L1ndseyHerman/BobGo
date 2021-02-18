@@ -650,6 +650,7 @@ public class LevelOneActivity extends AppCompatActivity
         yHaterMoveSpeeds5[3] = (float)0.25;
 
         haters[5] = new Hater((ImageView) findViewById(R.id.hater5));
+        //  But wait! This puts it at the second place! Maybe start at the first one with x-y-speed 1 before?
         haters[5].setImageX(thePath5[0].getImageX());
         haters[5].setImageY(thePath5[0].getImageY());
         haters[5].setPath(thePath5, xHaterMoveSpeeds5, yHaterMoveSpeeds5);
