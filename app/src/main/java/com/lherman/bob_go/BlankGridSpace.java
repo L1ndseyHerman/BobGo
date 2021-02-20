@@ -34,13 +34,10 @@ public class BlankGridSpace implements GridImageThing
             {
                 bob.setFallingLittle(true);
                 bob.setYLittleAmount(bob.getLowestY()-bobImage.getY());
-                System.out.println("Falling little bottom BlankSpace");
             }
-            //if (bobImage.getY() >= bob.getLowestY())
             else if (bobImage.getY()+bob.getJumpSpeed() >= bob.getLowestY())
             {
                 bob.setFalling(false);
-                System.out.println("Landed on bottom Blank Space");
             }
         }
 

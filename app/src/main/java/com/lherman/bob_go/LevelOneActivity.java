@@ -372,7 +372,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[34][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid34x2));
         daGrid[34][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid34x3));
         daGrid[34][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid34x4));
-        daGrid[34][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid34x5));
+        daGrid[34][5] = new SquareObstacle((ImageView) findViewById(R.id.grid34x5), screenWidth, screenHeight);
 
         daGrid[35][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x0));
         daGrid[35][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid35x1));
@@ -631,26 +631,31 @@ public class LevelOneActivity extends AppCompatActivity
         haters[4].setPath(thePath4, xHaterMoveSpeeds4, yHaterMoveSpeeds4);
 
         GridImageThing[] thePath5 = new GridImageThing[4];
-        //  THE FIRST SHOULD BE THE FIRST ONE IT GOES TO, NOT THE FIRST ONE IT'S AT!!
-        thePath5[0] = daGrid[57][0];
-        thePath5[1] = daGrid[57][2];
-        thePath5[2] = daGrid[55][2];
-        thePath5[3] = daGrid[55][0];
+
+        //  7 used to be 57, 5 55.
+        //thePath5[0] = daGrid[7][0];
+        //thePath5[1] = daGrid[7][2];
+        //thePath5[2] = daGrid[5][2];
+        //thePath5[3] = daGrid[5][0];
+
+        thePath5[0] = daGrid[11][0];
+        thePath5[1] = daGrid[13][0];
+        thePath5[2] = daGrid[13][2];
+        thePath5[3] = daGrid[11][2];
 
         float[] xHaterMoveSpeeds5 = new float[4];
         xHaterMoveSpeeds5[0] = 1;
         xHaterMoveSpeeds5[1] = 0;
-        xHaterMoveSpeeds5[2] = 2;
+        xHaterMoveSpeeds5[2] = (float)2.5;
         xHaterMoveSpeeds5[3] = 0;
 
         float[] yHaterMoveSpeeds5 = new float[4];
         yHaterMoveSpeeds5[0] = 0;
-        yHaterMoveSpeeds5[1] = (float)0.5;
+        yHaterMoveSpeeds5[1] = (float)0.75;
         yHaterMoveSpeeds5[2] = 0;
-        yHaterMoveSpeeds5[3] = (float)0.25;
+        yHaterMoveSpeeds5[3] = (float)0.50;
 
         haters[5] = new Hater((ImageView) findViewById(R.id.hater5));
-        //  But wait! This puts it at the second place! Maybe start at the first one with x-y-speed 1 before?
         haters[5].setImageX(thePath5[0].getImageX());
         haters[5].setImageY(thePath5[0].getImageY());
         haters[5].setPath(thePath5, xHaterMoveSpeeds5, yHaterMoveSpeeds5);

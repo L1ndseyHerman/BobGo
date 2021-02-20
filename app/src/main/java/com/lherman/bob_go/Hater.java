@@ -92,7 +92,17 @@ public class Hater
 
         //  Might as well start the path in this method instead of LevelOneActivity:
         pathIndex = 0;
-        nextGridImageThing = thePath[pathIndex];
+        //nextGridImageThing = thePath[pathIndex];
+        //  NOPE! Needs to be the next one! Bob should start at pathIndex 0, but move TOWARDS pathIndex1!
+        if (pathIndex != thePath.length-1)
+        {
+            nextGridImageThing = thePath[pathIndex+1];
+        }
+        //  If there is only one place on the path (stationary enemy), start (and stay) there.
+        else
+        {
+            nextGridImageThing = thePath[pathIndex];
+        }
         xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
         yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];
     }
@@ -174,7 +184,16 @@ public class Hater
             else {
                 pathIndex++;
             }
-            nextGridImageThing = thePath[pathIndex];
+            //  Need to check thePath seperately since its index is 1 more than for the x and y speeds.
+            if (pathIndex == thePath.length-1)
+            {
+                nextGridImageThing = thePath[0];
+            }
+            else
+            {
+                nextGridImageThing = thePath[pathIndex+1];
+            }
+
             xHaterMoveSpeed = xHaterMoveSpeeds[pathIndex];
             yHaterMoveSpeed = yHaterMoveSpeeds[pathIndex];
 
