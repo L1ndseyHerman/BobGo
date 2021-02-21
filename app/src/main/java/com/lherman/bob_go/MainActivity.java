@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
-        Button beginButton = findViewById(R.id.beginButton);
+        Button beginButton = findViewById(R.id.levelButton);
         beginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -24,40 +24,6 @@ public class MainActivity extends AppCompatActivity {
                 //  This is a variable of type "Intent"... idk....
                 //                                                      Tells it to go to that screen
                 Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
-                //  Passing stuff betw screens:
-                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
-                //  Going to that screen now:
-                startActivity(startIntent);
-            }
-        });
-
-        //  Goes to TutorialActivity:
-        Button tutorialButton = findViewById(R.id.tutorialButton);
-        tutorialButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //  This is a variable of type "Intent"... idk....
-                //                                                      Tells it to go to that screen
-                Intent startIntent = new Intent(getApplicationContext(), TutorialActivity.class);
-                //  Passing stuff betw screens:
-                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
-                //  Going to that screen now:
-                startActivity(startIntent);
-            }
-        });
-
-        //  Goes to HighScoreActivity:
-        Button highScoreButton = findViewById(R.id.highScoreButton);
-        highScoreButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //  This is a variable of type "Intent"... idk....
-                //                                                      Tells it to go to that screen
-                Intent startIntent = new Intent(getApplicationContext(), HighScoresActivity.class);
                 //  Passing stuff betw screens:
                 //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
                 //  Going to that screen now:
@@ -99,21 +65,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //  Goes to ?:
-        Button button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //  This is a variable of type "Intent"... idk....
-                //                                                      Tells it to go to that screen
-                Intent startIntent = new Intent(getApplicationContext(), TimerTesting.class);
-                //  Passing stuff betw screens:
-                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
-                //  Going to that screen now:
-                startActivity(startIntent);
-            }
-        });
     }
 }

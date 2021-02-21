@@ -12,19 +12,10 @@
         <activity android:name=".LevelOneActivity"
             android:screenOrientation="landscape"></activity>
         <activity
-            android:name=".TimerTesting"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".ExtraTestingBlah"
             android:screenOrientation="landscape" />
         <activity
             android:name=".RandomActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".HighScoresActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".TutorialActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".GameActivity" />
