@@ -38,29 +38,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                //  This is a variable of type "Intent"... idk....
-                //                                                      Tells it to go to that screen
                 Intent startIntent = new Intent(getApplicationContext(), RandomActivity.class);
-                //  Passing stuff betw screens:
-                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
-                //  Going to that screen now:
                 startActivity(startIntent);
             }
         });
 
-        //  Goes to ?:
-        Button buttonButton = findViewById(R.id.buttonButton);
+        //  Goes to TestingActivity:
+        Button buttonButton = findViewById(R.id.testingButton);
         buttonButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                //  This is a variable of type "Intent"... idk....
-                //                                                      Tells it to go to that screen
-                Intent startIntent = new Intent(getApplicationContext(), ExtraTestingBlah.class);
-                //  Passing stuff betw screens:
-                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
-                //  Going to that screen now:
+                Intent startIntent = new Intent(getApplicationContext(), TestingActivity.class);
                 startActivity(startIntent);
             }
         });

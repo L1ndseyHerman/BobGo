@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/plainbackgroundseventy"
-    tools:context=".ExtraTestingBlah">
+    tools:context=".TestingActivity">
 
     <ImageView
         android:id="@+id/s0x0"

@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.Display;
 import android.widget.ImageView;
 
-public class ExtraTestingBlah extends AppCompatActivity
+public class TestingActivity extends AppCompatActivity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_extra_testing_blah);
+        setContentView(R.layout.activity_testing);
 
         //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
