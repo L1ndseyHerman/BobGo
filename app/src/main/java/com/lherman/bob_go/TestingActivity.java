@@ -20,13 +20,25 @@ public class TestingActivity extends AppCompatActivity
         setContentView(R.layout.activity_testing);
 
         //  Goes to TestGridActivity:
-        Button buttonButton = findViewById(R.id.testGridButton);
-        buttonButton.setOnClickListener(new View.OnClickListener()
+        Button gridButton = findViewById(R.id.testGridButton);
+        gridButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 Intent startIntent = new Intent(getApplicationContext(), TestGridActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+        //  Goes to TestGridActivity:
+        Button levelOneExtrasButton = findViewById(R.id.testLevelOneExtrasButton);
+        levelOneExtrasButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), TestLevelOneExtras.class);
                 startActivity(startIntent);
             }
         });

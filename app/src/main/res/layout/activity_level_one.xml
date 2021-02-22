@@ -8,7 +8,7 @@
     tools:context=".LevelOneActivity">
 
     <ImageView
-        android:id="@+id/grid0x0"
+        android:id="@+id/grid1_0x0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid0x1"
+        android:id="@+id/grid1_0x1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -25,7 +25,7 @@
         tools:layout_editor_absoluteY="2dp" />
 
     <ImageView
-        android:id="@+id/grid0x2"
+        android:id="@+id/grid1_0x2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -34,7 +34,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid0x3"
+        android:id="@+id/grid1_0x3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -43,7 +43,7 @@
         tools:layout_editor_absoluteY="2dp" />
 
     <ImageView
-        android:id="@+id/grid0x4"
+        android:id="@+id/grid1_0x4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -52,7 +52,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid0x5"
+        android:id="@+id/grid1_0x5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -61,7 +61,7 @@
         tools:layout_editor_absoluteY="2dp" />
 
     <ImageView
-        android:id="@+id/grid1x0"
+        android:id="@+id/grid1_1x0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -70,7 +70,7 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid1x1"
+        android:id="@+id/grid1_1x1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -79,7 +79,7 @@
         tools:layout_editor_absoluteY="7dp" />
 
     <ImageView
-        android:id="@+id/grid1x2"
+        android:id="@+id/grid1_1x2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -88,7 +88,7 @@
         tools:layout_editor_absoluteY="2dp" />
 
     <ImageView
-        android:id="@+id/grid1x3"
+        android:id="@+id/grid1_1x3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -97,7 +97,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid1x4"
+        android:id="@+id/grid1_1x4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -106,7 +106,7 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid1x5"
+        android:id="@+id/grid1_1x5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -114,7 +114,7 @@
         tools:layout_editor_absoluteX="5dp" />
 
     <ImageView
-        android:id="@+id/grid2x0"
+        android:id="@+id/grid1_2x0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -122,7 +122,7 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid2x1"
+        android:id="@+id/grid1_2x1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -130,7 +130,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid2x2"
+        android:id="@+id/grid1_2x2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -138,7 +138,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid2x3"
+        android:id="@+id/grid1_2x3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -146,7 +146,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid2x4"
+        android:id="@+id/grid1_2x4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -154,14 +154,14 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid2x5"
+        android:id="@+id/grid1_2x5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid3x0"
+        android:id="@+id/grid1_3x0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -169,14 +169,14 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid3x1"
+        android:id="@+id/grid1_3x1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
         tools:layout_editor_absoluteY="7dp" />
 
     <ImageView
-        android:id="@+id/grid3x2"
+        android:id="@+id/grid1_3x2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -184,7 +184,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid3x3"
+        android:id="@+id/grid1_3x3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -192,7 +192,7 @@
         tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
-        android:id="@+id/grid3x4"
+        android:id="@+id/grid1_3x4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"
@@ -200,7 +200,7 @@
         tools:layout_editor_absoluteY="5dp" />
 
     <ImageView
-        android:id="@+id/grid3x5"
+        android:id="@+id/grid1_3x5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/gridbackgroundseventy"

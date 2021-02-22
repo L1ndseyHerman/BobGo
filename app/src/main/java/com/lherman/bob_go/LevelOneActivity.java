@@ -129,33 +129,33 @@ public class LevelOneActivity extends AppCompatActivity
     {
         //  The number in the left brackets is the x and the right is the y,
         //  so like "daGrid[0][3]" is all the way to the left, but three squares down.
-        daGrid[0][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x0));
-        daGrid[0][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x1));
-        daGrid[0][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x2));
-        daGrid[0][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x3));
-        daGrid[0][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x4));
-        daGrid[0][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid0x5));
+        daGrid[0][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_0x0));
+        daGrid[0][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_0x1));
+        daGrid[0][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_0x2));
+        daGrid[0][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_0x3));
+        daGrid[0][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_0x4));
+        daGrid[0][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_0x5));
 
-        daGrid[1][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1x0));
-        daGrid[1][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1x1));
-        daGrid[1][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1x2));
-        daGrid[1][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1x3));
-        daGrid[1][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1x4));
-        daGrid[1][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1x5));
+        daGrid[1][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_1x0));
+        daGrid[1][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_1x1));
+        daGrid[1][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_1x2));
+        daGrid[1][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_1x3));
+        daGrid[1][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_1x4));
+        daGrid[1][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_1x5));
 
-        daGrid[2][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid2x0));
-        daGrid[2][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid2x1));
-        daGrid[2][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid2x2));
-        daGrid[2][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid2x3));
-        daGrid[2][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid2x4));
-        daGrid[2][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid2x5));
+        daGrid[2][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_2x0));
+        daGrid[2][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_2x1));
+        daGrid[2][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_2x2));
+        daGrid[2][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_2x3));
+        daGrid[2][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_2x4));
+        daGrid[2][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_2x5));
 
-        daGrid[3][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid3x0));
-        daGrid[3][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid3x1));
-        daGrid[3][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid3x2));
-        daGrid[3][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid3x3));
-        daGrid[3][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid3x4));
-        daGrid[3][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid3x5));
+        daGrid[3][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_3x0));
+        daGrid[3][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_3x1));
+        daGrid[3][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_3x2));
+        daGrid[3][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_3x3));
+        daGrid[3][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_3x4));
+        daGrid[3][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_3x5));
 
         daGrid[4][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid4x0));
         daGrid[4][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid4x1));

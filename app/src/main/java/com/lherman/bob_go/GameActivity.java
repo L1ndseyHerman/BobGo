@@ -33,6 +33,17 @@ public class GameActivity extends AppCompatActivity
             }
         });
 
+        Button levelTwoButton = findViewById(R.id.levelTwoButton);
+        levelTwoButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), LevelTwoActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
     }
 
 
