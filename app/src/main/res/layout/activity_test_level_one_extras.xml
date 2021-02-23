@@ -2175,8 +2175,8 @@
 
     <TextView
         android:id="@+id/s"
-        android:layout_width="63dp"
-        android:layout_height="13dp"
+        android:layout_width="60dp"
+        android:layout_height="24dp"
         android:text="Score: 0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
