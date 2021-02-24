@@ -2,6 +2,7 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,7 +35,8 @@ public class LevelOneActivity extends AppCompatActivity
     private Hater[] haters = new Hater[3];
     private Coin[] coins = new Coin[2];
     private TextView scoreText;
-    int theScore;
+    private int theScore;
+    private Button beginButton, endButton;
 
     //  Android Studio's Main Method:
     @Override
@@ -126,7 +128,7 @@ public class LevelOneActivity extends AppCompatActivity
             haters[index].setBobImage(bobImage);
         }
 
-        final Button beginButton = findViewById(R.id.startButton1);
+        beginButton = findViewById(R.id.startButton1);
         beginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -148,6 +150,17 @@ public class LevelOneActivity extends AppCompatActivity
                 },0, 35);
                 //},1000, 35);
                 //},1000, 70);
+            }
+        });
+
+        endButton = findViewById(R.id.endButton1);
+        endButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
+                startActivity(startIntent);
             }
         });
 
@@ -499,7 +512,7 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[48][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x2));
         daGrid[48][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x3));
         daGrid[48][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x4));
-        daGrid[48][5] = new WinCircle((ImageView) findViewById(R.id.grid1_48x5), timer);
+        daGrid[48][5] = new WinCircle((ImageView) findViewById(R.id.grid1_48x5), timer, endButton);
 
         daGrid[49][0] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x0), screenWidth, screenHeight);
         daGrid[49][1] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x1), screenWidth, screenHeight);
@@ -587,6 +600,7 @@ public class LevelOneActivity extends AppCompatActivity
             {
                 //  STOP THE TIMER!!!
                 timer.cancel();
+                endButton.setVisibility(View.VISIBLE);
             }
         }
 

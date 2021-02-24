@@ -35,7 +35,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private Hater[] haters = new Hater[6];
     private Coin[] coins = new Coin[4];
     private TextView scoreText;
-    int theScore;
+    private int theScore;
+    private Button beginButton, endButton;
 
     //  Android Studio's Main Method:
     @Override
@@ -128,7 +129,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
 
 
 
-        final Button beginButton = findViewById(R.id.bu);
+        beginButton = findViewById(R.id.bu);
         beginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -150,6 +151,17 @@ public class TestLevelOneExtras extends AppCompatActivity {
                 },0, 35);
                 //},1000, 35);
                 //},1000, 70);
+            }
+        });
+
+        endButton = findViewById(R.id.bu2);
+        endButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), TestingActivity.class);
+                startActivity(startIntent);
             }
         });
 
@@ -564,7 +576,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
         daGrid[57][2] = new BlankGridSpace((ImageView) findViewById(R.id.g57x2));
         daGrid[57][3] = new BlankGridSpace((ImageView) findViewById(R.id.g57x3));
         daGrid[57][4] = new BlankGridSpace((ImageView) findViewById(R.id.g57x4));
-        daGrid[57][5] = new WinCircle((ImageView) findViewById(R.id.g57x5), timer);
+        daGrid[57][5] = new WinCircle((ImageView) findViewById(R.id.g57x5), timer, endButton);
 
         daGrid[58][0] = new SquareObstacle((ImageView) findViewById(R.id.g58x0), screenWidth, screenHeight);
         daGrid[58][1] = new SquareObstacle((ImageView) findViewById(R.id.g58x1), screenWidth, screenHeight);
@@ -724,6 +736,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
             {
                 //  STOP THE TIMER!!!
                 timer.cancel();
+                endButton.setVisibility(View.VISIBLE);
             }
         }
 

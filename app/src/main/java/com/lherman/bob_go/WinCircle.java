@@ -1,5 +1,8 @@
 package com.lherman.bob_go;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.Timer;
@@ -12,11 +15,13 @@ public class WinCircle implements GridImageThing
     private Bob bob;
 
     private Timer timer;
+    private Button endButton;
 
-    public WinCircle(ImageView circleImage, Timer timer)
+    public WinCircle(ImageView circleImage, Timer timer, Button endButton)
     {
         this.circleImage = circleImage;
         this.timer = timer;
+        this.endButton = endButton;
     }
 
     @Override
@@ -49,6 +54,7 @@ public class WinCircle implements GridImageThing
 
             //  STOP THE TIMER!!!
             timer.cancel();
+            endButton.setVisibility(View.VISIBLE);
             return false;
         }
 
