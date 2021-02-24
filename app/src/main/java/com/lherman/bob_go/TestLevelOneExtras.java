@@ -37,6 +37,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private TextView scoreText;
     private int theScore;
     private Button beginButton, endButton;
+    private WinCircle winCircle;
 
     //  Android Studio's Main Method:
     @Override
@@ -80,7 +81,6 @@ public class TestLevelOneExtras extends AppCompatActivity {
         bob.setJumpHeight(5*screenHeight/14);
 
 
-
         daGrid = placeGridImages(daGrid);
 
         //  Loops through everything in daGrid and decides where to put it on the screen...
@@ -100,6 +100,16 @@ public class TestLevelOneExtras extends AppCompatActivity {
                 daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
             }
         }
+
+        winCircle = new WinCircle((ImageView) findViewById(R.id.w0));
+        winCircle.setBob(bob);
+        winCircle.setBobImage(bobImage);
+        winCircle.setXMoveSpeedScreen(xMoveSpeedScreen);
+
+        winCircle.setImageHeight(screenHeight/7);
+        winCircle.setImageWidth(screenWidth/12);
+        winCircle.setImageX(daGrid[57][5].getImageX());
+        winCircle.setImageY(daGrid[57][5].getImageY());
 
         theScore = 0;
         scoreText = findViewById(R.id.s);
@@ -576,7 +586,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
         daGrid[57][2] = new BlankGridSpace((ImageView) findViewById(R.id.g57x2));
         daGrid[57][3] = new BlankGridSpace((ImageView) findViewById(R.id.g57x3));
         daGrid[57][4] = new BlankGridSpace((ImageView) findViewById(R.id.g57x4));
-        daGrid[57][5] = new WinCircle((ImageView) findViewById(R.id.g57x5), timer, endButton);
+        //daGrid[57][5] = new WinCircle((ImageView) findViewById(R.id.g57x5), timer, endButton);
+        daGrid[57][5] = new BlankGridSpace((ImageView) findViewById(R.id.g57x5));
 
         daGrid[58][0] = new SquareObstacle((ImageView) findViewById(R.id.g58x0), screenWidth, screenHeight);
         daGrid[58][1] = new SquareObstacle((ImageView) findViewById(R.id.g58x1), screenWidth, screenHeight);
@@ -746,6 +757,12 @@ public class TestLevelOneExtras extends AppCompatActivity {
             haters[index].movePath();
         }
 
+        if (winCircle.checkCollision() == true)
+        {
+            timer.cancel();
+            endButton.setVisibility(View.VISIBLE);
+        }
+
         //  Now check if Bob collided w a Coin:
         for (int index=0; index<coins.length; index++)
         {
@@ -798,6 +815,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
                 haters[index].move();
             }
 
+            winCircle.move();
+
 
             for (int index=0; index<coins.length; index++)
             {
@@ -825,6 +844,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
             {
                 haters[index].move(bob.getXLittleAmount());
             }
+
+            winCircle.move(bob.getXLittleAmount());
 
             for (int index=0; index<coins.length; index++)
             {

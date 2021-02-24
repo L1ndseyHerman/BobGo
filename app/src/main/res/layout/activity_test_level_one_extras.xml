@@ -2093,7 +2093,7 @@
         android:id="@+id/g57x5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/wincircleseventy" />
+        app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
         android:id="@+id/g58x0"
@@ -2130,6 +2130,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/w0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/wincircleseventy" />
 
     <ImageView
         android:id="@+id/c0"

@@ -1911,7 +1911,7 @@
         android:id="@+id/grid1_48x5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/wincircleseventy" />
+        app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
         android:id="@+id/grid1_49x0"
@@ -1948,6 +1948,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/winCircle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/wincircleseventy" />
 
     <ImageView
         android:id="@+id/bob1"

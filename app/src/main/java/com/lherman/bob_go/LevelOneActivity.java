@@ -37,6 +37,7 @@ public class LevelOneActivity extends AppCompatActivity
     private TextView scoreText;
     private int theScore;
     private Button beginButton, endButton;
+    private WinCircle winCircle;
 
     //  Android Studio's Main Method:
     @Override
@@ -101,6 +102,16 @@ public class LevelOneActivity extends AppCompatActivity
                 daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
             }
         }
+
+        winCircle = new WinCircle((ImageView) findViewById(R.id.winCircle1));
+        winCircle.setBob(bob);
+        winCircle.setBobImage(bobImage);
+        winCircle.setXMoveSpeedScreen(xMoveSpeedScreen);
+
+        winCircle.setImageHeight(screenHeight/7);
+        winCircle.setImageWidth(screenWidth/12);
+        winCircle.setImageX(daGrid[48][5].getImageX());
+        winCircle.setImageY(daGrid[48][5].getImageY());
 
         theScore = 0;
         scoreText = findViewById(R.id.scoreText1);
@@ -512,7 +523,8 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[48][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x2));
         daGrid[48][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x3));
         daGrid[48][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x4));
-        daGrid[48][5] = new WinCircle((ImageView) findViewById(R.id.grid1_48x5), timer, endButton);
+        //daGrid[48][5] = new WinCircle((ImageView) findViewById(R.id.grid1_48x5), timer, endButton);
+        daGrid[48][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x5));
 
         daGrid[49][0] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x0), screenWidth, screenHeight);
         daGrid[49][1] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x1), screenWidth, screenHeight);
@@ -610,6 +622,12 @@ public class LevelOneActivity extends AppCompatActivity
             haters[index].movePath();
         }
 
+        if (winCircle.checkCollision() == true)
+        {
+            timer.cancel();
+            endButton.setVisibility(View.VISIBLE);
+        }
+
         //  Now check if Bob collided w a Coin:
         for (int index=0; index<coins.length; index++)
         {
@@ -661,6 +679,8 @@ public class LevelOneActivity extends AppCompatActivity
                 haters[index].move();
             }
 
+            winCircle.move();
+
             for (int index=0; index<coins.length; index++)
             {
                 coins[index].move();
@@ -687,6 +707,8 @@ public class LevelOneActivity extends AppCompatActivity
             {
                 haters[index].move(bob.getXLittleAmount());
             }
+
+            winCircle.move(bob.getXLittleAmount());
 
             for (int index=0; index<coins.length; index++)
             {

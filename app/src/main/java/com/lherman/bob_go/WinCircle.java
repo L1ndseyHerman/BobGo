@@ -8,23 +8,20 @@ import android.widget.ImageView;
 import java.util.Timer;
 
 //  A green circle. If Bob touches it, he wins the level.
-public class WinCircle implements GridImageThing
+public class WinCircle
 {
     private ImageView circleImage, bobImage;
     private int xMoveSpeedScreen;
     private Bob bob;
 
     private Timer timer;
-    private Button endButton;
 
-    public WinCircle(ImageView circleImage, Timer timer, Button endButton)
+    public WinCircle(ImageView circleImage)
     {
         this.circleImage = circleImage;
         this.timer = timer;
-        this.endButton = endButton;
     }
 
-    @Override
     public boolean checkCollision()
     {
         //  Stop the timer and beat the level.
@@ -50,70 +47,58 @@ public class WinCircle implements GridImageThing
                 && bobImage.getX() < circleImage.getX()+circleImage.getLayoutParams().width
                 && bobImage.getX()+bobImage.getLayoutParams().width > circleImage.getX()))
         {
-            //return true;
+            return true;
 
             //  STOP THE TIMER!!!
-            timer.cancel();
-            endButton.setVisibility(View.VISIBLE);
-            return false;
+            //timer.cancel();
+            //return false;
         }
 
-        //return false;
-        return true;
+        return false;
+        //return true;
     }
 
-    @Override
     public void move() {
         circleImage.setX(circleImage.getX() - xMoveSpeedScreen);
     }
 
-    @Override
     public void move(float amount) {
         circleImage.setX(circleImage.getX() - amount);
     }
 
-    @Override
     public float getImageX() {
         return circleImage.getX();
     }
 
-    @Override
     public void setImageX(float xImage)
     {
         circleImage.setX(xImage);
     }
 
-    @Override
     public void setImageY(float yImage) {
         circleImage.setY(yImage);
     }
 
-    @Override
     public float getImageY() {
         return circleImage.getY();
     }
 
-    @Override
     public void setImageWidth(int widthImage) {
         circleImage.getLayoutParams().width = widthImage;
     }
 
-    @Override
     public void setImageHeight(int heightImage) {
         circleImage.getLayoutParams().height = heightImage;
     }
 
-    @Override
     public void setBob(Bob bob) {
         this.bob = bob;
     }
 
-    @Override
     public void setBobImage(ImageView bobImage) {
         this.bobImage = bobImage;
     }
 
-    @Override
     public void setXMoveSpeedScreen(int xMoveSpeedScreen) {
         this.xMoveSpeedScreen = xMoveSpeedScreen;
     }
