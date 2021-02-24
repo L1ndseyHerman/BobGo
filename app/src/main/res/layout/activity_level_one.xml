@@ -1976,7 +1976,7 @@
         app:srcCompat="@drawable/haterseventy" />
 
     <TextView
-        android:id="@+id/score1"
+        android:id="@+id/scoreText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Score: 0"

@@ -2132,6 +2132,12 @@
         app:srcCompat="@drawable/squareseventy" />
 
     <ImageView
+        android:id="@+id/c1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/coinseventy" />
+
+    <ImageView
         android:id="@+id/b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
