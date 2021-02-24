@@ -363,9 +363,9 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[33][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_33x0));
         daGrid[33][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_33x1));
         daGrid[33][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_33x2));
-        daGrid[33][3] = new SquareObstacle((ImageView) findViewById(R.id.grid1_33x3), screenWidth, screenHeight);
-        daGrid[33][4] = new SquareObstacle((ImageView) findViewById(R.id.grid1_33x4), screenWidth, screenHeight);
-        daGrid[33][5] = new SquareObstacle((ImageView) findViewById(R.id.grid1_33x5), screenWidth, screenHeight);
+        daGrid[33][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_33x3));
+        daGrid[33][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_33x4));
+        daGrid[33][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_33x5));
 
         daGrid[34][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_34x0));
         daGrid[34][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_34x1));
@@ -500,16 +500,16 @@ public class LevelOneActivity extends AppCompatActivity
         haters[0].setPath(thePath0, xHaterMoveSpeeds0, yHaterMoveSpeeds0);
 
         GridImageThing[] thePath1 = new GridImageThing[2];
-        thePath1[0] = daGrid[34][3];
-        thePath1[1] = daGrid[34][5];
+        thePath1[0] = daGrid[33][0];
+        thePath1[1] = daGrid[33][5];
 
         float[] xHaterMoveSpeeds1 = new float[2];
         xHaterMoveSpeeds1[0] = 0;
         xHaterMoveSpeeds1[1] = 0;
 
         float[] yHaterMoveSpeeds1 = new float[2];
-        yHaterMoveSpeeds1[0] = (float)0.25;
-        yHaterMoveSpeeds1[1] = (float)0.25;
+        yHaterMoveSpeeds1[0] = (float)0.5;
+        yHaterMoveSpeeds1[1] = (float)0.5;
 
         haters[1] = new Hater((ImageView) findViewById(R.id.hater1_1));
         haters[1].setImageX(thePath1[0].getImageX());
