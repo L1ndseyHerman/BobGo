@@ -353,7 +353,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
         daGrid[31][5] = new SquareObstacle((ImageView) findViewById(R.id.g31x5), screenWidth, screenHeight);
 
         daGrid[32][0] = new BlankGridSpace((ImageView) findViewById(R.id.g32x0));
-        daGrid[32][1] = new BlankGridSpace((ImageView) findViewById(R.id.g32x1));
+        daGrid[32][1] = new SquareObstacle((ImageView) findViewById(R.id.g32x1), screenWidth, screenHeight);
         daGrid[32][2] = new BlankGridSpace((ImageView) findViewById(R.id.g32x2));
         daGrid[32][3] = new BlankGridSpace((ImageView) findViewById(R.id.g32x3));
         daGrid[32][4] = new SquareObstacle((ImageView) findViewById(R.id.g32x4), screenWidth, screenHeight);

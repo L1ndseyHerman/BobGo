@@ -165,7 +165,8 @@ public class SquareObstacle implements GridImageThing
         //  If Bob is coasting to the right on top of a square
         if ((bob.IsOnTopOfSquare()) && (!bob.IsJumping()) &&
                 //  and the next time the square moves, its right side will be <= Bob's left side,
-                (squareImage.getX()+squareImage.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+                //(squareImage.getX()+squareImage.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
+                (squareImage.getX()+squareImage.getLayoutParams().width) <= bobImage.getX())
         {
             //  Make Bob fall down instead of walking on air.
             bob.setFalling(true);
