@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -124,20 +126,30 @@ public class LevelOneActivity extends AppCompatActivity
             haters[index].setBobImage(bobImage);
         }
 
-        //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
-        //  but the first timer call isn't until after a second (1,000) of delay.
-        timer.schedule(new TimerTask() {
+        final Button beginButton = findViewById(R.id.startButton1);
+        beginButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void run() {
-                handler.post(new Runnable() {
+            public void onClick(View view)
+            {
+                beginButton.setVisibility(View.INVISIBLE);
+                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+                //  A timer can also have a delay.
+                timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        levelMoveStuff();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                levelMoveStuff();
+                            }
+                        });
                     }
-                });
+                },0, 35);
+                //},1000, 35);
+                //},1000, 70);
             }
-            },1000, 35);
-        //},1000, 70);
+        });
 
     }
 
