@@ -30,7 +30,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
     //  The one and only object of Bob! :D
     private Bob bob;
     private Hater[] haters = new Hater[6];
-    private Coin[] coins = new Coin[1];
+    private Coin[] coins = new Coin[4];
     private TextView scoreText;
     int theScore;
 
@@ -563,9 +563,21 @@ public class TestLevelOneExtras extends AppCompatActivity {
 
     public Coin[] placeCoins(Coin[] coins)
     {
-        coins[0] = new Coin((ImageView) findViewById(R.id.c1));
+        coins[0] = new Coin((ImageView) findViewById(R.id.c0));
         coins[0].setImageX(daGrid[15][3].getImageX());
         coins[0].setImageY(daGrid[15][3].getImageY());
+
+        coins[1] = new Coin((ImageView) findViewById(R.id.c1));
+        coins[1].setImageX(daGrid[21][0].getImageX());
+        coins[1].setImageY(daGrid[21][0].getImageY());
+
+        coins[2] = new Coin((ImageView) findViewById(R.id.c2));
+        coins[2].setImageX(daGrid[32][0].getImageX());
+        coins[2].setImageY(daGrid[32][0].getImageY());
+
+        coins[3] = new Coin((ImageView) findViewById(R.id.c3));
+        coins[3].setImageX(daGrid[42][5].getImageX());
+        coins[3].setImageY(daGrid[42][5].getImageY());
 
         return coins;
     }
@@ -709,7 +721,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
         //  Now check if Bob collided w a Coin:
         for (int index=0; index<coins.length; index++)
         {
-            if (coins[index].isColliding())
+            //  DON'T RECOUNT COINS THAT ARE INVISIBLE (ALREADY GOTTEN)!!
+            if (coins[index].isColliding() && coins[index].IsNotInvisible())
             {
                 coins[index].setInvisible();
                 theScore++;

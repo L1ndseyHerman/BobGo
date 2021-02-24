@@ -1,5 +1,6 @@
 package com.lherman.bob_go;
 
+import android.view.View;
 import android.widget.ImageView;
 
 public class Coin
@@ -82,5 +83,13 @@ public class Coin
     public void setInvisible()
     {
         coinImage.setVisibility(ImageView.INVISIBLE);
+    }
+    public boolean IsNotInvisible()
+    {
+        if (coinImage.getVisibility() == ImageView.VISIBLE)
+        {
+            return true;
+        }
+        return false;
     }
 }
