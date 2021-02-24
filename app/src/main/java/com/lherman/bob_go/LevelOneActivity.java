@@ -15,7 +15,7 @@ import java.util.TimerTask;
 public class LevelOneActivity extends AppCompatActivity
 {
     //  The grid of SquareObstacles and BlankGridSpaces
-    private GridImageThing[][] daGrid = new GridImageThing[38][6];
+    private GridImageThing[][] daGrid = new GridImageThing[50][6];
     //  The one and only Image of Bob! :D
     private ImageView bobImage;
     //  The amount that everything in daGrid and the enemies move every timer call.
@@ -28,7 +28,7 @@ public class LevelOneActivity extends AppCompatActivity
     private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
     private Bob bob;
-    private Hater[] haters = new Hater[2];
+    private Hater[] haters = new Hater[3];
 
     //  Android Studio's Main Method:
     @Override
@@ -395,6 +395,90 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[37][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_37x4));
         daGrid[37][5] = new SquareObstacle((ImageView) findViewById(R.id.grid1_37x5), screenWidth, screenHeight);
 
+        daGrid[38][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_38x0));
+        daGrid[38][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_38x1));
+        daGrid[38][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_38x2));
+        daGrid[38][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_38x3));
+        daGrid[38][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_38x4));
+        daGrid[38][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_38x5));
+
+        daGrid[39][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_39x0));
+        daGrid[39][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_39x1));
+        daGrid[39][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_39x2));
+        daGrid[39][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_39x3));
+        daGrid[39][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_39x4));
+        daGrid[39][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_39x5));
+
+        daGrid[40][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_40x0));
+        daGrid[40][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_40x1));
+        daGrid[40][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_40x2));
+        daGrid[40][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_40x3));
+        daGrid[40][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_40x4));
+        daGrid[40][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_40x5));
+
+        daGrid[41][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_41x0));
+        daGrid[41][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_41x1));
+        daGrid[41][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_41x2));
+        daGrid[41][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_41x3));
+        daGrid[41][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_41x4));
+        daGrid[41][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_41x5));
+
+        daGrid[42][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_42x0));
+        daGrid[42][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_42x1));
+        daGrid[42][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_42x2));
+        daGrid[42][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_42x3));
+        daGrid[42][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_42x4));
+        daGrid[42][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_42x5));
+
+        daGrid[43][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_43x0));
+        daGrid[43][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_43x1));
+        daGrid[43][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_43x2));
+        daGrid[43][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_43x3));
+        daGrid[43][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_43x4));
+        daGrid[43][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_43x5));
+
+        daGrid[44][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_44x0));
+        daGrid[44][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_44x1));
+        daGrid[44][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_44x2));
+        daGrid[44][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_44x3));
+        daGrid[44][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_44x4));
+        daGrid[44][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_44x5));
+
+        daGrid[45][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_45x0));
+        daGrid[45][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_45x1));
+        daGrid[45][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_45x2));
+        daGrid[45][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_45x3));
+        daGrid[45][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_45x4));
+        daGrid[45][5] = new SquareObstacle((ImageView) findViewById(R.id.grid1_45x5), screenWidth, screenHeight);
+
+        daGrid[46][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_46x0));
+        daGrid[46][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_46x1));
+        daGrid[46][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_46x2));
+        daGrid[46][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_46x3));
+        daGrid[46][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_46x4));
+        daGrid[46][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_46x5));
+
+        daGrid[47][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_47x0));
+        daGrid[47][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_47x1));
+        daGrid[47][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_47x2));
+        daGrid[47][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_47x3));
+        daGrid[47][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_47x4));
+        daGrid[47][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_47x5));
+
+        daGrid[48][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x0));
+        daGrid[48][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x1));
+        daGrid[48][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x2));
+        daGrid[48][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x3));
+        daGrid[48][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x4));
+        daGrid[48][5] = new WinCircle((ImageView) findViewById(R.id.grid1_48x5), timer);
+
+        daGrid[49][0] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x0), screenWidth, screenHeight);
+        daGrid[49][1] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x1), screenWidth, screenHeight);
+        daGrid[49][2] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x2), screenWidth, screenHeight);
+        daGrid[49][3] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x3), screenWidth, screenHeight);
+        daGrid[49][4] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x4), screenWidth, screenHeight);
+        daGrid[49][5] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x5), screenWidth, screenHeight);
+
         return daGrid;
     }
 
@@ -424,13 +508,30 @@ public class LevelOneActivity extends AppCompatActivity
         xHaterMoveSpeeds1[1] = 0;
 
         float[] yHaterMoveSpeeds1 = new float[2];
-        yHaterMoveSpeeds1[0] = (float)0.75;
-        yHaterMoveSpeeds1[1] = (float)0.75;
+        yHaterMoveSpeeds1[0] = (float)0.25;
+        yHaterMoveSpeeds1[1] = (float)0.25;
 
         haters[1] = new Hater((ImageView) findViewById(R.id.hater1_1));
         haters[1].setImageX(thePath1[0].getImageX());
         haters[1].setImageY(thePath1[0].getImageY());
         haters[1].setPath(thePath1, xHaterMoveSpeeds1, yHaterMoveSpeeds1);
+
+        GridImageThing[] thePath2 = new GridImageThing[2];
+        thePath2[0] = daGrid[38][5];
+        thePath2[1] = daGrid[44][5];
+
+        float[] xHaterMoveSpeeds2 = new float[2];
+        xHaterMoveSpeeds2[0] = (float)0.5;
+        xHaterMoveSpeeds2[1] = (float)0.5;
+
+        float[] yHaterMoveSpeeds2 = new float[2];
+        yHaterMoveSpeeds2[0] = 0;
+        yHaterMoveSpeeds2[1] = 0;
+
+        haters[2] = new Hater((ImageView) findViewById(R.id.hater1_2));
+        haters[2].setImageX(thePath2[0].getImageX());
+        haters[2].setImageY(thePath2[0].getImageY());
+        haters[2].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
 
         return haters;
     }
