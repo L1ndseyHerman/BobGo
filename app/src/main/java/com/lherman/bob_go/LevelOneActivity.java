@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,6 +30,9 @@ public class LevelOneActivity extends AppCompatActivity
     //  The one and only object of Bob! :D
     private Bob bob;
     private Hater[] haters = new Hater[3];
+    private Coin[] coins = new Coin[2];
+    private TextView scoreText;
+    int theScore;
 
     //  Android Studio's Main Method:
     @Override
@@ -92,6 +96,19 @@ public class LevelOneActivity extends AppCompatActivity
                 daGrid[index][index2].setImageX(index*screenWidth/12);
                 daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));
             }
+        }
+
+        theScore = 0;
+        scoreText = findViewById(R.id.scoreText1);
+        coins = placeCoins(coins);
+
+        for (int index=0; index<coins.length; index++)
+        {
+            coins[index].setImageHeight(screenHeight/7);
+            coins[index].setImageWidth(screenWidth/12);
+            coins[index].setXMoveSpeedScreen(xMoveSpeedScreen);
+            coins[index].setBob(bob);
+            coins[index].setBobImage(bobImage);
         }
 
         //  Placing enemy:(ImageView) findViewById(R.id.grid0x0));
@@ -482,6 +499,19 @@ public class LevelOneActivity extends AppCompatActivity
         return daGrid;
     }
 
+    public Coin[] placeCoins(Coin[] coins)
+    {
+        coins[0] = new Coin((ImageView) findViewById(R.id.coin1_0));
+        coins[0].setImageX(daGrid[12][4].getImageX());
+        coins[0].setImageY(daGrid[12][4].getImageY());
+
+        coins[1] = new Coin((ImageView) findViewById(R.id.coin1_1));
+        coins[1].setImageX(daGrid[20][2].getImageX());
+        coins[1].setImageY(daGrid[20][2].getImageY());
+
+        return coins;
+    }
+
     //  Also separating enemy placement:
     public Hater[] placeEnemies(Hater[] haters)
     {
@@ -554,7 +584,17 @@ public class LevelOneActivity extends AppCompatActivity
             haters[index].movePath();
         }
 
-
+        //  Now check if Bob collided w a Coin:
+        for (int index=0; index<coins.length; index++)
+        {
+            //  DON'T RECOUNT COINS THAT ARE INVISIBLE (ALREADY GOTTEN)!!
+            if (coins[index].isColliding() && coins[index].IsNotInvisible())
+            {
+                coins[index].setInvisible();
+                theScore++;
+                scoreText.setText("Score: " + theScore);
+            }
+        }
 
         boolean gridShouldMove = true;
         //  Only check the row behind Bob, Bob's row, and the row after Bob, for a total of 18 GridImageThings.
@@ -595,6 +635,11 @@ public class LevelOneActivity extends AppCompatActivity
                 haters[index].move();
             }
 
+            for (int index=0; index<coins.length; index++)
+            {
+                coins[index].move();
+            }
+
             //  Declare that Bob moved one GridImageThing:                                 // Doesn't matter what the y is.
             if (bobImage.getX()+bobImage.getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
             {
@@ -615,6 +660,11 @@ public class LevelOneActivity extends AppCompatActivity
             for (int index=0; index<haters.length; index++)
             {
                 haters[index].move(bob.getXLittleAmount());
+            }
+
+            for (int index=0; index<coins.length; index++)
+            {
+                coins[index].move(bob.getXLittleAmount());
             }
 
             bob.setMovingRightLittle(false);
