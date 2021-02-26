@@ -38,11 +38,15 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private int theScore;
     private Button beginButton, endButton;
     private WinCircle winCircle;
-    private ImageView endBobImage0, endBobImage1, endBobImage2, endBobImage3;
+    private ImageView endBobImage0, endBobImage1, endBobImage2, endBobImage3, goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
 
     private Handler looseHandler = new Handler();;
     private Timer looseTimer = new Timer();
     private int looseTimerCounter = 0;
+
+    private Handler winHandler = new Handler();;
+    private Timer winTimer = new Timer();
+    private int winTimerCounter = 0;
 
     //  Android Studio's Main Method:
     @Override
@@ -90,6 +94,10 @@ public class TestLevelOneExtras extends AppCompatActivity {
         endBobImage1 = findViewById(R.id.bEnd1);
         endBobImage2 = findViewById(R.id.bEnd2);
         endBobImage3 = findViewById(R.id.bEnd3);
+
+        goodEndBobImage1 = findViewById(R.id.bEndG1);
+        goodEndBobImage2 = findViewById(R.id.bEndG2);
+        goodEndBobImage3 = findViewById(R.id.bEndG3);
 
         daGrid = placeGridImages(daGrid);
 
@@ -759,8 +767,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
                 looseTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        //looseHandler.post(new Runnable() {
-                        levelHandler.post(new Runnable() {
+                        looseHandler.post(new Runnable() {
+                        //levelHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 looseTimerStuff();
@@ -783,10 +791,23 @@ public class TestLevelOneExtras extends AppCompatActivity {
         {
             levelTimer.cancel();
 
-            bobImage.setVisibility(ImageView.INVISIBLE);
-            endBobImage0.setVisibility(ImageView.VISIBLE);
+            winTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    winHandler.post(new Runnable() {
+                    //levelHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            winTimerStuff();
+                        }
+                    });
+                }
+            },500, 500);
 
-            endButton.setVisibility(View.VISIBLE);
+            //bobImage.setVisibility(ImageView.INVISIBLE);
+            //endBobImage0.setVisibility(ImageView.VISIBLE);
+
+            //endButton.setVisibility(View.VISIBLE);
         }
 
         //  Now check if Bob collided w a Coin:
@@ -942,6 +963,38 @@ public class TestLevelOneExtras extends AppCompatActivity {
         }
 
         looseTimerCounter++;
+    }
+
+    public void winTimerStuff()
+    {
+        if (winTimerCounter == 0)
+        {
+            bobImage.setVisibility(ImageView.INVISIBLE);
+            endBobImage0.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 1)
+        {
+            endBobImage0.setVisibility(ImageView.INVISIBLE);
+            goodEndBobImage1.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 2)
+        {
+            goodEndBobImage1.setVisibility(ImageView.INVISIBLE);
+            goodEndBobImage2.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 3)
+        {
+            goodEndBobImage2.setVisibility(ImageView.INVISIBLE);
+            goodEndBobImage3.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 4)
+        {
+            scoreText.setText("You Win!");
+            endButton.setVisibility(View.VISIBLE);
+            winTimer.cancel();
+        }
+
+        winTimerCounter++;
     }
 
     public boolean onTouchEvent(MotionEvent event)
