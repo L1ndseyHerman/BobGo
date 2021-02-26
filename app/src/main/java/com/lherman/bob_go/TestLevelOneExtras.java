@@ -38,15 +38,15 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private int theScore;
     private Button beginButton, endButton;
     private WinCircle winCircle;
-    private ImageView endBobImage0;
+    private ImageView endBobImage0, endBobImage1, endBobImage2, endBobImage3;
 
     private Runnable levelRunnable;
 
     private Handler looseHandler = new Handler();;
-    private Timer looseTimer = new Timer();;
-    //private boolean levelTimerIsRunning;
-
+    private Timer looseTimer = new Timer();
     private Runnable looseRunnable;
+
+    private int looseTimerCounter = 0;
 
     //  Android Studio's Main Method:
     @Override
@@ -91,6 +91,9 @@ public class TestLevelOneExtras extends AppCompatActivity {
 
         //  For the ending animations:
         endBobImage0 = findViewById(R.id.bEnd0);
+        endBobImage1 = findViewById(R.id.bEnd1);
+        endBobImage2 = findViewById(R.id.bEnd2);
+        endBobImage3 = findViewById(R.id.bEnd3);
 
         daGrid = placeGridImages(daGrid);
 
@@ -799,7 +802,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
                 //  STOP THE TIMER!!!
                 levelTimer.cancel();
                 //  Does absolutely nothing :(
-                levelHandler.removeCallbacks(levelRunnable);
+                //levelHandler.removeCallbacks(levelRunnable);
                 //levelTimer.cancel();
 
                 looseRunnable = new Runnable() {
@@ -816,10 +819,9 @@ public class TestLevelOneExtras extends AppCompatActivity {
                         //levelHandler.post(looseRunnable);
                         looseHandler.post(looseRunnable);
                     }
-                },0, 500);
+                },500, 500);
 
                 //  Maybe just can't stop timer/handler mult times?
-                System.out.println("Breaking");
                 break;
 
 
@@ -1002,14 +1004,34 @@ public class TestLevelOneExtras extends AppCompatActivity {
 
     public void looseTimerStuff()
     {
-        System.out.println("Worked 1 time");
+        if (looseTimerCounter == 0)
+        {
+            bobImage.setVisibility(ImageView.INVISIBLE);
+            endBobImage0.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 1)
+        {
+            endBobImage0.setVisibility(ImageView.INVISIBLE);
+            endBobImage1.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 2)
+        {
+            endBobImage1.setVisibility(ImageView.INVISIBLE);
+            endBobImage2.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 3)
+        {
+            endBobImage2.setVisibility(ImageView.INVISIBLE);
+            endBobImage3.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 4)
+        {
+            scoreText.setText("Game Over.");
+            endButton.setVisibility(View.VISIBLE);
+            looseTimer.cancel();
+        }
 
-        bobImage.setVisibility(ImageView.INVISIBLE);
-        endBobImage0.setVisibility(ImageView.VISIBLE);
-
-        endButton.setVisibility(View.VISIBLE);
-
-
+        looseTimerCounter++;
     }
 
     public boolean onTouchEvent(MotionEvent event)
