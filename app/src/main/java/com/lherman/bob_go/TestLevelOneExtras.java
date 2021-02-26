@@ -40,12 +40,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private WinCircle winCircle;
     private ImageView endBobImage0, endBobImage1, endBobImage2, endBobImage3;
 
-    private Runnable levelRunnable;
-
     private Handler looseHandler = new Handler();;
     private Timer looseTimer = new Timer();
-    private Runnable looseRunnable;
-
     private int looseTimerCounter = 0;
 
     //  Android Studio's Main Method:
@@ -161,26 +157,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
             {
                 beginButton.setVisibility(View.INVISIBLE);
 
-                levelRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        levelMoveStuff();
-                    }
-                };
-
-                levelTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        levelHandler.post(levelRunnable);
-                    }
-                },0, 35);
-
-                /*public Handler handler = new Handler();
-                public void start() {
-                handler.postDelayed(my_runnable, 10000);
-            }*/
-
-                /*//  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
                 //  A timer can also have a delay.
                 levelTimer.schedule(new TimerTask() {
                     @Override
@@ -194,28 +171,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
                     }
                 },0, 35);
                 //},1000, 35);
-                //},1000, 70);*/
             }
         });
-
-        /*while (levelTimerIsRunning)
-        {
-            //  Wait to start the win/loose timers
-        }*/
-
-        /*looseTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //looseHandler.post(new Runnable() {
-                levelHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        looseTimerStuff();
-                    }
-                });
-            }
-            },500, 500);*/
-
 
         endButton = findViewById(R.id.bu2);
         endButton.setOnClickListener(new View.OnClickListener()
@@ -639,7 +596,6 @@ public class TestLevelOneExtras extends AppCompatActivity {
         daGrid[57][2] = new BlankGridSpace((ImageView) findViewById(R.id.g57x2));
         daGrid[57][3] = new BlankGridSpace((ImageView) findViewById(R.id.g57x3));
         daGrid[57][4] = new BlankGridSpace((ImageView) findViewById(R.id.g57x4));
-        //daGrid[57][5] = new WinCircle((ImageView) findViewById(R.id.g57x5), timer, endButton);
         daGrid[57][5] = new BlankGridSpace((ImageView) findViewById(R.id.g57x5));
 
         daGrid[58][0] = new SquareObstacle((ImageView) findViewById(R.id.g58x0), screenWidth, screenHeight);
@@ -798,68 +754,22 @@ public class TestLevelOneExtras extends AppCompatActivity {
         {
             if (haters[index].isColliding())
             {
-                //levelHandler.
-                //  STOP THE TIMER!!!
                 levelTimer.cancel();
-                //  Does absolutely nothing :(
-                //levelHandler.removeCallbacks(levelRunnable);
-                //levelTimer.cancel();
 
-                looseRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        looseTimerStuff();
-                    }
-                };
-
-                //levelTimer.schedule(new TimerTask() {
                 looseTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        //levelHandler.post(looseRunnable);
-                        looseHandler.post(looseRunnable);
+                        //looseHandler.post(new Runnable() {
+                        levelHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                looseTimerStuff();
+                            }
+                        });
                     }
                 },500, 500);
 
-                //  Maybe just can't stop timer/handler mult times?
                 break;
-
-
-                //levelTimerIsRunning = false;
-
-                /*levelTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        //looseHandler.post(new Runnable() {
-                        levelHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                looseTimerStuff();
-                            }
-                        });
-                    }
-                },500, 500);*/
-
-                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
-                //  A timer can also have a delay.
-                /*looseTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        //looseHandler.post(new Runnable() {
-                        levelHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                looseTimerStuff();
-                            }
-                        });
-                    }
-                },500, 500);*/
-
-
-                //bobImage.setVisibility(ImageView.INVISIBLE);
-                //endBobImage0.setVisibility(ImageView.VISIBLE);
-
-                //endButton.setVisibility(View.VISIBLE);
             }
         }
 
