@@ -2235,6 +2235,39 @@
         app:layout_constraintTop_toTopOf="@+id/s"
         app:srcCompat="@drawable/bobthreehundred" />
 
+    <ImageView
+        android:id="@+id/bEnd1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/s"
+        app:srcCompat="@drawable/bobtohateryothreehundred" />
+
+    <ImageView
+        android:id="@+id/bEnd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/s"
+        app:srcCompat="@drawable/bobtohaterrothreehundred" />
+
+    <ImageView
+        android:id="@+id/bEnd3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/haterthreehundred" />
+
     <Button
         android:id="@+id/bu2"
         android:layout_width="wrap_content"
