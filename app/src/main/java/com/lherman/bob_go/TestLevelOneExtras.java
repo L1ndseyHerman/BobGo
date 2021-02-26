@@ -25,9 +25,9 @@ public class TestLevelOneExtras extends AppCompatActivity {
     //  The amount that everything in daGrid and the enemies move every timer call.
     private int xMoveSpeedScreen;
     //  A Timer needs a Handler in Android Studio
-    private Handler handler = new Handler();
+    private Handler levelHandler = new Handler();
     //  Moves the level each time it gets called:
-    private Timer timer = new Timer();
+    private Timer levelTimer = new Timer();
     //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
     private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
@@ -39,6 +39,14 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private Button beginButton, endButton;
     private WinCircle winCircle;
     private ImageView endBobImage0;
+
+    private Runnable levelRunnable;
+
+    private Handler looseHandler = new Handler();;
+    private Timer looseTimer = new Timer();;
+    //private boolean levelTimerIsRunning;
+
+    private Runnable looseRunnable;
 
     //  Android Studio's Main Method:
     @Override
@@ -149,12 +157,32 @@ public class TestLevelOneExtras extends AppCompatActivity {
             public void onClick(View view)
             {
                 beginButton.setVisibility(View.INVISIBLE);
-                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
-                //  A timer can also have a delay.
-                timer.schedule(new TimerTask() {
+
+                levelRunnable = new Runnable() {
                     @Override
                     public void run() {
-                        handler.post(new Runnable() {
+                        levelMoveStuff();
+                    }
+                };
+
+                levelTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        levelHandler.post(levelRunnable);
+                    }
+                },0, 35);
+
+                /*public Handler handler = new Handler();
+                public void start() {
+                handler.postDelayed(my_runnable, 10000);
+            }*/
+
+                /*//  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+                //  A timer can also have a delay.
+                levelTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        levelHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 levelMoveStuff();
@@ -163,9 +191,28 @@ public class TestLevelOneExtras extends AppCompatActivity {
                     }
                 },0, 35);
                 //},1000, 35);
-                //},1000, 70);
+                //},1000, 70);*/
             }
         });
+
+        /*while (levelTimerIsRunning)
+        {
+            //  Wait to start the win/loose timers
+        }*/
+
+        /*looseTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                //looseHandler.post(new Runnable() {
+                levelHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        looseTimerStuff();
+                    }
+                });
+            }
+            },500, 500);*/
+
 
         endButton = findViewById(R.id.bu2);
         endButton.setOnClickListener(new View.OnClickListener()
@@ -748,19 +795,69 @@ public class TestLevelOneExtras extends AppCompatActivity {
         {
             if (haters[index].isColliding())
             {
+                //levelHandler.
                 //  STOP THE TIMER!!!
-                timer.cancel();
+                levelTimer.cancel();
+                //  Does absolutely nothing :(
+                levelHandler.removeCallbacks(levelRunnable);
+                //levelTimer.cancel();
+
+                looseRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        looseTimerStuff();
+                    }
+                };
+
+                //levelTimer.schedule(new TimerTask() {
+                looseTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        //levelHandler.post(looseRunnable);
+                        looseHandler.post(looseRunnable);
+                    }
+                },0, 500);
+
+                //  Maybe just can't stop timer/handler mult times?
+                System.out.println("Breaking");
+                break;
 
 
-                bobImage.setVisibility(ImageView.INVISIBLE);
-                endBobImage0.setVisibility(ImageView.VISIBLE);
-                //  The x and y work, but not the width and height. Maybe just start off w a larger Bob image?
-                /*bobImage.getLayoutParams().height = screenHeight/4;
-                bobImage.getLayoutParams().width = screenWidth/4;
-                bobImage.setX(0);
-                bobImage.setY(0);*/
+                //levelTimerIsRunning = false;
 
-                endButton.setVisibility(View.VISIBLE);
+                /*levelTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        //looseHandler.post(new Runnable() {
+                        levelHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                looseTimerStuff();
+                            }
+                        });
+                    }
+                },500, 500);*/
+
+                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+                //  A timer can also have a delay.
+                /*looseTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        //looseHandler.post(new Runnable() {
+                        levelHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                looseTimerStuff();
+                            }
+                        });
+                    }
+                },500, 500);*/
+
+
+                //bobImage.setVisibility(ImageView.INVISIBLE);
+                //endBobImage0.setVisibility(ImageView.VISIBLE);
+
+                //endButton.setVisibility(View.VISIBLE);
             }
         }
 
@@ -772,7 +869,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
 
         if (winCircle.checkCollision() == true)
         {
-            timer.cancel();
+            levelTimer.cancel();
 
             bobImage.setVisibility(ImageView.INVISIBLE);
             endBobImage0.setVisibility(ImageView.VISIBLE);
@@ -901,6 +998,18 @@ public class TestLevelOneExtras extends AppCompatActivity {
         {
             bobImage.setY(bobImage.getY() + bob.getJumpSpeed());
         }
+    }
+
+    public void looseTimerStuff()
+    {
+        System.out.println("Worked 1 time");
+
+        bobImage.setVisibility(ImageView.INVISIBLE);
+        endBobImage0.setVisibility(ImageView.VISIBLE);
+
+        endButton.setVisibility(View.VISIBLE);
+
+
     }
 
     public boolean onTouchEvent(MotionEvent event)
