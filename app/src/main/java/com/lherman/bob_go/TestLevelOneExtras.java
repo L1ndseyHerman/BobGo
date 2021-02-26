@@ -38,6 +38,7 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private int theScore;
     private Button beginButton, endButton;
     private WinCircle winCircle;
+    private ImageView endBobImage0;
 
     //  Android Studio's Main Method:
     @Override
@@ -80,6 +81,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
         bob.setJumpHeight(5*screenHeight/14);
 
+        //  For the ending animations:
+        endBobImage0 = findViewById(R.id.bEnd0);
 
         daGrid = placeGridImages(daGrid);
 
@@ -747,6 +750,16 @@ public class TestLevelOneExtras extends AppCompatActivity {
             {
                 //  STOP THE TIMER!!!
                 timer.cancel();
+
+
+                bobImage.setVisibility(ImageView.INVISIBLE);
+                endBobImage0.setVisibility(ImageView.VISIBLE);
+                //  The x and y work, but not the width and height. Maybe just start off w a larger Bob image?
+                /*bobImage.getLayoutParams().height = screenHeight/4;
+                bobImage.getLayoutParams().width = screenWidth/4;
+                bobImage.setX(0);
+                bobImage.setY(0);*/
+
                 endButton.setVisibility(View.VISIBLE);
             }
         }
@@ -760,6 +773,10 @@ public class TestLevelOneExtras extends AppCompatActivity {
         if (winCircle.checkCollision() == true)
         {
             timer.cancel();
+
+            bobImage.setVisibility(ImageView.INVISIBLE);
+            endBobImage0.setVisibility(ImageView.VISIBLE);
+
             endButton.setVisibility(View.VISIBLE);
         }
 
