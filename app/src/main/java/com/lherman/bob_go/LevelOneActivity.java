@@ -25,9 +25,9 @@ public class LevelOneActivity extends AppCompatActivity
     //  The amount that everything in daGrid and the enemies move every timer call.
     private int xMoveSpeedScreen;
     //  A Timer needs a Handler in Android Studio
-    private Handler handler = new Handler();
+    private Handler levelHandler = new Handler();
     //  Moves the level each time it gets called:
-    private Timer timer = new Timer();
+    private Timer levelTimer = new Timer();
     //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
     private int screenWidth, screenHeight;
     //  The one and only object of Bob! :D
@@ -38,6 +38,16 @@ public class LevelOneActivity extends AppCompatActivity
     private int theScore;
     private Button beginButton, endButton;
     private WinCircle winCircle;
+    private ImageView endBobImage0, badEndBobImage1, badEndBobImage2, badEndBobImage3,
+            goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
+
+    private Handler looseHandler = new Handler();;
+    private Timer looseTimer = new Timer();
+    private int looseTimerCounter = 0;
+
+    private Handler winHandler = new Handler();;
+    private Timer winTimer = new Timer();
+    private int winTimerCounter = 0;
 
     //  Android Studio's Main Method:
     @Override
@@ -81,7 +91,16 @@ public class LevelOneActivity extends AppCompatActivity
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
         bob.setJumpHeight(5*screenHeight/14);
 
+        //  For the ending animations:
+        endBobImage0 = findViewById(R.id.winLooseBob1_0);
 
+        badEndBobImage1 = findViewById(R.id.looseBob1_1);
+        badEndBobImage2 = findViewById(R.id.looseBob1_2);
+        badEndBobImage3 = findViewById(R.id.looseBob1_3);
+
+        goodEndBobImage1 = findViewById(R.id.winBob1_1);
+        goodEndBobImage2 = findViewById(R.id.winBob1_2);
+        goodEndBobImage3 = findViewById(R.id.winBob1_3);
 
         daGrid = placeGridImages(daGrid);
 
@@ -148,10 +167,10 @@ public class LevelOneActivity extends AppCompatActivity
                 beginButton.setVisibility(View.INVISIBLE);
                 //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
                 //  A timer can also have a delay.
-                timer.schedule(new TimerTask() {
+                levelTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        handler.post(new Runnable() {
+                        levelHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 levelMoveStuff();
@@ -610,9 +629,22 @@ public class LevelOneActivity extends AppCompatActivity
         {
             if (haters[index].isColliding())
             {
-                //  STOP THE TIMER!!!
-                timer.cancel();
-                endButton.setVisibility(View.VISIBLE);
+                levelTimer.cancel();
+
+                looseTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        looseHandler.post(new Runnable() {
+                            //levelHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                looseTimerStuff();
+                            }
+                        });
+                    }
+                },500, 500);
+
+                break;
             }
         }
 
@@ -624,8 +656,21 @@ public class LevelOneActivity extends AppCompatActivity
 
         if (winCircle.checkCollision() == true)
         {
-            timer.cancel();
-            endButton.setVisibility(View.VISIBLE);
+            levelTimer.cancel();
+
+            winTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    winHandler.post(new Runnable() {
+                        //levelHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            winTimerStuff();
+                        }
+                    });
+                }
+            },500, 500);
+
         }
 
         //  Now check if Bob collided w a Coin:
@@ -747,6 +792,70 @@ public class LevelOneActivity extends AppCompatActivity
         {
             bobImage.setY(bobImage.getY() + bob.getJumpSpeed());
         }
+    }
+
+    public void looseTimerStuff()
+    {
+        if (looseTimerCounter == 0)
+        {
+            bobImage.setVisibility(ImageView.INVISIBLE);
+            endBobImage0.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 1)
+        {
+            endBobImage0.setVisibility(ImageView.INVISIBLE);
+            badEndBobImage1.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 2)
+        {
+            badEndBobImage1.setVisibility(ImageView.INVISIBLE);
+            badEndBobImage2.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 3)
+        {
+            badEndBobImage2.setVisibility(ImageView.INVISIBLE);
+            badEndBobImage3.setVisibility(ImageView.VISIBLE);
+        }
+        else if (looseTimerCounter == 4)
+        {
+            scoreText.setText("Game Over.");
+            endButton.setVisibility(View.VISIBLE);
+            looseTimer.cancel();
+        }
+
+        looseTimerCounter++;
+    }
+
+    public void winTimerStuff()
+    {
+        if (winTimerCounter == 0)
+        {
+            bobImage.setVisibility(ImageView.INVISIBLE);
+            endBobImage0.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 1)
+        {
+            endBobImage0.setVisibility(ImageView.INVISIBLE);
+            goodEndBobImage1.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 2)
+        {
+            goodEndBobImage1.setVisibility(ImageView.INVISIBLE);
+            goodEndBobImage2.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 3)
+        {
+            goodEndBobImage2.setVisibility(ImageView.INVISIBLE);
+            goodEndBobImage3.setVisibility(ImageView.VISIBLE);
+        }
+        else if (winTimerCounter == 4)
+        {
+            scoreText.setText("You Win!");
+            endButton.setVisibility(View.VISIBLE);
+            winTimer.cancel();
+        }
+
+        winTimerCounter++;
     }
 
     public boolean onTouchEvent(MotionEvent event)

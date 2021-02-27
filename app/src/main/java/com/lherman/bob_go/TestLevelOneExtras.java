@@ -38,7 +38,8 @@ public class TestLevelOneExtras extends AppCompatActivity {
     private int theScore;
     private Button beginButton, endButton;
     private WinCircle winCircle;
-    private ImageView endBobImage0, endBobImage1, endBobImage2, endBobImage3, goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
+    private ImageView endBobImage0, badEndBobImage1, badEndBobImage2, badEndBobImage3,
+            goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
 
     private Handler looseHandler = new Handler();;
     private Timer looseTimer = new Timer();
@@ -91,9 +92,10 @@ public class TestLevelOneExtras extends AppCompatActivity {
 
         //  For the ending animations:
         endBobImage0 = findViewById(R.id.bEnd0);
-        endBobImage1 = findViewById(R.id.bEnd1);
-        endBobImage2 = findViewById(R.id.bEnd2);
-        endBobImage3 = findViewById(R.id.bEnd3);
+
+        badEndBobImage1 = findViewById(R.id.bEnd1);
+        badEndBobImage2 = findViewById(R.id.bEnd2);
+        badEndBobImage3 = findViewById(R.id.bEnd3);
 
         goodEndBobImage1 = findViewById(R.id.bEndG1);
         goodEndBobImage2 = findViewById(R.id.bEndG2);
@@ -804,10 +806,6 @@ public class TestLevelOneExtras extends AppCompatActivity {
                 }
             },500, 500);
 
-            //bobImage.setVisibility(ImageView.INVISIBLE);
-            //endBobImage0.setVisibility(ImageView.VISIBLE);
-
-            //endButton.setVisibility(View.VISIBLE);
         }
 
         //  Now check if Bob collided w a Coin:
@@ -943,17 +941,17 @@ public class TestLevelOneExtras extends AppCompatActivity {
         else if (looseTimerCounter == 1)
         {
             endBobImage0.setVisibility(ImageView.INVISIBLE);
-            endBobImage1.setVisibility(ImageView.VISIBLE);
+            badEndBobImage1.setVisibility(ImageView.VISIBLE);
         }
         else if (looseTimerCounter == 2)
         {
-            endBobImage1.setVisibility(ImageView.INVISIBLE);
-            endBobImage2.setVisibility(ImageView.VISIBLE);
+            badEndBobImage1.setVisibility(ImageView.INVISIBLE);
+            badEndBobImage2.setVisibility(ImageView.VISIBLE);
         }
         else if (looseTimerCounter == 3)
         {
-            endBobImage2.setVisibility(ImageView.INVISIBLE);
-            endBobImage3.setVisibility(ImageView.VISIBLE);
+            badEndBobImage2.setVisibility(ImageView.INVISIBLE);
+            badEndBobImage3.setVisibility(ImageView.VISIBLE);
         }
         else if (looseTimerCounter == 4)
         {
