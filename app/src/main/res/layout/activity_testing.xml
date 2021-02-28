@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="@drawable/gridbackgroundseventy"
     tools:context=".TestingActivity">
 
     <Button
         android:id="@+id/testGridButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#0000FF"
         android:text="Test Grid"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,11 +23,12 @@
         android:id="@+id/testLevelOneExtrasButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#0000FF"
         android:text="Test Level One Extras"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testGridButton" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/testGridButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
