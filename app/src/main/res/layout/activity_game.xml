@@ -11,36 +11,46 @@
         android:id="@+id/levelOneButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="#0000FF"
         android:text="Level 1"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="-5dp" />
 
     <Button
         android:id="@+id/levelTwoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="#0000FF"
         android:text="Level 2"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/levelOneButton" />
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="-5dp" />
+
+    <Button
+        android:id="@+id/levelThreeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Level 3"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/levelFourButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Level 4"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/backButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="#0000FF"
         android:text="Back"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/levelTwoButton" />
+        tools:layout_editor_absoluteX="-9dp"
+        tools:layout_editor_absoluteY="-5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
