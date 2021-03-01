@@ -18,6 +18,9 @@ public class GameActivity extends AppCompatActivity
 
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
         Button levelOneButton = findViewById(R.id.levelOneButton);
+
+        //  Has the same stuff as an ImageView! X, Y, LayoutParams.w/h, etc!! :D
+
         levelOneButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -40,6 +43,18 @@ public class GameActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent startIntent = new Intent(getApplicationContext(), LevelTwoActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+        //  Goes back to MainActivity:
+        Button backButton = findViewById(R.id.backButton3);
+        backButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(startIntent);
             }
         });
