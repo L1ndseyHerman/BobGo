@@ -83,4 +83,12 @@
         android:text="aMAZEing"
         android:textColor="#FFFFFF" />
 
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Next"
+        android:textColor="#FFFFFF" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
