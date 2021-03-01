@@ -53,4 +53,34 @@
         tools:layout_editor_absoluteX="-9dp"
         tools:layout_editor_absoluteY="-5dp" />
 
+    <TextView
+        android:id="@+id/levelOneDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The First One"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/levelTwoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Look Before You Leap"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/levelThreeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Think Outside the Box"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/levelFourDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aMAZEing"
+        android:textColor="#FFFFFF" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity
 {
 
     private int screenWidth, screenHeight;
     private Button buttons[] = new Button[5];
+    private TextView levelDescriptions[] = new TextView[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,26 +35,29 @@ public class GameActivity extends AppCompatActivity
         buttons[3] = findViewById(R.id.levelFourButton);
         buttons[4] = findViewById(R.id.backButton3);
 
+        levelDescriptions[0] = findViewById(R.id.levelOneDescription);
+        levelDescriptions[1] = findViewById(R.id.levelTwoDescription);
+        levelDescriptions[2] = findViewById(R.id.levelThreeDescription);
+        levelDescriptions[3] = findViewById(R.id.levelFourDescription);
+
         for (int index=0; index<buttons.length; index++)
         {
-            /*daGrid[index][index2].setImageHeight(screenHeight/7);
-            daGrid[index][index2].setImageWidth(screenWidth/12);
-            daGrid[index][index2].setImageX(index*screenWidth/12);
-            daGrid[index][index2].setImageY((screenHeight / 14) + (index2*screenHeight/7));*/
-
             buttons[index].setX(screenWidth/36);
             buttons[index].setY((screenHeight/22) + (index*2*screenHeight/11));
             buttons[index].setWidth(screenWidth/6);
             buttons[index].setHeight(screenHeight/11);
         }
 
+        for (int index=0; index<levelDescriptions.length; index++)
+        {
+            levelDescriptions[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12));
+            levelDescriptions[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
+            levelDescriptions[index].setWidth(4*screenWidth/9);
+            levelDescriptions[index].setHeight(screenHeight/11);
+        }
+
 
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
-        //Button levelOneButton = findViewById(R.id.levelOneButton);
-
-        //  Has the same stuff as an ImageView! X, Y, LayoutParams.w/h, etc!! :D
-
-        //levelOneButton.setOnClickListener(new View.OnClickListener()
         buttons[0].setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -68,8 +73,6 @@ public class GameActivity extends AppCompatActivity
             }
         });
 
-        //Button levelTwoButton = findViewById(R.id.levelTwoButton);
-        //levelTwoButton.setOnClickListener(new View.OnClickListener()
         buttons[1].setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -81,8 +84,6 @@ public class GameActivity extends AppCompatActivity
         });
 
         //  Goes back to MainActivity:
-        //Button backButton = findViewById(R.id.backButton3);
-        //backButton.setOnClickListener(new View.OnClickListener()
         buttons[4].setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -94,12 +95,5 @@ public class GameActivity extends AppCompatActivity
         });
 
     }
-
-
-    
-
-
-
-
 
 }
