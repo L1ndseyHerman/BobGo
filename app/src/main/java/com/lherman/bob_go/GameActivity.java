@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class GameActivity extends AppCompatActivity
     private TextView levelDescriptions[] = new TextView[4];
     private Button nextButton;
     private TextView scores[] = new TextView[4];
+    private int levelOneHighScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,7 +29,11 @@ public class GameActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
+        //  Ok, it should be saved, so time to test it:
+        //SharedPreferences sharedPrefReturn = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int defaultValue = 0;
+        levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -49,6 +55,9 @@ public class GameActivity extends AppCompatActivity
         nextButton = findViewById(R.id.nextButton);
 
         scores[0] = findViewById(R.id.levelOneScore);
+
+        scores[0].setText("Score: " + levelOneHighScore);
+
         scores[1] = findViewById(R.id.levelTwoScore);
         scores[2] = findViewById(R.id.levelThreeScore);
         scores[3] = findViewById(R.id.levelFourScore);

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -192,11 +193,7 @@ public class LevelOneActivity extends AppCompatActivity
             public void onClick(View view)
             {
 
-                //  Ok, it should be saved, so time to test it:
-                SharedPreferences sharedPrefReturn = getPreferences(Context.MODE_PRIVATE);
-                int defaultValue = 0;
-                int highScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
-                System.out.println("Retrieving a high score of " + highScore);
+
 
                 Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
                 startActivity(startIntent);
@@ -551,7 +548,6 @@ public class LevelOneActivity extends AppCompatActivity
         daGrid[48][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x2));
         daGrid[48][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x3));
         daGrid[48][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x4));
-        //daGrid[48][5] = new WinCircle((ImageView) findViewById(R.id.grid1_48x5), timer, endButton);
         daGrid[48][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid1_48x5));
 
         daGrid[49][0] = new SquareObstacle((ImageView) findViewById(R.id.grid1_49x0), screenWidth, screenHeight);
@@ -668,12 +664,20 @@ public class LevelOneActivity extends AppCompatActivity
             levelTimer.cancel();
 
             //  Save the score:
-            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt("levelOneHighScore", theScore);
-            editor.apply();
-
-            System.out.println("Saved a high score of " + theScore);
+            //  BUT ONLY IF IT'S HIGHER THAN THE EXISTING SCORE! FACEPALM!
+            SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            int defaultValue = 0;
+            int levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
+            //  If the current high score is greater than the existing one,
+            //  or if there is no high score yet (first time level beaten),
+            //  save the score.
+            if (theScore > levelOneHighScore)
+            {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("levelOneHighScore", theScore);
+                editor.apply();
+            }
 
             winTimer.schedule(new TimerTask() {
                 @Override
