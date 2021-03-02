@@ -2,7 +2,9 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -24,6 +26,8 @@ public class GameActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

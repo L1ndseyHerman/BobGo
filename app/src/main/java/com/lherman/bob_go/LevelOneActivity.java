@@ -2,7 +2,9 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,11 +43,11 @@ public class LevelOneActivity extends AppCompatActivity
     private ImageView endBobImage0, badEndBobImage1, badEndBobImage2, badEndBobImage3,
             goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
 
-    private Handler looseHandler = new Handler();;
+    private Handler looseHandler = new Handler();
     private Timer looseTimer = new Timer();
     private int looseTimerCounter = 0;
 
-    private Handler winHandler = new Handler();;
+    private Handler winHandler = new Handler();
     private Timer winTimer = new Timer();
     private int winTimerCounter = 0;
 
@@ -189,6 +191,13 @@ public class LevelOneActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+
+                //  Ok, it should be saved, so time to test it:
+                SharedPreferences sharedPrefReturn = getPreferences(Context.MODE_PRIVATE);
+                int defaultValue = 0;
+                int highScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
+                System.out.println("Retrieving a high score of " + highScore);
+
                 Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
                 startActivity(startIntent);
             }
@@ -657,6 +666,14 @@ public class LevelOneActivity extends AppCompatActivity
         if (winCircle.checkCollision() == true)
         {
             levelTimer.cancel();
+
+            //  Save the score:
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt("levelOneHighScore", theScore);
+            editor.apply();
+
+            System.out.println("Saved a high score of " + theScore);
 
             winTimer.schedule(new TimerTask() {
                 @Override
