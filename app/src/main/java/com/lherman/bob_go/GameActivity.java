@@ -17,6 +17,7 @@ public class GameActivity extends AppCompatActivity
     private Button buttons[] = new Button[5];
     private TextView levelDescriptions[] = new TextView[4];
     private Button nextButton;
+    private TextView scores[] = new TextView[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +44,11 @@ public class GameActivity extends AppCompatActivity
         //  This one is in the same column as the levelDescriptions, just a Button instead of a TextView.
         nextButton = findViewById(R.id.nextButton);
 
+        scores[0] = findViewById(R.id.levelOneScore);
+        scores[1] = findViewById(R.id.levelTwoScore);
+        scores[2] = findViewById(R.id.levelThreeScore);
+        scores[3] = findViewById(R.id.levelFourScore);
+
         for (int index=0; index<buttons.length; index++)
         {
             buttons[index].setX(screenWidth/36);
@@ -64,6 +70,14 @@ public class GameActivity extends AppCompatActivity
         nextButton.setY((screenHeight/22) + (4*2*screenHeight/11));
         nextButton.setWidth(screenWidth/6);
         nextButton.setHeight(screenHeight/11);
+
+        for (int index=0; index<scores.length; index++)
+        {
+            scores[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12) + (4*screenWidth/9) + (screenWidth/12));
+            scores[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
+            scores[index].setWidth(screenWidth/6);
+            scores[index].setHeight(screenHeight/11);
+        }
 
 
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
