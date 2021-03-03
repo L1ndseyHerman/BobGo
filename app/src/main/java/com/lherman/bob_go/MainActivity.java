@@ -5,18 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity
 {
-    private int screenWidth, screenHeight;
+    private int screenWidth, screenHeight, startHeight;
     private TextView bobText, goText;
     private Button buttons[] = new Button[3];
-    private ImageView bobMainScreen;
+    private ImageView bobImageMainScreen;
+    private Handler handler = new Handler();
+    private Timer timer = new Timer();
+    private boolean isJumping = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,12 +50,13 @@ public class MainActivity extends AppCompatActivity
         goText.setWidth(screenWidth/3);
         goText.setHeight(screenHeight/4);
 
-        bobMainScreen = findViewById(R.id.bobMainScreen);
+        bobImageMainScreen = findViewById(R.id.bobMainScreen);
 
-        bobMainScreen.setX(screenWidth/12);
-        bobMainScreen.setY(5*screenHeight/12);
-        bobMainScreen.getLayoutParams().width = screenWidth/12;
-        bobMainScreen.getLayoutParams().height = screenHeight/7;
+        bobImageMainScreen.setX(screenWidth/12);
+        startHeight = 5*screenHeight/14;
+        bobImageMainScreen.setY(startHeight);
+        bobImageMainScreen.getLayoutParams().width = screenWidth/12;
+        bobImageMainScreen.getLayoutParams().height = screenHeight/7;
 
         buttons[0] = findViewById(R.id.levelButton);
         buttons[1] = findViewById(R.id.randomButton);
@@ -106,5 +114,45 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        infiniteBobAnimation();
+                    }
+                });
+            }
+        },0, 35);
+
     }
+
+
+    public void infiniteBobAnimation()
+    {
+        if (isJumping)
+        {
+            if (bobImageMainScreen.getY()-(screenHeight/49) >= 0)
+            {
+                bobImageMainScreen.setY(bobImageMainScreen.getY()-(screenHeight/49));
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+        else
+        {
+            if (bobImageMainScreen.getY()+(screenHeight/49) <= startHeight)
+            {
+                bobImageMainScreen.setY(bobImageMainScreen.getY()+(screenHeight/49));
+            }
+            else
+            {
+                isJumping = true;
+            }
+        }
+    }
+
 }
