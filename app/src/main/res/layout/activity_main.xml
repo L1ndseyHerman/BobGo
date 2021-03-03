@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#0000FF"
+        android:fontFamily="sans-serif-light"
         android:text="Choose a Level"
         android:textColor="#FFFFFF" />
 
@@ -20,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#0000FF"
+        android:fontFamily="sans-serif-light"
         android:text="Random Mode"
         android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="0dp"
@@ -30,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#0000FF"
+        android:fontFamily="sans-serif-light"
         android:text="Testing"
         android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="0dp"
@@ -52,5 +55,11 @@
         android:text="Go"
         android:textColor="#000000"
         android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/bobMainScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/bobseventy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
