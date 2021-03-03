@@ -17,7 +17,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
 {
-    private int screenWidth, screenHeight, startHeight;
+    private int screenWidth, screenHeight, startHeight, pauseCounter=0;
     private TextView bobText, goText;
     private Button buttons[] = new Button[3];
     private ImageView bobImageMainScreen;
@@ -150,7 +150,12 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                isJumping = true;
+                pauseCounter++;
+                if (pauseCounter > 10)
+                {
+                    pauseCounter = 0;
+                    isJumping = true;
+                }
             }
         }
     }
