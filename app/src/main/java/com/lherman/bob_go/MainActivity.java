@@ -3,20 +3,49 @@ package com.lherman.bob_go;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
+    private int screenWidth, screenHeight;
+    private Button buttons[] = new Button[3];
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        screenWidth = size.x;
+        screenHeight = size.y;
+
+        buttons[0] = findViewById(R.id.levelButton);
+        buttons[1] = findViewById(R.id.randomButton);
+        buttons[2] = findViewById(R.id.testingButton);
+
+        for (int index=0; index<buttons.length; index++)
+        {
+            buttons[index].setX((screenWidth/12) + (index*screenWidth/3));
+            buttons[index].setY(2*screenHeight/3);
+            buttons[index].setWidth(screenWidth/6);
+            buttons[index].setHeight(screenHeight/4);
+
+            /*buttons[index].setX(screenWidth/36);
+            buttons[index].setY((screenHeight/22) + (index*2*screenHeight/11));
+            buttons[index].setWidth(screenWidth/6);
+            buttons[index].setHeight(screenHeight/11);*/
+        }
+
+
         //  The code below makes it go to the Game Activity when the beginButton is pressed:
-        Button beginButton = findViewById(R.id.levelButton);
-        beginButton.setOnClickListener(new View.OnClickListener()
+        buttons[0].setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -32,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //  Goes to RandomActivity:
-        Button randomButton = findViewById(R.id.randomButton);
-        randomButton.setOnClickListener(new View.OnClickListener()
+        buttons[1].setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -44,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //  Goes to TestingActivity:
-        Button buttonButton = findViewById(R.id.testingButton);
-        buttonButton.setOnClickListener(new View.OnClickListener()
+        buttons[2].setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
