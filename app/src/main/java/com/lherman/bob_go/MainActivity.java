@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
     private int screenWidth, screenHeight;
+    private TextView bobText, goText;
     private Button buttons[] = new Button[3];
 
     @Override
@@ -25,6 +27,19 @@ public class MainActivity extends AppCompatActivity
         display.getSize(size);
         screenWidth = size.x;
         screenHeight = size.y;
+
+        bobText = findViewById(R.id.bobText);
+        goText = findViewById(R.id.goText);
+
+        bobText.setX(7*screenWidth/24);
+        bobText.setY(screenHeight/12);
+        bobText.setWidth(screenWidth/3);
+        bobText.setHeight(screenHeight/4);
+
+        goText.setX(15*screenWidth/24);
+        goText.setY(screenHeight/12);
+        goText.setWidth(screenWidth/3);
+        goText.setHeight(screenHeight/4);
 
         buttons[0] = findViewById(R.id.levelButton);
         buttons[1] = findViewById(R.id.randomButton);
