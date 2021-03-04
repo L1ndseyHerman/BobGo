@@ -14,7 +14,7 @@ public class BlankGridSpace implements GridImageThing
     {
         this.spaceImage = spaceImage;
         //  Uncomment to turn BlankGridSpaces invisible when done w level testing:
-        spaceImage.setVisibility(ImageView.INVISIBLE);
+        //spaceImage.setVisibility(ImageView.INVISIBLE);
     }
 
     @Override
