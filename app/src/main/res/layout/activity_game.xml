@@ -95,24 +95,24 @@
         android:id="@+id/levelOneScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score: 0" />
+        android:text="High Score: 0" />
 
     <TextView
         android:id="@+id/levelTwoScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score: 0" />
+        android:text="High Score: 0" />
 
     <TextView
         android:id="@+id/levelThreeScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score: 0" />
+        android:text="High Score: 0" />
 
     <TextView
         android:id="@+id/levelFourScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score: 0" />
+        android:text="High Score: 0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

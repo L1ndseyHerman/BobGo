@@ -56,7 +56,7 @@ public class GameActivity extends AppCompatActivity
 
         scores[0] = findViewById(R.id.levelOneScore);
 
-        scores[0].setText("Score: " + levelOneHighScore);
+        scores[0].setText("High Score: " + levelOneHighScore);
 
         scores[1] = findViewById(R.id.levelTwoScore);
         scores[2] = findViewById(R.id.levelThreeScore);
@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity
             levelDescriptions[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12));
             levelDescriptions[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
             levelDescriptions[index].setWidth(4*screenWidth/9);
-            levelDescriptions[index].setHeight(screenHeight/11);
+            levelDescriptions[index].setHeight(2*screenHeight/11);
         }
 
         //  Just plugin 4 bec it's like levelDescriptions[4].
@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity
             scores[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12) + (4*screenWidth/9) + (screenWidth/12));
             scores[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
             scores[index].setWidth(screenWidth/6);
-            scores[index].setHeight(screenHeight/11);
+            scores[index].setHeight(2*screenHeight/11);
         }
 
 
