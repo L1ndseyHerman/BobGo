@@ -192,9 +192,6 @@ public class LevelOneActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-
-
-
                 Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
                 startActivity(startIntent);
             }

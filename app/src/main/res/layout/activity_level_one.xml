@@ -1956,14 +1956,6 @@
         app:srcCompat="@drawable/wincircleseventy" />
 
     <ImageView
-        android:id="@+id/bob1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bobseventy"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="3dp" />
-
-    <ImageView
         android:id="@+id/coin1_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -1974,6 +1966,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/coinseventy" />
+
+    <ImageView
+        android:id="@+id/bob1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bobseventy"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="3dp" />
 
     <ImageView
         android:id="@+id/hater1_0"
