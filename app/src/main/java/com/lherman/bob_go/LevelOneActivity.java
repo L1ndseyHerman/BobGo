@@ -2,12 +2,10 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -15,9 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 //  Each Level_Activity is the "Controller" part of the "Model-View-Controller" design pattern.
 public class LevelOneActivity extends AppCompatActivity
