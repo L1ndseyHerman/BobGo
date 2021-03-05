@@ -3,10 +3,9 @@ package com.lherman.bob_go;
 //  This is sort of the "Model" part of the "Model-View-Controller" design pattern. Each "activity_level_" is the "View", and then
 //  each "Level_Activity" is the "Controller".
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,7 +29,8 @@ public class GameLogic
     private Bob bob;
     private TextView scoreText;
     private int theScore;
-    private Button beginButton, endButton;
+    //  Best to leave the endButton logic in the Activity, having trouble coding this here:
+    private Button endButton;
     private WinCircle winCircle;
     private ImageView endBobImage0, badEndBobImage1, badEndBobImage2, badEndBobImage3,
             goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
@@ -52,6 +52,8 @@ public class GameLogic
     private String thisLevelsHighScoreKey;
     //  Oh, and need to pass in the shared preferences from an actual Activity:
     private SharedPreferences theSavedPreference, thePreferenceImSaving;
+    //  For going back to the GameActivity:
+    //private Intent goToGameActivity;
 
     //  Empty constructor, passing image names and key name in by setters.
     public GameLogic()
@@ -66,6 +68,11 @@ public class GameLogic
     public void setScreenHeight(int screenHeight)
     {
         this.screenHeight = screenHeight;
+    }
+
+    public void setxMoveSpeedScreen(int xMoveSpeedScreen)
+    {
+        this.xMoveSpeedScreen = xMoveSpeedScreen;
     }
 
     public void setBobLogic(ImageView bobImage)
@@ -153,6 +160,7 @@ public class GameLogic
 
     public void setWinCircleLogic(WinCircle winCircle, GridImageThing theGridSpaceItsOn)
     {
+        this.winCircle = winCircle;
         winCircle.setBob(bob);
         winCircle.setBobImage(bobImage);
         winCircle.setXMoveSpeedScreen(xMoveSpeedScreen);
@@ -194,6 +202,54 @@ public class GameLogic
             haters[index].setBobImage(bobImage);
         }
     }
+
+    //public void setBeginButtonLogic(Button beginButton)
+    //{
+        //this.beginButton = beginButton;
+        /*beginButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                beginButton.setVisibility(View.INVISIBLE);
+                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
+                //  A timer can also have a delay.
+                levelTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        levelHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                levelMoveStuff();
+                            }
+                        });
+                    }
+                },0, 35);
+                //},1000, 35);
+                //},1000, 70);
+            }
+        });*/
+    //}
+
+    /*public void setGoToGameActivity(Intent goToGameActivity)
+    {
+        this.goToGameActivity = goToGameActivity;
+    }*/
+
+    public void setEndButtonLogic(Button endButton)
+    {
+        this.endButton = endButton;
+        /*endButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
+                startActivity(goToGameActivity);
+            }
+        });*/
+    }
+
 
     //  Includes the Handler:
     public void setLevelTimerLogic()
@@ -271,16 +327,16 @@ public class GameLogic
             //SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             int defaultValue = 0;
             //int levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
-            int levelOneHighScore = theSavedPreference.getInt("levelOneHighScore", defaultValue);
+            int levelHighScore = theSavedPreference.getInt(thisLevelsHighScoreKey, defaultValue);
             //  If the current high score is greater than the existing one,
             //  or if there is no high score yet (first time level beaten),
             //  save the score.
-            if (theScore > levelOneHighScore)
+            if (theScore > levelHighScore)
             {
                 //SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 //SharedPreferences.Editor editor = sharedPref.edit();
                 SharedPreferences.Editor editor = thePreferenceImSaving.edit();
-                editor.putInt("levelOneHighScore", theScore);
+                editor.putInt(thisLevelsHighScoreKey, theScore);
                 editor.apply();
             }
 
@@ -488,6 +544,7 @@ public class GameLogic
 
     public void bobJumpLogic()
     {
+        //  Checks to see if Bob can jump or if there's like a SquareObstacle or something in the way.
         bob.startJumpMaybe();
     }
 
