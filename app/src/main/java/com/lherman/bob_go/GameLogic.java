@@ -1,9 +1,5 @@
 package com.lherman.bob_go;
 
-//  This is sort of the "Model" part of the "Model-View-Controller" design pattern. Each "activity_level_" is the "View", and then
-//  each "Level_Activity" is the "Controller".
-
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.View;
@@ -13,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+//  This is sort of the "Model" part of the "Model-View-Controller" design pattern. Each "activity_level_" is the "View", and then
+//  each "Level_Activity" is the "Controller".
 
 //  Each "Level_Activity" will have exactly one instance of this class and one "activity_level_" in the "layout" folder.
 public class GameLogic
@@ -52,8 +51,6 @@ public class GameLogic
     private String thisLevelsHighScoreKey;
     //  Oh, and need to pass in the shared preferences from an actual Activity:
     private SharedPreferences theSavedPreference, thePreferenceImSaving;
-    //  For going back to the GameActivity:
-    //private Intent goToGameActivity;
 
     //  Empty constructor, passing image names and key name in by setters.
     public GameLogic()
@@ -203,51 +200,9 @@ public class GameLogic
         }
     }
 
-    //public void setBeginButtonLogic(Button beginButton)
-    //{
-        //this.beginButton = beginButton;
-        /*beginButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                beginButton.setVisibility(View.INVISIBLE);
-                //  Runs the timer once every 0.35 of a second or something, idk, 500 would be once every 0.5 s
-                //  A timer can also have a delay.
-                levelTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        levelHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                levelMoveStuff();
-                            }
-                        });
-                    }
-                },0, 35);
-                //},1000, 35);
-                //},1000, 70);
-            }
-        });*/
-    //}
-
-    /*public void setGoToGameActivity(Intent goToGameActivity)
-    {
-        this.goToGameActivity = goToGameActivity;
-    }*/
-
     public void setEndButtonLogic(Button endButton)
     {
         this.endButton = endButton;
-        /*endButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                //Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
-                startActivity(goToGameActivity);
-            }
-        });*/
     }
 
 
@@ -267,8 +222,6 @@ public class GameLogic
                 });
             }
         },0, 35);
-        //},1000, 35);
-        //},1000, 70);
     }
 
     public void setLevelHighScoreKey(String thisLevelsHighScoreKey)

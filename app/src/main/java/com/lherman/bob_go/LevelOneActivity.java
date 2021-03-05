@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//  Each Level_Activity is the "Controller" part of the "Model-View-Controller" design pattern.
 public class LevelOneActivity extends AppCompatActivity
 {
     //  The grid of SquareObstacles and BlankGridSpaces
@@ -29,7 +30,7 @@ public class LevelOneActivity extends AppCompatActivity
     private Coin[] coins = new Coin[2];
     private Button beginButton;
 
-    //  NEW! CREATE THE GAMELOGIC!
+    //  The "Model" part of the "Model-View-Controller" design pattern:
     private GameLogic gameLogic;
 
     //  Android Studio's Main Method:
@@ -37,9 +38,9 @@ public class LevelOneActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        //  The "View" part of the "Model-View-Controller" design pattern:
         setContentView(R.layout.activity_level_one);
 
-        //  NEW! CREATE THE GAMELOGIC!
         gameLogic = new GameLogic();
 
         //  Screen size stuff:
@@ -48,16 +49,13 @@ public class LevelOneActivity extends AppCompatActivity
         display.getSize(size);
         screenWidth = size.x;
         screenHeight = size.y;
-
         gameLogic.setScreenWidth(screenWidth);
         gameLogic.setScreenHeight(screenHeight);
 
         //  14 timer calls per one grid square crossing, 12*14=168
         gameLogic.setxMoveSpeedScreen(screenWidth/168);
 
-        //  Stuff for the one and only Bob
-        //  REALLY DON'T FORGET TO PUT IT ABOVE THE SQUAREOBSTACLES THAT REFERENCE IT!!
-        //  The one and only Image of Bob! :D
+        //  REALLY DON'T FORGET TO PUT BOB'S STUFF ABOVE THE SQUAREOBSTACLES THAT REFERENCE IT!!
         ImageView bobImage = findViewById(R.id.bob1);
         gameLogic.setBobLogic(bobImage);
 
@@ -95,7 +93,6 @@ public class LevelOneActivity extends AppCompatActivity
         gameLogic.setHaterLogic(haters);
 
         beginButton = findViewById(R.id.startButton1);
-        //gameLogic.setBeginButtonLogic(beginButton);
         beginButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -498,7 +495,6 @@ public class LevelOneActivity extends AppCompatActivity
         return coins;
     }
 
-    //  Also separating enemy placement:
     public Hater[] placeEnemies(Hater[] haters)
     {
         GridImageThing[] thePath0 = new GridImageThing[1];
