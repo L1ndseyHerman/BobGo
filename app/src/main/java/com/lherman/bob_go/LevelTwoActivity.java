@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 public class LevelTwoActivity extends AppCompatActivity
 {
-    private GridImageThing[][] daGrid = new GridImageThing[24][6];
+    private GridImageThing[][] daGrid = new GridImageThing[27][6];
     private int screenWidth, screenHeight;
-    private Hater[] haters = new Hater[2];
+    private Hater[] haters = new Hater[4];
     private Coin[] coins = new Coin[1];
     private Button beginButton;
     private GameLogic gameLogic;
@@ -278,6 +278,27 @@ public class LevelTwoActivity extends AppCompatActivity
         daGrid[23][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_23x4));
         daGrid[23][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_23x5));
 
+        daGrid[24][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_24x0));
+        daGrid[24][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_24x1));
+        daGrid[24][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_24x2));
+        daGrid[24][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_24x3));
+        daGrid[24][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_24x4));
+        daGrid[24][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_24x5));
+
+        daGrid[25][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_25x0));
+        daGrid[25][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_25x1));
+        daGrid[25][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_25x2));
+        daGrid[25][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_25x3));
+        daGrid[25][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_25x4));
+        daGrid[25][5] = new SquareObstacle((ImageView) findViewById(R.id.grid2_25x5), screenWidth, screenHeight);
+
+        daGrid[26][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_26x0));
+        daGrid[26][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_26x1));
+        daGrid[26][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid2_26x2));
+        daGrid[26][3] = new SquareObstacle((ImageView) findViewById(R.id.grid2_26x3), screenWidth, screenHeight);
+        daGrid[26][4] = new SquareObstacle((ImageView) findViewById(R.id.grid2_26x4), screenWidth, screenHeight);
+        daGrid[26][5] = new SquareObstacle((ImageView) findViewById(R.id.grid2_26x5), screenWidth, screenHeight);
+
         return daGrid;
     }
 
@@ -325,6 +346,40 @@ public class LevelTwoActivity extends AppCompatActivity
         haters[1].setImageX(thePath1[0].getImageX());
         haters[1].setImageY(thePath1[0].getImageY());
         haters[1].setPath(thePath1, xHaterMoveSpeeds1, yHaterMoveSpeeds1);
+
+        GridImageThing[] thePath2 = new GridImageThing[2];
+        thePath2[0] = daGrid[19][4];
+        thePath2[1] = daGrid[24][4];
+
+        float[] xHaterMoveSpeeds2 = new float[2];
+        xHaterMoveSpeeds2[0] = (float)0.25;
+        xHaterMoveSpeeds2[1] = (float)0.25;
+
+        float[] yHaterMoveSpeeds2 = new float[2];
+        yHaterMoveSpeeds2[0] = 0;
+        yHaterMoveSpeeds2[1] = 0;
+
+        haters[2] = new Hater((ImageView) findViewById(R.id.hater2_2));
+        haters[2].setImageX(thePath2[0].getImageX());
+        haters[2].setImageY(thePath2[0].getImageY());
+        haters[2].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
+
+        GridImageThing[] thePath3 = new GridImageThing[2];
+        thePath3[0] = daGrid[19][5];
+        thePath3[1] = daGrid[24][5];
+
+        float[] xHaterMoveSpeeds3 = new float[2];
+        xHaterMoveSpeeds3[0] = (float)0.66;
+        xHaterMoveSpeeds3[1] = (float)0.66;
+
+        float[] yHaterMoveSpeeds3 = new float[2];
+        yHaterMoveSpeeds3[0] = 0;
+        yHaterMoveSpeeds3[1] = 0;
+
+        haters[3] = new Hater((ImageView) findViewById(R.id.hater2_3));
+        haters[3].setImageX(thePath3[0].getImageX());
+        haters[3].setImageY(thePath3[0].getImageY());
+        haters[3].setPath(thePath3, xHaterMoveSpeeds3, yHaterMoveSpeeds3);
 
         return haters;
     }
