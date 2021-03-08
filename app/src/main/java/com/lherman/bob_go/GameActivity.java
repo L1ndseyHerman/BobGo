@@ -21,7 +21,7 @@ public class GameActivity extends AppCompatActivity
     private TextView levelDescriptions[] = new TextView[4];
     private Button nextButton;
     private TextView scores[] = new TextView[4];
-    private int levelOneHighScore, levelTwoHighScore;
+    private int levelOneHighScore, levelTwoHighScore, levelThreeHighScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity
         int defaultValue = 0;
         levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
         levelTwoHighScore = sharedPrefReturn.getInt("levelTwoHighScore", defaultValue);
+        levelThreeHighScore = sharedPrefReturn.getInt("levelThreeHighScore", defaultValue);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -62,6 +63,8 @@ public class GameActivity extends AppCompatActivity
         scores[1].setText("High Score: " + levelTwoHighScore);
 
         scores[2] = findViewById(R.id.levelThreeScore);
+        scores[2].setText("High Score: " + levelThreeHighScore);
+
         scores[3] = findViewById(R.id.levelFourScore);
 
         for (int index=0; index<buttons.length; index++)
@@ -117,6 +120,16 @@ public class GameActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent startIntent = new Intent(getApplicationContext(), LevelTwoActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+        buttons[2].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), LevelThreeActivity.class);
                 startActivity(startIntent);
             }
         });
