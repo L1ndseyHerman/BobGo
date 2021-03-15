@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
             {
                 //  This is a variable of type "Intent"... idk....
                 //                                                      Tells it to go to that screen
-                Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), LevelSelectPageOneActivity.class);
                 //  Passing stuff betw screens:
                 //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
                 //  Going to that screen now:

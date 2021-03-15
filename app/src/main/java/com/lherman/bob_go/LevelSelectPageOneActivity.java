@@ -2,7 +2,6 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
@@ -13,29 +12,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class GameActivity extends AppCompatActivity
+public class LevelSelectPageOneActivity extends AppCompatActivity
 {
 
     private int screenWidth, screenHeight;
     private Button buttons[] = new Button[5];
     private TextView levelDescriptions[] = new TextView[4];
     private Button nextButton;
-    private TextView scores[] = new TextView[4];
-    private int levelOneHighScore, levelTwoHighScore, levelThreeHighScore;
+    private TextView scoreTexts[] = new TextView[4];
+    //private int levelOneHighScore, levelTwoHighScore, levelThreeHighScore;
+    private int scoreInts[] = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_level_select_page_one);
 
         //  Ok, it should be saved, so time to test it:
         //SharedPreferences sharedPrefReturn = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int defaultValue = 0;
-        levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
-        levelTwoHighScore = sharedPrefReturn.getInt("levelTwoHighScore", defaultValue);
-        levelThreeHighScore = sharedPrefReturn.getInt("levelThreeHighScore", defaultValue);
+        scoreInts[0] = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
+        scoreInts[1] = sharedPrefReturn.getInt("levelTwoHighScore", defaultValue);
+        scoreInts[2] = sharedPrefReturn.getInt("levelThreeHighScore", defaultValue);
+        scoreInts[3] = sharedPrefReturn.getInt("levelFourHighScore", defaultValue);
+
+        //levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
+        //levelTwoHighScore = sharedPrefReturn.getInt("levelTwoHighScore", defaultValue);
+        //levelThreeHighScore = sharedPrefReturn.getInt("levelThreeHighScore", defaultValue);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -56,16 +61,17 @@ public class GameActivity extends AppCompatActivity
         //  This one is in the same column as the levelDescriptions, just a Button instead of a TextView.
         nextButton = findViewById(R.id.nextButton);
 
-        scores[0] = findViewById(R.id.levelOneScore);
-        scores[0].setText("High Score: " + levelOneHighScore);
+        scoreTexts[0] = findViewById(R.id.levelOneScore);
+        scoreTexts[0].setText("High Score: " + scoreInts[0]);
 
-        scores[1] = findViewById(R.id.levelTwoScore);
-        scores[1].setText("High Score: " + levelTwoHighScore);
+        scoreTexts[1] = findViewById(R.id.levelTwoScore);
+        scoreTexts[1].setText("High Score: " + scoreInts[1]);
 
-        scores[2] = findViewById(R.id.levelThreeScore);
-        scores[2].setText("High Score: " + levelThreeHighScore);
+        scoreTexts[2] = findViewById(R.id.levelThreeScore);
+        scoreTexts[2].setText("High Score: " + scoreInts[2]);
 
-        scores[3] = findViewById(R.id.levelFourScore);
+        scoreTexts[3] = findViewById(R.id.levelFourScore);
+        scoreTexts[3].setText("High Score: " + scoreInts[3]);
 
         for (int index=0; index<buttons.length; index++)
         {
@@ -89,12 +95,12 @@ public class GameActivity extends AppCompatActivity
         nextButton.setWidth(screenWidth/6);
         nextButton.setHeight(screenHeight/11);
 
-        for (int index=0; index<scores.length; index++)
+        for (int index=0; index<scoreTexts.length; index++)
         {
-            scores[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12) + (4*screenWidth/9) + (screenWidth/12));
-            scores[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
-            scores[index].setWidth(screenWidth/6);
-            scores[index].setHeight(2*screenHeight/11);
+            scoreTexts[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12) + (4*screenWidth/9) + (screenWidth/12));
+            scoreTexts[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
+            scoreTexts[index].setWidth(screenWidth/6);
+            scoreTexts[index].setHeight(2*screenHeight/11);
         }
 
 
@@ -130,6 +136,16 @@ public class GameActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent startIntent = new Intent(getApplicationContext(), LevelThreeActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+        buttons[3].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), LevelFourActivity.class);
                 startActivity(startIntent);
             }
         });

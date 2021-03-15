@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LevelFourActivity"></activity>
+        <activity android:name=".LevelFourActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".LevelThreeActivity"
             android:screenOrientation="landscape" />
@@ -32,7 +33,7 @@
             android:name=".RandomActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".GameActivity"
+            android:name=".LevelSelectPageOneActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"
