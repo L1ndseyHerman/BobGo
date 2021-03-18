@@ -4,6 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gridbackgroundseventy"
     tools:context=".LevelSelectPageTwoActivity">
 
+    <Button
+        android:id="@+id/levelFiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Level 5"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/levelSixButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Level 6"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/levelSevenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Level 7"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/levelEightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Level 8"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/backButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0000FF"
+        android:text="Back"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/levelFiveDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tightrope"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/levelSixDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The One with the Powerups"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/levelSevenDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lasers"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/levelEightDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jump the Shark"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/levelFiveScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Score: 0" />
+
+    <TextView
+        android:id="@+id/levelSixScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Score: 0" />
+
+    <TextView
+        android:id="@+id/levelSevenScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Score: 0" />
+
+    <TextView
+        android:id="@+id/levelEightScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Score: 0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
