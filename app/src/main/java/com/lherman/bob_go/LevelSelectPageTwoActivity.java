@@ -87,6 +87,16 @@ public class LevelSelectPageTwoActivity extends AppCompatActivity
             scoreTexts[index].setHeight(2*screenHeight/11);
         }
 
+        buttons[0].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), LevelFiveActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
         //  The back button:
         buttons[4].setOnClickListener(new View.OnClickListener()
         {

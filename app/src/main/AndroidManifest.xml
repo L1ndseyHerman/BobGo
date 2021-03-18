@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".LevelFiveActivity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".LevelSelectPageTwoActivity"
             android:screenOrientation="landscape" />
         <activity
