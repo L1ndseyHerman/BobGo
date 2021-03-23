@@ -1232,6 +1232,150 @@
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
+        android:id="@+id/grid5_34x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_34x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_34x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_34x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_34x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_34x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_35x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_35x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_35x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_35x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_35x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_35x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_36x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_36x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_36x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_36x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_36x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_36x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_37x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_37x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_37x2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_37x3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_37x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/grid5_37x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
         android:id="@+id/winCircle5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -1383,6 +1527,36 @@
 
     <ImageView
         android:id="@+id/hater5_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
+    <ImageView
+        android:id="@+id/hater5_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
+    <ImageView
+        android:id="@+id/hater5_21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
+    <ImageView
+        android:id="@+id/hater5_22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
+    <ImageView
+        android:id="@+id/hater5_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
+    <ImageView
+        android:id="@+id/hater5_24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/haterseventy" />
