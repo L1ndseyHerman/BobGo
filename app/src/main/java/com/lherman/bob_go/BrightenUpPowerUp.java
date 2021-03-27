@@ -2,6 +2,11 @@ package com.lherman.bob_go;
 
 import android.widget.ImageView;
 
+
+/*
+    This power-up makes Bob so happy that he is temporarily immune to the effects of Haters
+    (can go right through Haters without getting a Game Over.)
+ */
 public class BrightenUpPowerUp
 {
     private ImageView powerUpImage, bobImage;

@@ -46,8 +46,11 @@ public class GameLogic
     private GridImageThing[][] daGrid;
     private Coin[] coins;
     private Hater[] haters;
+    //  New!
+    private BrightenUpPowerUp[] powerUps;
+    private boolean containsPowerUps = false;
 
-    //  New! Save the key for that level's high score that gets passed in:
+    //  Save the key for that level's high score that gets passed in:
     private String thisLevelsHighScoreKey;
     //  Oh, and need to pass in the shared preferences from an actual Activity:
     private SharedPreferences theSavedPreference, thePreferenceImSaving;
@@ -172,6 +175,21 @@ public class GameLogic
     {
         theScore = 0;
         this.scoreText = scoreText;
+    }
+
+    public void setPowerUpLogic(BrightenUpPowerUp[] powerUps)
+    {
+        this.powerUps = powerUps;
+        for (int index=0; index<powerUps.length; index++)
+        {
+            powerUps[index].setImageHeight(screenHeight/7);
+            powerUps[index].setImageWidth(screenWidth/12);
+            powerUps[index].setXMoveSpeedScreen(xMoveSpeedScreen);
+            powerUps[index].setBob(bob);
+            powerUps[index].setBobImage(bobImage);
+
+            containsPowerUps = true;
+        }
     }
 
     public void setCoinLogic(Coin[] coins)
@@ -308,6 +326,19 @@ public class GameLogic
 
         }
 
+        //  ONLY CHECK FOR POWERUPS IF THEY EXIST IN THE LEVEL!!
+        if (containsPowerUps)
+        {
+            for (int index = 0; index < powerUps.length; index++) 
+            {
+                if (powerUps[index].isColliding() && powerUps[index].IsNotInvisible())
+                {
+                    powerUps[index].setInvisible();
+                    //  Then start the powerUp graphics, lack of Hater collision, etc.
+                }
+            }
+        }
+
         //  Now check if Bob collided w a Coin:
         for (int index=0; index<coins.length; index++)
         {
@@ -361,6 +392,14 @@ public class GameLogic
 
             winCircle.move();
 
+            if (containsPowerUps)
+            {
+                for (int index=0; index<powerUps.length; index++)
+                {
+                    powerUps[index].move();
+                }
+            }
+
             for (int index=0; index<coins.length; index++)
             {
                 coins[index].move();
@@ -390,6 +429,14 @@ public class GameLogic
             }
 
             winCircle.move(bob.getXLittleAmount());
+
+            if (containsPowerUps)
+            {
+                for (int index=0; index<powerUps.length; index++)
+                {
+                    powerUps[index].move(bob.getXLittleAmount());
+                }
+            }
 
             for (int index=0; index<coins.length; index++)
             {
