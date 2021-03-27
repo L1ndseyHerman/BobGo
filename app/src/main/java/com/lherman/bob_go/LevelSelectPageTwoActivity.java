@@ -97,6 +97,16 @@ public class LevelSelectPageTwoActivity extends AppCompatActivity
             }
         });
 
+        buttons[1].setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent startIntent = new Intent(getApplicationContext(), LevelSixActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
         //  The back button:
         buttons[4].setOnClickListener(new View.OnClickListener()
         {
