@@ -17,12 +17,14 @@ import android.widget.TextView;
 public class LevelSixActivity extends AppCompatActivity
 {
 
-    private GridImageThing[][] daGrid = new GridImageThing[5][6];
+    private GridImageThing[][] daGrid = new GridImageThing[6][6];
     private int screenWidth, screenHeight;
     private Hater[] haters = new Hater[1];
     private Coin[] coins = new Coin[1];
     private Button beginButton;
     private GameLogic gameLogic;
+
+    private BrightenUpPowerUp[] powerUps = new BrightenUpPowerUp[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,6 +75,11 @@ public class LevelSixActivity extends AppCompatActivity
 
         coins = placeCoins(coins);
         gameLogic.setCoinLogic(coins);
+
+
+        powerUps = placePowerUps(powerUps);
+        gameLogic.setPowerUpLogic(powerUps);
+
 
         haters = placeEnemies(haters);
         gameLogic.setHaterLogic(haters);
@@ -146,6 +153,13 @@ public class LevelSixActivity extends AppCompatActivity
         daGrid[4][4] = new SquareObstacle((ImageView) findViewById(R.id.grid6_4x4), screenWidth, screenHeight);
         daGrid[4][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_4x5));
 
+        daGrid[5][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_5x0));
+        daGrid[5][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_5x1));
+        daGrid[5][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_5x2));
+        daGrid[5][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_5x3));
+        daGrid[5][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_5x4));
+        daGrid[5][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_5x5));
+
         return daGrid;
     }
 
@@ -157,6 +171,17 @@ public class LevelSixActivity extends AppCompatActivity
 
         return coins;
     }
+
+
+    public BrightenUpPowerUp[] placePowerUps(BrightenUpPowerUp[] powerUps)
+    {
+        powerUps[0] = new BrightenUpPowerUp((ImageView) findViewById(R.id.powerUp6_0));
+        powerUps[0].setImageX(daGrid[4][5].getImageX());
+        powerUps[0].setImageY(daGrid[4][5].getImageY());
+
+        return powerUps;
+    }
+
 
     public Hater[] placeEnemies(Hater[] haters)
     {

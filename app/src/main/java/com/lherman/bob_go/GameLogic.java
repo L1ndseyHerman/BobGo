@@ -329,7 +329,7 @@ public class GameLogic
         //  ONLY CHECK FOR POWERUPS IF THEY EXIST IN THE LEVEL!!
         if (containsPowerUps)
         {
-            for (int index = 0; index < powerUps.length; index++) 
+            for (int index = 0; index < powerUps.length; index++)
             {
                 if (powerUps[index].isColliding() && powerUps[index].IsNotInvisible())
                 {
