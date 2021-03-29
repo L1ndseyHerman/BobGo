@@ -25,8 +25,8 @@ public class Bob
         IsOnTopOfSquare = false;
         IsMovingRightLittle = false;
 
-        IsNotBrightenedUp = true;
-        currentBobImage = bobImage;
+        //IsNotBrightenedUp = true;
+        //currentBobImage = bobImage;
     }
 
     public void startJumpMaybe()
@@ -34,7 +34,8 @@ public class Bob
         if ((!IsJumping) && (!IsFalling))
         {
             IsJumping = true;
-            startHeight = currentBobImage.getY();
+            //startHeight = currentBobImage.getY();
+            startHeight = bobImage.getY();
 
             /*if (IsNotBrightenedUp)
             {
@@ -177,14 +178,14 @@ public class Bob
         this.screenHeight = screenHeight;
     }
 
-    public void setBrightenedUpBobImage(ImageView brightenedUpBobImage)
+    /*public void setBrightenedUpBobImage(ImageView brightenedUpBobImage)
     {
         this.brightenedUpBobImage = brightenedUpBobImage;
     }
-    /*public ImageView getBrightenedUpBobImage()
+    public ImageView getBrightenedUpBobImage()
     {
         return brightenedUpBobImage;
-    }*/
+    }
 
     public void setIsNotBrightenedUp(boolean IsNotBrightenedUp)
     {
@@ -194,6 +195,15 @@ public class Bob
     public void setCurrentBobImage(ImageView currentBobImage)
     {
         this.currentBobImage = currentBobImage;
+    }*/
+    public void setBobImage(ImageView bobImage)
+    {
+        this.bobImage = bobImage;
+    }
+    //  This gets Bob's CURRENT image, which may be the sparkly powered-up one, or the regular one.
+    public ImageView getBobImage()
+    {
+        return bobImage;
     }
 
 }

@@ -196,7 +196,7 @@ public class GameLogic
             powerUps[index].setBobImage(bobImage);
 
             containsPowerUps = true;
-            bob.setBrightenedUpBobImage(brightenedUpBobImage);
+            //bob.setBrightenedUpBobImage(brightenedUpBobImage);
         }
     }
 
@@ -347,7 +347,7 @@ public class GameLogic
                     //  Makes Bob's image switch w sparkly image:
                     bobImage.setVisibility(ImageView.INVISIBLE);
                     //bobImage.setImageDrawable("/brightenedupbobseventy");
-                    bob.setIsNotBrightenedUp(false);
+                    //bob.setIsNotBrightenedUp(false);
                     brightenedUpBobImage.setVisibility(ImageView.VISIBLE);
 
                     brightenedUpBobImage.setX(bobImage.getX());
@@ -357,7 +357,10 @@ public class GameLogic
                     //brightenedUpBobImage.getLayoutParams().width = screenWidth/12;
                     //brightenedUpBobImage.getLayoutParams().height = screenHeight/7;
 
-                    bob.setCurrentBobImage(brightenedUpBobImage);
+                    //  Might be passing in a second image, do a boolean instead? Or pass in bob.getBrightenedUpBobImage()?
+                    //bob.setCurrentBobImage(brightenedUpBobImage);
+                    //bob.setCurrentBobImage(bob.getBrightenedUpBobImage());
+                    bob.setBobImage(brightenedUpBobImage);
 
                     //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(
                     for (int index2=0; index2<daGrid.length; index2++)
@@ -450,11 +453,14 @@ public class GameLogic
                 coins[index].move();
             }
 
+            //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //  Declare that Bob moved one GridImageThing:                                 // Doesn't matter what the y is.
-            if (bobImage.getX()+bobImage.getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
+            //if (bobImage.getX()+bobImage.getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
+            if (bob.getBobImage().getX()+bob.getBobImage().getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
             {
                 bob.setDaGridX(bob.getDaGridX()+1);
             }
+            //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
         //  Move the grid somewhat, but less than the usual x-amount.
@@ -491,16 +497,19 @@ public class GameLogic
             bob.setMovingRightLittle(false);
         }
 
+        //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
         if (bob.IsJumping())
         {
-            bobImage.setY(bobImage.getY() - bob.getJumpSpeed());
+            //bobImage.setY(bobImage.getY() - bob.getJumpSpeed());
+            bob.getBobImage().setY(bob.getBobImage().getY() - bob.getJumpSpeed());
         }
         //  This is for if Bob needs to jump less than his jump speed, but more than 0:
         else if (bob.IsJumpingLittle())
         {
             //  LittleAmount is positive here (2dp on tablet), so subtract it to make Bob jump up.
-            bobImage.setY(bobImage.getY()-bob.getYLittleAmount());
+            //bobImage.setY(bobImage.getY()-bob.getYLittleAmount());
+            bob.getBobImage().setY(bob.getBobImage().getY()-bob.getYLittleAmount());
             //  Should only happen one time
             bob.setJumpingLittle(false);
             bob.setJumping(false);
@@ -508,20 +517,25 @@ public class GameLogic
         }
         else if (bob.IsFallingLittle())
         {
-            bobImage.setY(bobImage.getY()+bob.getYLittleAmount());
+            //bobImage.setY(bobImage.getY()+bob.getYLittleAmount());
+            bob.getBobImage().setY(bob.getBobImage().getY()+bob.getYLittleAmount());
             //  Should only happen one time
             bob.setFallingLittle(false);
             bob.setFalling(false);
-            if (bobImage.getY() < bob.getLowestY())
+            //if (bobImage.getY() < bob.getLowestY())
+            if (bob.getBobImage().getY() < bob.getLowestY())
             {
                 bob.setOnTopOfSquare(true);
             }
         }
         else if (bob.IsFalling())
         {
-            bobImage.setY(bobImage.getY() + bob.getJumpSpeed());
+            //bobImage.setY(bobImage.getY() + bob.getJumpSpeed());
+            bob.getBobImage().setY(bob.getBobImage().getY() + bob.getJumpSpeed());
         }
     }
+
+    //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
     public void looseTimerStuff()
     {
