@@ -46,9 +46,11 @@ public class GameLogic
     private GridImageThing[][] daGrid;
     private Coin[] coins;
     private Hater[] haters;
+
     //  New!
     private BrightenUpPowerUp[] powerUps;
     private boolean containsPowerUps = false;
+    private ImageView brightenedUpBobImage;
 
     //  Save the key for that level's high score that gets passed in:
     private String thisLevelsHighScoreKey;
@@ -177,9 +179,14 @@ public class GameLogic
         this.scoreText = scoreText;
     }
 
-    public void setPowerUpLogic(BrightenUpPowerUp[] powerUps)
+    public void setPowerUpLogic(BrightenUpPowerUp[] powerUps, ImageView brightenedUpBobImage)
     {
         this.powerUps = powerUps;
+        this.brightenedUpBobImage = brightenedUpBobImage;
+
+        brightenedUpBobImage.getLayoutParams().width = screenWidth/12;
+        brightenedUpBobImage.getLayoutParams().height = screenHeight/7;
+
         for (int index=0; index<powerUps.length; index++)
         {
             powerUps[index].setImageHeight(screenHeight/7);
@@ -189,6 +196,7 @@ public class GameLogic
             powerUps[index].setBobImage(bobImage);
 
             containsPowerUps = true;
+            bob.setBrightenedUpBobImage(brightenedUpBobImage);
         }
     }
 
@@ -335,6 +343,43 @@ public class GameLogic
                 {
                     powerUps[index].setInvisible();
                     //  Then start the powerUp graphics, lack of Hater collision, etc.
+
+                    //  Makes Bob's image switch w sparkly image:
+                    bobImage.setVisibility(ImageView.INVISIBLE);
+                    //bobImage.setImageDrawable("/brightenedupbobseventy");
+                    bob.setIsNotBrightenedUp(false);
+                    brightenedUpBobImage.setVisibility(ImageView.VISIBLE);
+
+                    brightenedUpBobImage.setX(bobImage.getX());
+                    brightenedUpBobImage.setY(bobImage.getY());
+                    /*brightenedUpBobImage.getLayoutParams().width = bobImage.getLayoutParams().width;
+                    brightenedUpBobImage.getLayoutParams().height = bobImage.getLayoutParams().height;*/
+                    //brightenedUpBobImage.getLayoutParams().width = screenWidth/12;
+                    //brightenedUpBobImage.getLayoutParams().height = screenHeight/7;
+
+                    bob.setCurrentBobImage(brightenedUpBobImage);
+
+                    //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(
+                    for (int index2=0; index2<daGrid.length; index2++)
+                    {
+                        for (int index3=0; index3<daGrid[index].length; index3++)
+                        {
+                            daGrid[index2][index3].setBobImage(brightenedUpBobImage);
+                        }
+                    }
+
+                    for (int index2=0; index2<haters.length; index2++)
+                    {
+                        haters[index2].setBobImage(brightenedUpBobImage);
+                    }
+
+                    for (int index2=0; index2<coins.length; index2++)
+                    {
+                        coins[index2].setBobImage(brightenedUpBobImage);
+                    }
+
+                    winCircle.setBobImage(brightenedUpBobImage);
+
                 }
             }
         }

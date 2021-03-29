@@ -7,9 +7,9 @@ public class Bob
 {
 
     //  The ImageView of Bob from activity_level_one.xml, or whatever other levels use.
-    private ImageView bobImage;
+    private ImageView bobImage, brightenedUpBobImage, currentBobImage;
     //  These will change in the SquareObstacle class when Bob lands on squares and things.
-    private boolean IsJumping, IsJumpingLittle, IsFalling, IsFallingLittle, IsOnTopOfSquare, IsMovingRightLittle;
+    private boolean IsJumping, IsJumpingLittle, IsFalling, IsFallingLittle, IsOnTopOfSquare, IsMovingRightLittle, IsNotBrightenedUp;
     //  These should always stay the same after they get set the first time.
     private int yJumpSpeed, screenWidth, screenHeight, jumpHeight, lowestY, daGridX;
     //  startHeight changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
@@ -24,15 +24,27 @@ public class Bob
         IsFalling = false;
         IsOnTopOfSquare = false;
         IsMovingRightLittle = false;
-    }
 
+        IsNotBrightenedUp = true;
+        currentBobImage = bobImage;
+    }
 
     public void startJumpMaybe()
     {
         if ((!IsJumping) && (!IsFalling))
         {
             IsJumping = true;
-            startHeight = bobImage.getY();
+            startHeight = currentBobImage.getY();
+
+            /*if (IsNotBrightenedUp)
+            {
+                startHeight = bobImage.getY();
+            }
+            else
+            {
+                startHeight = brightenedUpBobImage.getY();
+            }*/
+
         }
     }
 
@@ -163,6 +175,25 @@ public class Bob
     public void setScreenHeight(int screenHeight)
     {
         this.screenHeight = screenHeight;
+    }
+
+    public void setBrightenedUpBobImage(ImageView brightenedUpBobImage)
+    {
+        this.brightenedUpBobImage = brightenedUpBobImage;
+    }
+    /*public ImageView getBrightenedUpBobImage()
+    {
+        return brightenedUpBobImage;
+    }*/
+
+    public void setIsNotBrightenedUp(boolean IsNotBrightenedUp)
+    {
+        this.IsNotBrightenedUp = IsNotBrightenedUp;
+    }
+
+    public void setCurrentBobImage(ImageView currentBobImage)
+    {
+        this.currentBobImage = currentBobImage;
     }
 
 }
