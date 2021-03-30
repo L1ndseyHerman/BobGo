@@ -10,6 +10,7 @@ public class Bob
     private ImageView bobImage, brightenedUpBobImage, currentBobImage;
     //  These will change in the SquareObstacle class when Bob lands on squares and things.
     private boolean IsJumping, IsJumpingLittle, IsFalling, IsFallingLittle, IsOnTopOfSquare, IsMovingRightLittle, IsNotBrightenedUp;
+    private boolean isPoweredUp;
     //  These should always stay the same after they get set the first time.
     private int yJumpSpeed, screenWidth, screenHeight, jumpHeight, lowestY, daGridX;
     //  startHeight changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
@@ -204,6 +205,15 @@ public class Bob
     public ImageView getBobImage()
     {
         return bobImage;
+    }
+
+    public void setIsPoweredUp(boolean isPoweredUp)
+    {
+        this.isPoweredUp = isPoweredUp;
+    }
+    public boolean getIsPoweredUp()
+    {
+        return isPoweredUp;
     }
 
 }

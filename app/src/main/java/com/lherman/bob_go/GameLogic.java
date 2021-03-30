@@ -23,6 +23,11 @@ public class GameLogic
     private Handler levelHandler = new Handler();
     //  Moves the level each time it gets called:
     private Timer levelTimer = new Timer();
+
+    private int powerUpTimerCounter = 0;
+    //  Makes more sense in Bob class.
+    //private boolean isPoweredUp;
+
     //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
     private int screenWidth, screenHeight;
     private Bob bob;
@@ -101,6 +106,8 @@ public class GameLogic
         bob.setJumpSpeed(screenHeight/49);
         //  How high Bob will jump before he starts falling (2.5 Square Obstacles):
         bob.setJumpHeight(5*screenHeight/14);
+
+        bob.setIsPoweredUp(false);
     }
 
     public void setEndBobImage0(ImageView endBobImage0)
@@ -267,6 +274,49 @@ public class GameLogic
 
     public void levelMoveStuff()
     {
+        //  Only do the powerUp counter if Bob is poweredUp
+        if (bob.getIsPoweredUp())
+        {
+            powerUpTimerCounter++;
+            if (powerUpTimerCounter == 50)
+            {
+                //  End the powerUp and switch back to Bob's regular image:
+
+                brightenedUpBobImage.setVisibility(ImageView.INVISIBLE);
+                bob.setIsPoweredUp(false);
+                bobImage.setVisibility(ImageView.VISIBLE);
+
+                bobImage.setX(brightenedUpBobImage.getX());
+                bobImage.setY(brightenedUpBobImage.getY());
+
+                bob.setBobImage(bobImage);
+
+                //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(
+                for (int index2=0; index2<daGrid.length; index2++)
+                {
+                    for (int index3=0; index3<daGrid[index2].length; index3++)
+                    {
+                        daGrid[index2][index3].setBobImage(bobImage);
+                    }
+                }
+
+                for (int index2=0; index2<haters.length; index2++)
+                {
+                    haters[index2].setBobImage(bobImage);
+                }
+
+                for (int index2=0; index2<coins.length; index2++)
+                {
+                    coins[index2].setBobImage(bobImage);
+                }
+
+                winCircle.setBobImage(bobImage);
+
+                powerUpTimerCounter = 0;
+
+            }
+        }
+
         //  Checking to see if Bob collided with an enemy first to get a Game Over right away:
         for (int index=0; index<haters.length; index++)
         {
@@ -348,6 +398,7 @@ public class GameLogic
                     bobImage.setVisibility(ImageView.INVISIBLE);
                     //bobImage.setImageDrawable("/brightenedupbobseventy");
                     //bob.setIsNotBrightenedUp(false);
+                    bob.setIsPoweredUp(true);
                     brightenedUpBobImage.setVisibility(ImageView.VISIBLE);
 
                     brightenedUpBobImage.setX(bobImage.getX());
@@ -365,7 +416,7 @@ public class GameLogic
                     //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(
                     for (int index2=0; index2<daGrid.length; index2++)
                     {
-                        for (int index3=0; index3<daGrid[index].length; index3++)
+                        for (int index3=0; index3<daGrid[index2].length; index3++)
                         {
                             daGrid[index2][index3].setBobImage(brightenedUpBobImage);
                         }
