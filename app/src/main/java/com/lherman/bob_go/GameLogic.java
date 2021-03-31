@@ -25,6 +25,7 @@ public class GameLogic
     private Timer levelTimer = new Timer();
 
     private int powerUpTimerCounter = 0;
+    private int powerUpSquaresUpTopLeft = 11;
     //  Makes more sense in Bob class.
     //private boolean isPoweredUp;
 
@@ -58,7 +59,7 @@ public class GameLogic
     private ImageView brightenedUpBobImage;
 
     //private ImageView powerUpTopImage;
-    //private ImageView[] powerUpBarsUpTop;
+    private ImageView[] powerUpBarsUpTop;
 
     //  Save the key for that level's high score that gets passed in:
     private String thisLevelsHighScoreKey;
@@ -189,10 +190,11 @@ public class GameLogic
         this.scoreText = scoreText;
     }
 
-    public void setPowerUpLogic(BrightenUpPowerUp[] powerUps, ImageView brightenedUpBobImage)
+    public void setPowerUpLogic(BrightenUpPowerUp[] powerUps, ImageView brightenedUpBobImage, ImageView[] powerUpBarsUpTop)
     {
         this.powerUps = powerUps;
         this.brightenedUpBobImage = brightenedUpBobImage;
+        this.powerUpBarsUpTop = powerUpBarsUpTop;
 
         brightenedUpBobImage.getLayoutParams().width = screenWidth/12;
         brightenedUpBobImage.getLayoutParams().height = screenHeight/7;
@@ -283,9 +285,10 @@ public class GameLogic
             powerUpTimerCounter++;
 
             //  Get rid of one bar in the power-up thing at the top for every GridImageThing that Bob did/could pass.
-            if (powerUpTimerCounter % 12 == 0)
+            if (powerUpTimerCounter % 14 == 0)
             {
-
+                powerUpBarsUpTop[powerUpSquaresUpTopLeft].setVisibility(ImageView.INVISIBLE);
+                powerUpSquaresUpTopLeft--;
             }
 
             //  Want it to be the time it takes to cross 12 GridImageThings, but keep counting even if Bob is stopped at a
@@ -299,6 +302,9 @@ public class GameLogic
             if (powerUpTimerCounter == 168)
             {
                 //  End the powerUp and switch back to Bob's regular image:
+
+                //  Also reset this for another power-up in the array.
+                powerUpSquaresUpTopLeft = 11;
 
                 brightenedUpBobImage.setVisibility(ImageView.INVISIBLE);
                 bob.setIsPoweredUp(false);
@@ -333,6 +339,7 @@ public class GameLogic
                 powerUpTimerCounter = 0;
 
             }
+
         }
 
         //  Only check for Hater collision if no BrightenUpPowerUp is active!
@@ -414,7 +421,12 @@ public class GameLogic
                 if (powerUps[index].isColliding() && powerUps[index].IsNotInvisible())
                 {
                     powerUps[index].setInvisible();
-                    //  Then start the powerUp graphics, lack of Hater collision, etc.
+
+                    //  Make the power-up countdown stuff up top visible:
+                    for (int index2=0; index2<powerUpBarsUpTop.length; index2++)
+                    {
+                        powerUpBarsUpTop[index2].setVisibility(ImageView.VISIBLE);
+                    }
 
                     //  Makes Bob's image switch w sparkly image:
                     bobImage.setVisibility(ImageView.INVISIBLE);

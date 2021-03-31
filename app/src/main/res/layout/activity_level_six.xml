@@ -768,6 +768,7 @@
         android:id="@+id/brightenedUpTopSun6"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -779,6 +780,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopSun6"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -789,6 +791,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_0"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -799,6 +802,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_1"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -809,6 +813,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -819,6 +824,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -829,6 +835,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_4"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -839,6 +846,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_5"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -849,6 +857,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_6"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -859,6 +868,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_7"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -869,6 +879,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_8"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />
@@ -879,6 +890,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/brightenedUpTopBar6_9"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/squareseventy" />

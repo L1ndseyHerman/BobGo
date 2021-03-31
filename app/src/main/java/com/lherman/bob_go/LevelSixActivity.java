@@ -26,7 +26,8 @@ public class LevelSixActivity extends AppCompatActivity
 
     private BrightenUpPowerUp[] powerUps = new BrightenUpPowerUp[1];
     //private ImageView powerUpTopImage;
-    //private ImageView[] powerUpBarsUpTop = new ImageView[11];
+    //  The Sun will be the first one actually:
+    private ImageView[] powerUpBarsUpTop = new ImageView[12];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -81,7 +82,22 @@ public class LevelSixActivity extends AppCompatActivity
 
         powerUps = placePowerUps(powerUps);
         ImageView brightenedUpBobImage = findViewById(R.id.brightenedUpBob6);
-        gameLogic.setPowerUpLogic(powerUps, brightenedUpBobImage);
+
+        //  Sun is included, bars move down by 1:
+        powerUpBarsUpTop[0] = findViewById(R.id.brightenedUpTopSun6);
+        powerUpBarsUpTop[1] = findViewById(R.id.brightenedUpTopBar6_0);
+        powerUpBarsUpTop[2] = findViewById(R.id.brightenedUpTopBar6_1);
+        powerUpBarsUpTop[3] = findViewById(R.id.brightenedUpTopBar6_2);
+        powerUpBarsUpTop[4] = findViewById(R.id.brightenedUpTopBar6_3);
+        powerUpBarsUpTop[5] = findViewById(R.id.brightenedUpTopBar6_4);
+        powerUpBarsUpTop[6] = findViewById(R.id.brightenedUpTopBar6_5);
+        powerUpBarsUpTop[7] = findViewById(R.id.brightenedUpTopBar6_6);
+        powerUpBarsUpTop[8] = findViewById(R.id.brightenedUpTopBar6_7);
+        powerUpBarsUpTop[9] = findViewById(R.id.brightenedUpTopBar6_8);
+        powerUpBarsUpTop[10] = findViewById(R.id.brightenedUpTopBar6_9);
+        powerUpBarsUpTop[11] = findViewById(R.id.brightenedUpTopBar6_10);
+
+        gameLogic.setPowerUpLogic(powerUps, brightenedUpBobImage, powerUpBarsUpTop);
 
 
         haters = placeEnemies(haters);
