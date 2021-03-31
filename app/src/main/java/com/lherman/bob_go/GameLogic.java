@@ -26,8 +26,6 @@ public class GameLogic
 
     private int powerUpTimerCounter = 0;
     private int powerUpSquaresUpTopLeft = 11;
-    //  Makes more sense in Bob class.
-    //private boolean isPoweredUp;
 
     //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
     private int screenWidth, screenHeight;
@@ -58,7 +56,6 @@ public class GameLogic
     private boolean containsPowerUps = false;
     private ImageView brightenedUpBobImage;
 
-    //private ImageView powerUpTopImage;
     private ImageView[] powerUpBarsUpTop;
 
     //  Save the key for that level's high score that gets passed in:
@@ -208,7 +205,6 @@ public class GameLogic
             powerUps[index].setBobImage(bobImage);
 
             containsPowerUps = true;
-            //bob.setBrightenedUpBobImage(brightenedUpBobImage);
         }
     }
 
@@ -293,19 +289,14 @@ public class GameLogic
 
             //  Want it to be the time it takes to cross 12 GridImageThings, but keep counting even if Bob is stopped at a
             //  Square Obstacle!
-            //if (powerUpTimerCounter == 50)
-            //if (powerUpTimerCounter >= screenWidth/14)
-            //if (powerUpTimerCounter >= screenWidth/12)
-            //if (powerUpTimerCounter >= ((brightenedUpBobImage.getLayoutParams().width) * 12))
 
             //  This number comes from xMoveSpeedScreen. screenWidth / 12 Squares / 14 timer calls per square = 168.
             if (powerUpTimerCounter == 168)
             {
-                //  End the powerUp and switch back to Bob's regular image:
-
-                //  Also reset this for another power-up in the array.
+                //  Reset this for another power-up in the array.
                 powerUpSquaresUpTopLeft = 11;
 
+                //  End the powerUp and switch back to Bob's regular image:
                 brightenedUpBobImage.setVisibility(ImageView.INVISIBLE);
                 bob.setIsPoweredUp(false);
                 bobImage.setVisibility(ImageView.VISIBLE);
@@ -430,21 +421,12 @@ public class GameLogic
 
                     //  Makes Bob's image switch w sparkly image:
                     bobImage.setVisibility(ImageView.INVISIBLE);
-                    //bobImage.setImageDrawable("/brightenedupbobseventy");
-                    //bob.setIsNotBrightenedUp(false);
                     bob.setIsPoweredUp(true);
                     brightenedUpBobImage.setVisibility(ImageView.VISIBLE);
 
                     brightenedUpBobImage.setX(bobImage.getX());
                     brightenedUpBobImage.setY(bobImage.getY());
-                    /*brightenedUpBobImage.getLayoutParams().width = bobImage.getLayoutParams().width;
-                    brightenedUpBobImage.getLayoutParams().height = bobImage.getLayoutParams().height;*/
-                    //brightenedUpBobImage.getLayoutParams().width = screenWidth/12;
-                    //brightenedUpBobImage.getLayoutParams().height = screenHeight/7;
 
-                    //  Might be passing in a second image, do a boolean instead? Or pass in bob.getBrightenedUpBobImage()?
-                    //bob.setCurrentBobImage(brightenedUpBobImage);
-                    //bob.setCurrentBobImage(bob.getBrightenedUpBobImage());
                     bob.setBobImage(brightenedUpBobImage);
 
                     //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(

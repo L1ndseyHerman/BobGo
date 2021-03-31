@@ -25,7 +25,6 @@ public class LevelSixActivity extends AppCompatActivity
     private GameLogic gameLogic;
 
     private BrightenUpPowerUp[] powerUps = new BrightenUpPowerUp[1];
-    //private ImageView powerUpTopImage;
     //  The Sun will be the first one actually:
     private ImageView[] powerUpBarsUpTop = new ImageView[12];
 

@@ -7,7 +7,7 @@ public class Bob
 {
 
     //  The ImageView of Bob from activity_level_one.xml, or whatever other levels use.
-    private ImageView bobImage, brightenedUpBobImage, currentBobImage;
+    private ImageView bobImage;
     //  These will change in the SquareObstacle class when Bob lands on squares and things.
     private boolean IsJumping, IsJumpingLittle, IsFalling, IsFallingLittle, IsOnTopOfSquare, IsMovingRightLittle, IsNotBrightenedUp;
     private boolean isPoweredUp;
@@ -25,9 +25,6 @@ public class Bob
         IsFalling = false;
         IsOnTopOfSquare = false;
         IsMovingRightLittle = false;
-
-        //IsNotBrightenedUp = true;
-        //currentBobImage = bobImage;
     }
 
     public void startJumpMaybe()
@@ -35,18 +32,7 @@ public class Bob
         if ((!IsJumping) && (!IsFalling))
         {
             IsJumping = true;
-            //startHeight = currentBobImage.getY();
             startHeight = bobImage.getY();
-
-            /*if (IsNotBrightenedUp)
-            {
-                startHeight = bobImage.getY();
-            }
-            else
-            {
-                startHeight = brightenedUpBobImage.getY();
-            }*/
-
         }
     }
 
@@ -179,24 +165,6 @@ public class Bob
         this.screenHeight = screenHeight;
     }
 
-    /*public void setBrightenedUpBobImage(ImageView brightenedUpBobImage)
-    {
-        this.brightenedUpBobImage = brightenedUpBobImage;
-    }
-    public ImageView getBrightenedUpBobImage()
-    {
-        return brightenedUpBobImage;
-    }
-
-    public void setIsNotBrightenedUp(boolean IsNotBrightenedUp)
-    {
-        this.IsNotBrightenedUp = IsNotBrightenedUp;
-    }
-
-    public void setCurrentBobImage(ImageView currentBobImage)
-    {
-        this.currentBobImage = currentBobImage;
-    }*/
     public void setBobImage(ImageView bobImage)
     {
         this.bobImage = bobImage;
