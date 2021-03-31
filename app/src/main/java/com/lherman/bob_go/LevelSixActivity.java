@@ -19,7 +19,7 @@ public class LevelSixActivity extends AppCompatActivity
 
     private GridImageThing[][] daGrid = new GridImageThing[20][6];
     private int screenWidth, screenHeight;
-    private Hater[] haters = new Hater[1];
+    private Hater[] haters = new Hater[8];
     private Coin[] coins = new Coin[1];
     private Button beginButton;
     private GameLogic gameLogic;
@@ -223,7 +223,7 @@ public class LevelSixActivity extends AppCompatActivity
         daGrid[12][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_12x0));
         daGrid[12][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_12x1));
         daGrid[12][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_12x2));
-        daGrid[12][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_12x3));
+        daGrid[12][3] = new SquareObstacle((ImageView) findViewById(R.id.grid6_12x3), screenWidth, screenHeight);
         daGrid[12][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_12x4));
         daGrid[12][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_12x5));
 
@@ -238,7 +238,7 @@ public class LevelSixActivity extends AppCompatActivity
         daGrid[14][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_14x1));
         daGrid[14][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_14x2));
         daGrid[14][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_14x3));
-        daGrid[14][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_14x4));
+        daGrid[14][4] = new SquareObstacle((ImageView) findViewById(R.id.grid6_14x4), screenWidth, screenHeight);
         daGrid[14][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_14x5));
 
         daGrid[15][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid6_15x0));
@@ -282,8 +282,8 @@ public class LevelSixActivity extends AppCompatActivity
     public Coin[] placeCoins(Coin[] coins)
     {
         coins[0] = new Coin((ImageView) findViewById(R.id.coin6_0));
-        coins[0].setImageX(daGrid[0][0].getImageX());
-        coins[0].setImageY(daGrid[0][0].getImageY());
+        coins[0].setImageX(daGrid[16][1].getImageX());
+        coins[0].setImageY(daGrid[16][1].getImageY());
 
         return coins;
     }
@@ -302,7 +302,7 @@ public class LevelSixActivity extends AppCompatActivity
     public Hater[] placeEnemies(Hater[] haters)
     {
         GridImageThing[] thePath0 = new GridImageThing[1];
-        thePath0[0] = daGrid[6][5];
+        thePath0[0] = daGrid[6][0];
 
         float[] xHaterMoveSpeeds0 = new float[1];
         xHaterMoveSpeeds0[0] = 0;
@@ -314,6 +314,104 @@ public class LevelSixActivity extends AppCompatActivity
         haters[0].setImageX(thePath0[0].getImageX());
         haters[0].setImageY(thePath0[0].getImageY());
         haters[0].setPath(thePath0, xHaterMoveSpeeds0, yHaterMoveSpeeds0);
+
+        GridImageThing[] thePath1 = new GridImageThing[1];
+        thePath1[0] = daGrid[6][1];
+
+        float[] xHaterMoveSpeeds1 = new float[1];
+        xHaterMoveSpeeds1[0] = 0;
+
+        float[] yHaterMoveSpeeds1 = new float[1];
+        yHaterMoveSpeeds1[0] = 0;
+
+        haters[1] = new Hater((ImageView) findViewById(R.id.hater6_1));
+        haters[1].setImageX(thePath1[0].getImageX());
+        haters[1].setImageY(thePath1[0].getImageY());
+        haters[1].setPath(thePath1, xHaterMoveSpeeds1, yHaterMoveSpeeds1);
+
+        GridImageThing[] thePath2 = new GridImageThing[1];
+        thePath2[0] = daGrid[6][2];
+
+        float[] xHaterMoveSpeeds2 = new float[1];
+        xHaterMoveSpeeds2[0] = 0;
+
+        float[] yHaterMoveSpeeds2 = new float[1];
+        yHaterMoveSpeeds2[0] = 0;
+
+        haters[2] = new Hater((ImageView) findViewById(R.id.hater6_2));
+        haters[2].setImageX(thePath2[0].getImageX());
+        haters[2].setImageY(thePath2[0].getImageY());
+        haters[2].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
+
+        GridImageThing[] thePath3 = new GridImageThing[1];
+        thePath3[0] = daGrid[6][3];
+
+        float[] xHaterMoveSpeeds3 = new float[1];
+        xHaterMoveSpeeds3[0] = 0;
+
+        float[] yHaterMoveSpeeds3 = new float[1];
+        yHaterMoveSpeeds3[0] = 0;
+
+        haters[3] = new Hater((ImageView) findViewById(R.id.hater6_3));
+        haters[3].setImageX(thePath3[0].getImageX());
+        haters[3].setImageY(thePath3[0].getImageY());
+        haters[3].setPath(thePath3, xHaterMoveSpeeds3, yHaterMoveSpeeds3);
+
+        GridImageThing[] thePath4 = new GridImageThing[1];
+        thePath4[0] = daGrid[6][4];
+
+        float[] xHaterMoveSpeeds4 = new float[1];
+        xHaterMoveSpeeds4[0] = 0;
+
+        float[] yHaterMoveSpeeds4 = new float[1];
+        yHaterMoveSpeeds4[0] = 0;
+
+        haters[4] = new Hater((ImageView) findViewById(R.id.hater6_4));
+        haters[4].setImageX(thePath4[0].getImageX());
+        haters[4].setImageY(thePath4[0].getImageY());
+        haters[4].setPath(thePath4, xHaterMoveSpeeds4, yHaterMoveSpeeds4);
+
+        GridImageThing[] thePath5 = new GridImageThing[1];
+        thePath5[0] = daGrid[6][5];
+
+        float[] xHaterMoveSpeeds5 = new float[1];
+        xHaterMoveSpeeds5[0] = 0;
+
+        float[] yHaterMoveSpeeds5 = new float[1];
+        yHaterMoveSpeeds5[0] = 0;
+
+        haters[5] = new Hater((ImageView) findViewById(R.id.hater6_5));
+        haters[5].setImageX(thePath5[0].getImageX());
+        haters[5].setImageY(thePath5[0].getImageY());
+        haters[5].setPath(thePath5, xHaterMoveSpeeds5, yHaterMoveSpeeds5);
+
+        GridImageThing[] thePath6 = new GridImageThing[1];
+        thePath6[0] = daGrid[12][2];
+
+        float[] xHaterMoveSpeeds6 = new float[1];
+        xHaterMoveSpeeds6[0] = 0;
+
+        float[] yHaterMoveSpeeds6 = new float[1];
+        yHaterMoveSpeeds6[0] = 0;
+
+        haters[6] = new Hater((ImageView) findViewById(R.id.hater6_6));
+        haters[6].setImageX(thePath6[0].getImageX());
+        haters[6].setImageY(thePath6[0].getImageY());
+        haters[6].setPath(thePath6, xHaterMoveSpeeds6, yHaterMoveSpeeds6);
+
+        GridImageThing[] thePath7 = new GridImageThing[1];
+        thePath7[0] = daGrid[14][3];
+
+        float[] xHaterMoveSpeeds7 = new float[1];
+        xHaterMoveSpeeds7[0] = 0;
+
+        float[] yHaterMoveSpeeds7 = new float[1];
+        yHaterMoveSpeeds7[0] = 0;
+
+        haters[7] = new Hater((ImageView) findViewById(R.id.hater6_7));
+        haters[7].setImageX(thePath7[0].getImageX());
+        haters[7].setImageY(thePath7[0].getImageY());
+        haters[7].setPath(thePath7, xHaterMoveSpeeds7, yHaterMoveSpeeds7);
 
         return haters;
     }
