@@ -764,6 +764,25 @@
         android:visibility="invisible"
         app:srcCompat="@drawable/brightenedupbobseventy" />
 
+    <ImageView
+        android:id="@+id/brightenedUpTopSun6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/brightenupseventy" />
+
+    <ImageView
+        android:id="@+id/brightenedUpTopBar6_0"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/brightenedUpTopSun6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/squareseventy" />
+
     <Button
         android:id="@+id/startButton6"
         android:layout_width="wrap_content"

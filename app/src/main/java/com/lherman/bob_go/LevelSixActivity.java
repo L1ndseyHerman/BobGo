@@ -25,6 +25,8 @@ public class LevelSixActivity extends AppCompatActivity
     private GameLogic gameLogic;
 
     private BrightenUpPowerUp[] powerUps = new BrightenUpPowerUp[1];
+    //private ImageView powerUpTopImage;
+    //private ImageView[] powerUpBarsUpTop = new ImageView[11];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

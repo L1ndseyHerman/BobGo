@@ -57,6 +57,9 @@ public class GameLogic
     private boolean containsPowerUps = false;
     private ImageView brightenedUpBobImage;
 
+    //private ImageView powerUpTopImage;
+    //private ImageView[] powerUpBarsUpTop;
+
     //  Save the key for that level's high score that gets passed in:
     private String thisLevelsHighScoreKey;
     //  Oh, and need to pass in the shared preferences from an actual Activity:
@@ -278,6 +281,13 @@ public class GameLogic
         if (bob.getIsPoweredUp())
         {
             powerUpTimerCounter++;
+
+            //  Get rid of one bar in the power-up thing at the top for every GridImageThing that Bob did/could pass.
+            if (powerUpTimerCounter % 12 == 0)
+            {
+
+            }
+
             //  Want it to be the time it takes to cross 12 GridImageThings, but keep counting even if Bob is stopped at a
             //  Square Obstacle!
             //if (powerUpTimerCounter == 50)
