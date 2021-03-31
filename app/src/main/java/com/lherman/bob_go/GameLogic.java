@@ -278,7 +278,15 @@ public class GameLogic
         if (bob.getIsPoweredUp())
         {
             powerUpTimerCounter++;
-            if (powerUpTimerCounter == 50)
+            //  Want it to be the time it takes to cross 12 GridImageThings, but keep counting even if Bob is stopped at a
+            //  Square Obstacle!
+            //if (powerUpTimerCounter == 50)
+            //if (powerUpTimerCounter >= screenWidth/14)
+            //if (powerUpTimerCounter >= screenWidth/12)
+            //if (powerUpTimerCounter >= ((brightenedUpBobImage.getLayoutParams().width) * 12))
+
+            //  This number comes from xMoveSpeedScreen. screenWidth / 12 Squares / 14 timer calls per square = 168.
+            if (powerUpTimerCounter == 168)
             {
                 //  End the powerUp and switch back to Bob's regular image:
 
