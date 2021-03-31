@@ -285,7 +285,7 @@ public class LevelSixActivity extends AppCompatActivity
     public Hater[] placeEnemies(Hater[] haters)
     {
         GridImageThing[] thePath0 = new GridImageThing[1];
-        thePath0[0] = daGrid[6][0];
+        thePath0[0] = daGrid[6][5];
 
         float[] xHaterMoveSpeeds0 = new float[1];
         xHaterMoveSpeeds0[0] = 0;

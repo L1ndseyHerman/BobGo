@@ -325,27 +325,31 @@ public class GameLogic
             }
         }
 
-        //  Checking to see if Bob collided with an enemy first to get a Game Over right away:
-        for (int index=0; index<haters.length; index++)
+        //  Only check for Hater collision if no BrightenUpPowerUp is active!
+        if (bob.getIsPoweredUp() == false)
         {
-            if (haters[index].isColliding())
+            //  Checking to see if Bob collided with an enemy first to get a Game Over right away:
+            for (int index = 0; index < haters.length; index++)
             {
-                levelTimer.cancel();
+                if (haters[index].isColliding())
+                {
+                    levelTimer.cancel();
 
-                looseTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        looseHandler.post(new Runnable() {
-                            //levelHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                looseTimerStuff();
-                            }
-                        });
-                    }
-                },500, 500);
+                    looseTimer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            looseHandler.post(new Runnable() {
+                                //levelHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    looseTimerStuff();
+                                }
+                            });
+                        }
+                    }, 500, 500);
 
-                break;
+                    break;
+                }
             }
         }
 
