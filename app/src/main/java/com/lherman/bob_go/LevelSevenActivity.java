@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class LevelSevenActivity extends AppCompatActivity
 {
 
-    private GridImageThing[][] daGrid = new GridImageThing[5][6];
+    private GridImageThing[][] daGrid = new GridImageThing[9][6];
     private int screenWidth, screenHeight;
     private Hater[] haters = new Hater[1];
     private Coin[] coins = new Coin[1];
@@ -166,6 +166,34 @@ public class LevelSevenActivity extends AppCompatActivity
         daGrid[4][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_4x4));
         daGrid[4][5] = new SquareObstacle((ImageView) findViewById(R.id.grid7_4x5), screenWidth, screenHeight);
 
+        daGrid[5][0] = new SquareObstacle((ImageView) findViewById(R.id.grid7_5x0), screenWidth, screenHeight);
+        daGrid[5][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_5x1));
+        daGrid[5][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_5x2));
+        daGrid[5][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_5x3));
+        daGrid[5][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_5x4));
+        daGrid[5][5] = new SquareObstacle((ImageView) findViewById(R.id.grid7_5x5), screenWidth, screenHeight);
+
+        daGrid[6][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_6x0));
+        daGrid[6][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_6x1));
+        daGrid[6][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_6x2));
+        daGrid[6][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_6x3));
+        daGrid[6][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_6x4));
+        daGrid[6][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_6x5));
+
+        daGrid[7][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_7x0));
+        daGrid[7][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_7x1));
+        daGrid[7][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_7x2));
+        daGrid[7][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_7x3));
+        daGrid[7][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_7x4));
+        daGrid[7][5] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_7x5));
+
+        daGrid[8][0] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_8x0));
+        daGrid[8][1] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_8x1));
+        daGrid[8][2] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_8x2));
+        daGrid[8][3] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_8x3));
+        daGrid[8][4] = new BlankGridSpace((ImageView) findViewById(R.id.grid7_8x4));
+        daGrid[8][5] = new SquareObstacle((ImageView) findViewById(R.id.grid7_8x5), screenWidth, screenHeight);
+
         return daGrid;
     }
 
@@ -189,14 +217,23 @@ public class LevelSevenActivity extends AppCompatActivity
 
     public Hater[] placeEnemies(Hater[] haters)
     {
-        GridImageThing[] thePath0 = new GridImageThing[1];
-        thePath0[0] = daGrid[0][0];
+        GridImageThing[] thePath0 = new GridImageThing[4];
+        thePath0[0] = daGrid[5][0];
+        thePath0[1] = daGrid[5][4];
+        thePath0[2] = daGrid[5][5];
+        thePath0[3] = daGrid[5][1];
 
-        float[] xHaterMoveSpeeds0 = new float[1];
+        float[] xHaterMoveSpeeds0 = new float[4];
         xHaterMoveSpeeds0[0] = 0;
+        xHaterMoveSpeeds0[1] = 0;
+        xHaterMoveSpeeds0[2] = 0;
+        xHaterMoveSpeeds0[3] = 0;
 
-        float[] yHaterMoveSpeeds0 = new float[1];
-        yHaterMoveSpeeds0[0] = 0;
+        float[] yHaterMoveSpeeds0 = new float[4];
+        yHaterMoveSpeeds0[0] = 3;
+        yHaterMoveSpeeds0[1] = (float)0.25;
+        yHaterMoveSpeeds0[2] = 3;
+        yHaterMoveSpeeds0[3] = (float)0.25;
 
         haters[0] = new Hater((ImageView) findViewById(R.id.hater7_0));
         haters[0].setImageX(thePath0[0].getImageX());
