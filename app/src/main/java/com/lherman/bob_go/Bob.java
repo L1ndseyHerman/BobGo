@@ -9,10 +9,10 @@ public class Bob
     //  The ImageView of Bob from activity_level_one.xml, or whatever other levels use.
     private ImageView bobImage;
     //  These will change in the SquareObstacle class when Bob lands on squares and things.
-    private boolean IsJumping, IsJumpingLittle, IsFalling, IsFallingLittle, IsOnTopOfSquare, IsMovingRightLittle, IsNotBrightenedUp;
+    private boolean IsJumping, IsJumpingLittle, IsFalling, IsFallingLittle, IsOnTopOfSquare, IsMovingRightLittle;
     private boolean isPoweredUp;
     //  These should always stay the same after they get set the first time.
-    private int yJumpSpeed, screenWidth, screenHeight, jumpHeight, lowestY, daGridX;
+    private int yJumpSpeed, jumpHeight, lowestY, daGridX;
     //  startHeight changes every time Bob.startJumpMaybe(); , it's his current y-value when the jump starts.
     private float startHeight, yLittleAmount, xLittleAmount;
 
@@ -154,15 +154,6 @@ public class Bob
     public void setLowestY(int lowestY)
     {
         this.lowestY = lowestY;
-    }
-
-    public void setScreenWidth(int screenWidth)
-    {
-        this.screenWidth = screenWidth;
-    }
-    public void setScreenHeight(int screenHeight)
-    {
-        this.screenHeight = screenHeight;
     }
 
     public void setBobImage(ImageView bobImage)

@@ -1,23 +1,21 @@
 package com.lherman.bob_go;
 
 import android.widget.ImageView;
-import android.widget.TextView;
 
 //  Blue square to maneuver around
 public class SquareObstacle implements GridImageThing
 {
     //  Images from "activity_level_one.xml", or whatever future levels use.
-    private ImageView squareImage, bobImage;
+    private final ImageView squareImage;
+    private ImageView bobImage;
     //  These get declared in "LevelOneActivity.java" and passed in here
-    private int xMoveSpeedScreen, screenWidth, screenHeight;
+    private int xMoveSpeedScreen;
     //  The Bob object:
     private Bob bob;
 
-    public SquareObstacle(ImageView squareImage, int screenWidth, int screenHeight)
+    public SquareObstacle(ImageView squareImage)
     {
         this.squareImage = squareImage;
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
     }
 
     @Override

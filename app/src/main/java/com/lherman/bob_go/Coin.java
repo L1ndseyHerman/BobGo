@@ -1,13 +1,12 @@
 package com.lherman.bob_go;
 
-import android.view.View;
 import android.widget.ImageView;
 
 public class Coin
 {
-    private ImageView coinImage, bobImage;
+    private final ImageView coinImage;
+    private ImageView bobImage;
     private int xMoveSpeedScreen;
-    private Bob bob;
 
     public Coin(ImageView coinImage)
     {
@@ -19,31 +18,26 @@ public class Coin
         //  Set the coin's visibility to false and inc the score by 1 in the level based on if this returns t/f.
 
         //  Bob's right colliding with Coin's left:
-        if ((bobImage.getX()+bobImage.getLayoutParams().width > coinImage.getX()
+        //  Do score + invisibility in the Level, maybe?
+        return (bobImage.getX() + bobImage.getLayoutParams().width > coinImage.getX()
                 && bobImage.getX() < coinImage.getX()
-                && bobImage.getY() < coinImage.getY()+coinImage.getLayoutParams().height
-                && bobImage.getY()+bobImage.getLayoutParams().height > coinImage.getY())
+                && bobImage.getY() < coinImage.getY() + coinImage.getLayoutParams().height
+                && bobImage.getY() + bobImage.getLayoutParams().height > coinImage.getY())
                 //  Bob's left colliding with Coin's right:
-                || (bobImage.getX() < coinImage.getX()+coinImage.getLayoutParams().width
+                || (bobImage.getX() < coinImage.getX() + coinImage.getLayoutParams().width
                 && bobImage.getX() > coinImage.getX()
-                && bobImage.getY() < coinImage.getY()+coinImage.getLayoutParams().height
-                && bobImage.getY()+bobImage.getLayoutParams().height > coinImage.getY())
+                && bobImage.getY() < coinImage.getY() + coinImage.getLayoutParams().height
+                && bobImage.getY() + bobImage.getLayoutParams().height > coinImage.getY())
                 //  Bob's bottom colliding with Coin's top:
-                || (bobImage.getY()+bobImage.getLayoutParams().height > coinImage.getY()
+                || (bobImage.getY() + bobImage.getLayoutParams().height > coinImage.getY()
                 && bobImage.getY() < coinImage.getY()
-                && bobImage.getX() < coinImage.getX()+coinImage.getWidth()
-                && bobImage.getX()+bobImage.getLayoutParams().width > coinImage.getX())
+                && bobImage.getX() < coinImage.getX() + coinImage.getWidth()
+                && bobImage.getX() + bobImage.getLayoutParams().width > coinImage.getX())
                 //  Bob's top colliding with Coin's bottom:
-                || (bobImage.getY() < coinImage.getY()+coinImage.getLayoutParams().height
+                || (bobImage.getY() < coinImage.getY() + coinImage.getLayoutParams().height
                 && bobImage.getY() > coinImage.getY()
-                && bobImage.getX() < coinImage.getX()+coinImage.getLayoutParams().width
-                && bobImage.getX()+bobImage.getLayoutParams().width > coinImage.getX()))
-        {
-            //  Do score + invisibility in the Level, maybe?
-            return true;
-        }
-
-        return false;
+                && bobImage.getX() < coinImage.getX() + coinImage.getLayoutParams().width
+                && bobImage.getX() + bobImage.getLayoutParams().width > coinImage.getX());
     }
 
     public void move() {
@@ -71,9 +65,6 @@ public class Coin
     public void setImageHeight(int heightImage) {
         coinImage.getLayoutParams().height = heightImage;
     }
-    public void setBob(Bob bob) {
-        this.bob = bob;
-    }
     public void setBobImage(ImageView bobImage) {
         this.bobImage = bobImage;
     }
@@ -86,10 +77,6 @@ public class Coin
     }
     public boolean IsNotInvisible()
     {
-        if (coinImage.getVisibility() == ImageView.VISIBLE)
-        {
-            return true;
-        }
-        return false;
+        return coinImage.getVisibility() == ImageView.VISIBLE;
     }
 }

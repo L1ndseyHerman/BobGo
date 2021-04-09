@@ -9,9 +9,9 @@ import android.widget.ImageView;
  */
 public class BrightenUpPowerUp
 {
-    private ImageView powerUpImage, bobImage;
+    private final ImageView powerUpImage;
+    private ImageView bobImage;
     private int xMoveSpeedScreen;
-    private Bob bob;
 
     public BrightenUpPowerUp(ImageView powerUpImage)
     {
@@ -23,31 +23,26 @@ public class BrightenUpPowerUp
         //  Set the coin's visibility to false based on if this returns t/f.
 
         //  Bob's right colliding with PowerUp's left:
-        if ((bobImage.getX()+bobImage.getLayoutParams().width > powerUpImage.getX()
+        //  Do invisibility in the Level, maybe?
+        return (bobImage.getX() + bobImage.getLayoutParams().width > powerUpImage.getX()
                 && bobImage.getX() < powerUpImage.getX()
-                && bobImage.getY() < powerUpImage.getY()+powerUpImage.getLayoutParams().height
-                && bobImage.getY()+bobImage.getLayoutParams().height > powerUpImage.getY())
+                && bobImage.getY() < powerUpImage.getY() + powerUpImage.getLayoutParams().height
+                && bobImage.getY() + bobImage.getLayoutParams().height > powerUpImage.getY())
                 //  Bob's left colliding with PowerUp's right:
-                || (bobImage.getX() < powerUpImage.getX()+powerUpImage.getLayoutParams().width
+                || (bobImage.getX() < powerUpImage.getX() + powerUpImage.getLayoutParams().width
                 && bobImage.getX() > powerUpImage.getX()
-                && bobImage.getY() < powerUpImage.getY()+powerUpImage.getLayoutParams().height
-                && bobImage.getY()+bobImage.getLayoutParams().height > powerUpImage.getY())
+                && bobImage.getY() < powerUpImage.getY() + powerUpImage.getLayoutParams().height
+                && bobImage.getY() + bobImage.getLayoutParams().height > powerUpImage.getY())
                 //  Bob's bottom colliding with PowerUp's top:
-                || (bobImage.getY()+bobImage.getLayoutParams().height > powerUpImage.getY()
+                || (bobImage.getY() + bobImage.getLayoutParams().height > powerUpImage.getY()
                 && bobImage.getY() < powerUpImage.getY()
-                && bobImage.getX() < powerUpImage.getX()+powerUpImage.getWidth()
-                && bobImage.getX()+bobImage.getLayoutParams().width > powerUpImage.getX())
+                && bobImage.getX() < powerUpImage.getX() + powerUpImage.getWidth()
+                && bobImage.getX() + bobImage.getLayoutParams().width > powerUpImage.getX())
                 //  Bob's top colliding with Coin's bottom:
-                || (bobImage.getY() < powerUpImage.getY()+powerUpImage.getLayoutParams().height
+                || (bobImage.getY() < powerUpImage.getY() + powerUpImage.getLayoutParams().height
                 && bobImage.getY() > powerUpImage.getY()
-                && bobImage.getX() < powerUpImage.getX()+powerUpImage.getLayoutParams().width
-                && bobImage.getX()+bobImage.getLayoutParams().width > powerUpImage.getX()))
-        {
-            //  Do invisibility in the Level, maybe?
-            return true;
-        }
-
-        return false;
+                && bobImage.getX() < powerUpImage.getX() + powerUpImage.getLayoutParams().width
+                && bobImage.getX() + bobImage.getLayoutParams().width > powerUpImage.getX());
     }
 
     public void move() {
@@ -75,9 +70,6 @@ public class BrightenUpPowerUp
     public void setImageHeight(int heightImage) {
         powerUpImage.getLayoutParams().height = heightImage;
     }
-    public void setBob(Bob bob) {
-        this.bob = bob;
-    }
     public void setBobImage(ImageView bobImage) {
         this.bobImage = bobImage;
     }
@@ -90,11 +82,7 @@ public class BrightenUpPowerUp
     }
     public boolean IsNotInvisible()
     {
-        if (powerUpImage.getVisibility() == ImageView.VISIBLE)
-        {
-            return true;
-        }
-        return false;
+        return powerUpImage.getVisibility() == ImageView.VISIBLE;
     }
 
 }

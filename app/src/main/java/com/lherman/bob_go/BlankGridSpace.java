@@ -1,12 +1,12 @@
 package com.lherman.bob_go;
 
-import android.view.View;
 import android.widget.ImageView;
 
 //  Have white outlines for now for testing, will eventually just match the background
 public class BlankGridSpace implements GridImageThing
 {
-    private ImageView spaceImage, bobImage;
+    private final ImageView spaceImage;
+    private ImageView bobImage;
     private int xMoveSpeedScreen;
     private Bob bob;
 

@@ -17,12 +17,13 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity
 {
-    private int screenWidth, screenHeight, startHeight, pauseCounter=0;
-    private TextView bobText, goText;
-    private Button buttons[] = new Button[3];
+    private int screenHeight;
+    private int startHeight;
+    private int pauseCounter=0;
+    private final Button[] buttons = new Button[3];
     private ImageView bobImageMainScreen;
-    private Handler handler = new Handler();
-    private Timer timer = new Timer();
+    private final Handler handler = new Handler();
+    private final Timer timer = new Timer();
     private boolean isJumping = true;
 
     @Override
@@ -34,28 +35,28 @@ public class MainActivity extends AppCompatActivity
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        screenWidth = size.x;
+        int screenWidth = size.x;
         screenHeight = size.y;
 
-        bobText = findViewById(R.id.bobText);
-        goText = findViewById(R.id.goText);
+        TextView bobText = findViewById(R.id.bobText);
+        TextView goText = findViewById(R.id.goText);
 
-        bobText.setX(7*screenWidth/24);
+        bobText.setX(7* screenWidth /24);
         bobText.setY(screenHeight/12);
-        bobText.setWidth(screenWidth/3);
+        bobText.setWidth(screenWidth /3);
         bobText.setHeight(screenHeight/4);
 
-        goText.setX(15*screenWidth/24);
+        goText.setX(15* screenWidth /24);
         goText.setY(screenHeight/12);
-        goText.setWidth(screenWidth/3);
+        goText.setWidth(screenWidth /3);
         goText.setHeight(screenHeight/4);
 
         bobImageMainScreen = findViewById(R.id.bobMainScreen);
 
-        bobImageMainScreen.setX(screenWidth/12);
+        bobImageMainScreen.setX(screenWidth /12);
         startHeight = 5*screenHeight/14;
         bobImageMainScreen.setY(startHeight);
-        bobImageMainScreen.getLayoutParams().width = screenWidth/12;
+        bobImageMainScreen.getLayoutParams().width = screenWidth /12;
         bobImageMainScreen.getLayoutParams().height = screenHeight/7;
 
         buttons[0] = findViewById(R.id.levelButton);
@@ -64,9 +65,9 @@ public class MainActivity extends AppCompatActivity
 
         for (int index=0; index<buttons.length; index++)
         {
-            buttons[index].setX((screenWidth/12) + (index*screenWidth/3));
+            buttons[index].setX((screenWidth /12) + (index* screenWidth /3));
             buttons[index].setY(2*screenHeight/3);
-            buttons[index].setWidth(screenWidth/6);
+            buttons[index].setWidth(screenWidth /6);
             buttons[index].setHeight(screenHeight/4);
 
             /*buttons[index].setX(screenWidth/36);

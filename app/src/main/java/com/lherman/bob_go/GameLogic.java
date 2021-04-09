@@ -88,8 +88,6 @@ public class GameLogic
         this.bobImage = bobImage;
         bob = new Bob(bobImage);
 
-        bob.setScreenWidth(screenWidth);
-        bob.setScreenHeight(screenHeight);
         //bobImage.setX(0);
         //  2 GridImageThings to the right
         bobImage.setX(2*screenWidth/12);
@@ -171,7 +169,6 @@ public class GameLogic
     public void setWinCircleLogic(WinCircle winCircle, GridImageThing theGridSpaceItsOn)
     {
         this.winCircle = winCircle;
-        winCircle.setBob(bob);
         winCircle.setBobImage(bobImage);
         winCircle.setXMoveSpeedScreen(xMoveSpeedScreen);
 
@@ -196,13 +193,12 @@ public class GameLogic
         brightenedUpBobImage.getLayoutParams().width = screenWidth/12;
         brightenedUpBobImage.getLayoutParams().height = screenHeight/7;
 
-        for (int index=0; index<powerUps.length; index++)
+        for (BrightenUpPowerUp powerUp: powerUps)
         {
-            powerUps[index].setImageHeight(screenHeight/7);
-            powerUps[index].setImageWidth(screenWidth/12);
-            powerUps[index].setXMoveSpeedScreen(xMoveSpeedScreen);
-            powerUps[index].setBob(bob);
-            powerUps[index].setBobImage(bobImage);
+            powerUp.setImageHeight(screenHeight/7);
+            powerUp.setImageWidth(screenWidth/12);
+            powerUp.setXMoveSpeedScreen(xMoveSpeedScreen);
+            powerUp.setBobImage(bobImage);
 
             containsPowerUps = true;
         }
@@ -211,26 +207,24 @@ public class GameLogic
     public void setCoinLogic(Coin[] coins)
     {
         this.coins = coins;
-        for (int index=0; index<coins.length; index++)
+        for (Coin coin: coins)
         {
-            coins[index].setImageHeight(screenHeight/7);
-            coins[index].setImageWidth(screenWidth/12);
-            coins[index].setXMoveSpeedScreen(xMoveSpeedScreen);
-            coins[index].setBob(bob);
-            coins[index].setBobImage(bobImage);
+            coin.setImageHeight(screenHeight/7);
+            coin.setImageWidth(screenWidth/12);
+            coin.setXMoveSpeedScreen(xMoveSpeedScreen);
+            coin.setBobImage(bobImage);
         }
     }
 
     public void setHaterLogic(Hater[] haters)
     {
         this.haters = haters;
-        for (int index=0; index<haters.length; index++)
+        for (Hater hater: haters)
         {
-            haters[index].setImageHeight(screenHeight/7);
-            haters[index].setImageWidth(screenWidth/12);
-            haters[index].setXMoveSpeedScreen(xMoveSpeedScreen);
-            haters[index].setBob(bob);
-            haters[index].setBobImage(bobImage);
+            hater.setImageHeight(screenHeight/7);
+            hater.setImageWidth(screenWidth/12);
+            hater.setXMoveSpeedScreen(xMoveSpeedScreen);
+            hater.setBobImage(bobImage);
         }
     }
 

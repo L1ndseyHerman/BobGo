@@ -6,11 +6,11 @@ public class Hater
 {
     //  The red frowny-face enemies. If Bob touches one, he will become too upset to win the level,
     //  and get a Game Over.
-    private ImageView haterImage, bobImage;
+    private final ImageView haterImage;
+    private ImageView bobImage;
     private int xMoveSpeedScreen, pathIndex;
     private float xHaterMoveSpeed, yHaterMoveSpeed;
     private float[] xHaterMoveSpeeds, yHaterMoveSpeeds;
-    private Bob bob;
     private GridImageThing[] thePath;
     private GridImageThing nextGridImageThing;
 
@@ -34,9 +34,6 @@ public class Hater
         this.xMoveSpeedScreen = xMoveSpeedScreen;
     }
 
-    public void setBob(Bob bob) {
-        this.bob = bob;
-    }
     public void setBobImage(ImageView bobImage) {
         this.bobImage = bobImage;
     }
@@ -56,30 +53,25 @@ public class Hater
         //  Stop timer and get a Game Over.
 
         //  Bob's right colliding with Hater's left:
-        if ((bobImage.getX()+bobImage.getLayoutParams().width > haterImage.getX()
+        return (bobImage.getX() + bobImage.getLayoutParams().width > haterImage.getX()
                 && bobImage.getX() < haterImage.getX()
-                && bobImage.getY() < haterImage.getY()+haterImage.getLayoutParams().height
-                && bobImage.getY()+bobImage.getLayoutParams().height > haterImage.getY())
+                && bobImage.getY() < haterImage.getY() + haterImage.getLayoutParams().height
+                && bobImage.getY() + bobImage.getLayoutParams().height > haterImage.getY())
                 //  Bob's left colliding with Hater's right:
-                || (bobImage.getX() < haterImage.getX()+haterImage.getLayoutParams().width
+                || (bobImage.getX() < haterImage.getX() + haterImage.getLayoutParams().width
                 && bobImage.getX() > haterImage.getX()
-                && bobImage.getY() < haterImage.getY()+haterImage.getLayoutParams().height
-                && bobImage.getY()+bobImage.getLayoutParams().height > haterImage.getY())
+                && bobImage.getY() < haterImage.getY() + haterImage.getLayoutParams().height
+                && bobImage.getY() + bobImage.getLayoutParams().height > haterImage.getY())
                 //  Bob's bottom colliding with Hater's top:
-                || (bobImage.getY()+bobImage.getLayoutParams().height > haterImage.getY()
+                || (bobImage.getY() + bobImage.getLayoutParams().height > haterImage.getY()
                 && bobImage.getY() < haterImage.getY()
-                && bobImage.getX() < haterImage.getX()+haterImage.getWidth()
-                && bobImage.getX()+bobImage.getLayoutParams().width > haterImage.getX())
+                && bobImage.getX() < haterImage.getX() + haterImage.getWidth()
+                && bobImage.getX() + bobImage.getLayoutParams().width > haterImage.getX())
                 //  Bob's top colliding with Hater's bottom:
-                || (bobImage.getY() < haterImage.getY()+haterImage.getLayoutParams().height
+                || (bobImage.getY() < haterImage.getY() + haterImage.getLayoutParams().height
                 && bobImage.getY() > haterImage.getY()
-                && bobImage.getX() < haterImage.getX()+haterImage.getLayoutParams().width
-                && bobImage.getX()+bobImage.getLayoutParams().width > haterImage.getX()))
-        {
-            return true;
-        }
-
-        return false;
+                && bobImage.getX() < haterImage.getX() + haterImage.getLayoutParams().width
+                && bobImage.getX() + bobImage.getLayoutParams().width > haterImage.getX());
     }
 
     //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
