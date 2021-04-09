@@ -47,7 +47,7 @@ public class LevelOneActivity extends AppCompatActivity
         gameLogic.setScreenHeight(screenHeight);
 
         //  14 timer calls per one grid square crossing, 12*14=168
-        gameLogic.setxMoveSpeedScreen(screenWidth /168);
+        gameLogic.setXMoveSpeedScreen(screenWidth /168);
 
         //  REALLY DON'T FORGET TO PUT BOB'S STUFF ABOVE THE SQUAREOBSTACLES THAT REFERENCE IT!!
         ImageView bobImage = findViewById(R.id.bob1);

@@ -170,7 +170,7 @@ public class Bob
     {
         this.isPoweredUp = isPoweredUp;
     }
-    public boolean getIsPoweredUp()
+    public boolean isPoweredUp()
     {
         return isPoweredUp;
     }

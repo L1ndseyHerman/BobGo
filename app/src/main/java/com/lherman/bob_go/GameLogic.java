@@ -20,9 +20,9 @@ public class GameLogic
     //  The amount that everything in daGrid and the enemies move every timer call.
     private int xMoveSpeedScreen;
     //  A Timer needs a Handler in Android Studio
-    private Handler levelHandler = new Handler();
+    private final Handler levelHandler = new Handler();
     //  Moves the level each time it gets called:
-    private Timer levelTimer = new Timer();
+    private final Timer levelTimer = new Timer();
 
     private int powerUpTimerCounter = 0;
     private int powerUpSquaresUpTopLeft = 11;
@@ -38,12 +38,12 @@ public class GameLogic
     private ImageView endBobImage0, badEndBobImage1, badEndBobImage2, badEndBobImage3,
             goodEndBobImage1, goodEndBobImage2, goodEndBobImage3;
 
-    private Handler looseHandler = new Handler();
-    private Timer looseTimer = new Timer();
+    private final Handler looseHandler = new Handler();
+    private final Timer looseTimer = new Timer();
     private int looseTimerCounter = 0;
 
-    private Handler winHandler = new Handler();
-    private Timer winTimer = new Timer();
+    private final Handler winHandler = new Handler();
+    private final Timer winTimer = new Timer();
     private int winTimerCounter = 0;
 
     //  The sizes get passed in from the Activities now:
@@ -78,7 +78,7 @@ public class GameLogic
         this.screenHeight = screenHeight;
     }
 
-    public void setxMoveSpeedScreen(int xMoveSpeedScreen)
+    public void setXMoveSpeedScreen(int xMoveSpeedScreen)
     {
         this.xMoveSpeedScreen = xMoveSpeedScreen;
     }
@@ -171,7 +171,6 @@ public class GameLogic
         this.winCircle = winCircle;
         winCircle.setBobImage(bobImage);
         winCircle.setXMoveSpeedScreen(xMoveSpeedScreen);
-
         winCircle.setImageHeight(screenHeight/7);
         winCircle.setImageWidth(screenWidth/12);
         winCircle.setImageX(theGridSpaceItsOn.getImageX());
@@ -270,7 +269,7 @@ public class GameLogic
     public void levelMoveStuff()
     {
         //  Only do the powerUp counter if Bob is poweredUp
-        if (bob.getIsPoweredUp())
+        if (bob.isPoweredUp())
         {
             powerUpTimerCounter++;
 
@@ -301,22 +300,22 @@ public class GameLogic
                 bob.setBobImage(bobImage);
 
                 //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(
-                for (int index2=0; index2<daGrid.length; index2++)
+                for (GridImageThing[] gridImage: daGrid)
                 {
-                    for (int index3=0; index3<daGrid[index2].length; index3++)
+                    for (GridImageThing gridImage2: gridImage)
                     {
-                        daGrid[index2][index3].setBobImage(bobImage);
+                        gridImage2.setBobImage(bobImage);
                     }
                 }
 
-                for (int index2=0; index2<haters.length; index2++)
+                for (Hater hater: haters)
                 {
-                    haters[index2].setBobImage(bobImage);
+                    hater.setBobImage(bobImage);
                 }
 
-                for (int index2=0; index2<coins.length; index2++)
+                for (Coin coin: coins)
                 {
-                    coins[index2].setBobImage(bobImage);
+                    coin.setBobImage(bobImage);
                 }
 
                 winCircle.setBobImage(bobImage);
@@ -328,12 +327,12 @@ public class GameLogic
         }
 
         //  Only check for Hater collision if no BrightenUpPowerUp is active!
-        if (bob.getIsPoweredUp() == false)
+        if (!bob.isPoweredUp())
         {
             //  Checking to see if Bob collided with an enemy first to get a Game Over right away:
-            for (int index = 0; index < haters.length; index++)
+            for (Hater hater: haters)
             {
-                if (haters[index].isColliding())
+                if (hater.isColliding())
                 {
                     levelTimer.cancel();
 
@@ -356,12 +355,12 @@ public class GameLogic
         }
 
         //  If no game over, always move enemies no matter what:
-        for (int index=0; index<haters.length; index++)
+        for (Hater hater: haters)
         {
-            haters[index].movePath();
+            hater.movePath();
         }
 
-        if (winCircle.checkCollision() == true)
+        if (winCircle.isColliding())
         {
             levelTimer.cancel();
 
@@ -401,16 +400,16 @@ public class GameLogic
         //  ONLY CHECK FOR POWERUPS IF THEY EXIST IN THE LEVEL!!
         if (containsPowerUps)
         {
-            for (int index = 0; index < powerUps.length; index++)
+            for (BrightenUpPowerUp powerUp: powerUps)
             {
-                if (powerUps[index].isColliding() && powerUps[index].IsNotInvisible())
+                if (powerUp.isColliding() && powerUp.IsNotInvisible())
                 {
-                    powerUps[index].setInvisible();
+                    powerUp.setInvisible();
 
                     //  Make the power-up countdown stuff up top visible:
-                    for (int index2=0; index2<powerUpBarsUpTop.length; index2++)
+                    for (ImageView powerUpBarUpTop: powerUpBarsUpTop)
                     {
-                        powerUpBarsUpTop[index2].setVisibility(ImageView.VISIBLE);
+                        powerUpBarUpTop.setVisibility(ImageView.VISIBLE);
                     }
 
                     //  Makes Bob's image switch w sparkly image:
@@ -424,22 +423,22 @@ public class GameLogic
                     bob.setBobImage(brightenedUpBobImage);
 
                     //  Shit, need to switch Bob's images for all daGrid, Haters, Coins, and WinCircle :(
-                    for (int index2=0; index2<daGrid.length; index2++)
+                    for (GridImageThing[] gridImage: daGrid)
                     {
-                        for (int index3=0; index3<daGrid[index2].length; index3++)
+                        for (GridImageThing gridImage2: gridImage)
                         {
-                            daGrid[index2][index3].setBobImage(brightenedUpBobImage);
+                            gridImage2.setBobImage(brightenedUpBobImage);
                         }
                     }
 
-                    for (int index2=0; index2<haters.length; index2++)
+                    for (Hater hater: haters)
                     {
-                        haters[index2].setBobImage(brightenedUpBobImage);
+                        hater.setBobImage(brightenedUpBobImage);
                     }
 
-                    for (int index2=0; index2<coins.length; index2++)
+                    for (Coin coin: coins)
                     {
-                        coins[index2].setBobImage(brightenedUpBobImage);
+                        coin.setBobImage(brightenedUpBobImage);
                     }
 
                     winCircle.setBobImage(brightenedUpBobImage);
@@ -449,12 +448,12 @@ public class GameLogic
         }
 
         //  Now check if Bob collided w a Coin:
-        for (int index=0; index<coins.length; index++)
+        for (Coin coin: coins)
         {
             //  DON'T RECOUNT COINS THAT ARE INVISIBLE (ALREADY GOTTEN)!!
-            if (coins[index].isColliding() && coins[index].IsNotInvisible())
+            if (coin.isColliding() && coin.IsNotInvisible())
             {
-                coins[index].setInvisible();
+                coin.setInvisible();
                 theScore++;
                 scoreText.setText("Score: " + theScore);
             }
@@ -485,33 +484,33 @@ public class GameLogic
         //  Move all of the grid if Bob isn't colliding w any of the grid.
         if (gridShouldMove)
         {
-            for (int index=0; index<daGrid.length; index++)
+            for (GridImageThing[] gridImage: daGrid)
             {
-                for (int index2=0; index2<daGrid[index].length; index2++)
+                for (GridImageThing gridImage2: gridImage)
                 {
-                    daGrid[index][index2].move();
+                    gridImage2.move();
                 }
             }
 
             //  New! Also move the Haters:
-            for (int index=0; index<haters.length; index++)
+            for (Hater hater: haters)
             {
-                haters[index].move();
+                hater.move();
             }
 
             winCircle.move();
 
             if (containsPowerUps)
             {
-                for (int index=0; index<powerUps.length; index++)
+                for (BrightenUpPowerUp powerUp: powerUps)
                 {
-                    powerUps[index].move();
+                    powerUp.move();
                 }
             }
 
-            for (int index=0; index<coins.length; index++)
+            for (Coin coin: coins)
             {
-                coins[index].move();
+                coin.move();
             }
 
             //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -527,32 +526,32 @@ public class GameLogic
         //  Move the grid somewhat, but less than the usual x-amount.
         else if (bob.IsMovingRightLittle())
         {
-            for (int index=0; index<daGrid.length; index++)
+            for (GridImageThing[] gridImage: daGrid)
             {
-                for (int index2=0; index2<daGrid[index].length; index2++)
+                for (GridImageThing gridImage2: gridImage)
                 {
-                    daGrid[index][index2].move(bob.getXLittleAmount());
+                    gridImage2.move(bob.getXLittleAmount());
                 }
             }
 
-            for (int index=0; index<haters.length; index++)
+            for (Hater hater: haters)
             {
-                haters[index].move(bob.getXLittleAmount());
+                hater.move(bob.getXLittleAmount());
             }
 
             winCircle.move(bob.getXLittleAmount());
 
             if (containsPowerUps)
             {
-                for (int index=0; index<powerUps.length; index++)
+                for (BrightenUpPowerUp powerUp: powerUps)
                 {
-                    powerUps[index].move(bob.getXLittleAmount());
+                    powerUp.move(bob.getXLittleAmount());
                 }
             }
 
-            for (int index=0; index<coins.length; index++)
+            for (Coin coin: coins)
             {
-                coins[index].move(bob.getXLittleAmount());
+                coin.move(bob.getXLittleAmount());
             }
 
             bob.setMovingRightLittle(false);

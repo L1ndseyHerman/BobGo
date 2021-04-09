@@ -39,7 +39,7 @@ public class LevelFourActivity extends AppCompatActivity
         gameLogic.setScreenWidth(screenWidth);
         gameLogic.setScreenHeight(screenHeight);
 
-        gameLogic.setxMoveSpeedScreen(screenWidth /168);
+        gameLogic.setXMoveSpeedScreen(screenWidth /168);
 
         ImageView bobImage = findViewById(R.id.bob4);
         gameLogic.setBobLogic(bobImage);

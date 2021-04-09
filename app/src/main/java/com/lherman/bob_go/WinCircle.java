@@ -14,7 +14,7 @@ public class WinCircle
         this.circleImage = circleImage;
     }
 
-    public boolean checkCollision()
+    public boolean isColliding()
     {
         //  Bob's right colliding with WinCircle's left:
         return (bobImage.getX() + bobImage.getLayoutParams().width > circleImage.getX()
