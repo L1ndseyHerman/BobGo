@@ -15,13 +15,11 @@ import android.widget.TextView;
 public class LevelSelectPageOneActivity extends AppCompatActivity
 {
 
-    private int screenWidth, screenHeight;
-    private Button buttons[] = new Button[5];
-    private TextView levelDescriptions[] = new TextView[4];
-    private Button nextButton;
-    private TextView scoreTexts[] = new TextView[4];
+    private final Button[] buttons = new Button[5];
+    private final TextView[] levelDescriptions = new TextView[4];
+    private final TextView[] scoreTexts = new TextView[4];
     //private int levelOneHighScore, levelTwoHighScore, levelThreeHighScore;
-    private int scoreInts[] = new int[4];
+    private final int[] scoreInts = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,8 +43,8 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        screenWidth = size.x;
-        screenHeight = size.y;
+        int screenWidth = size.x;
+        int screenHeight = size.y;
 
         buttons[0] = findViewById(R.id.levelOneButton);
         buttons[1] = findViewById(R.id.levelTwoButton);
@@ -59,7 +57,7 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
         levelDescriptions[2] = findViewById(R.id.levelThreeDescription);
         levelDescriptions[3] = findViewById(R.id.levelFourDescription);
         //  This one is in the same column as the levelDescriptions, just a Button instead of a TextView.
-        nextButton = findViewById(R.id.nextButton);
+        Button nextButton = findViewById(R.id.nextButton);
 
         scoreTexts[0] = findViewById(R.id.levelOneScore);
         scoreTexts[0].setText("High Score: " + scoreInts[0]);
@@ -75,32 +73,32 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
 
         for (int index=0; index<buttons.length; index++)
         {
-            buttons[index].setX(screenWidth/36);
-            buttons[index].setY((screenHeight/22) + (index*2*screenHeight/11));
-            buttons[index].setWidth(screenWidth/6);
-            buttons[index].setHeight(screenHeight/11);
+            buttons[index].setX(screenWidth /36);
+            buttons[index].setY((screenHeight /22) + (index*2* screenHeight /11));
+            buttons[index].setWidth(screenWidth /6);
+            buttons[index].setHeight(screenHeight /11);
         }
 
         for (int index=0; index<levelDescriptions.length; index++)
         {
-            levelDescriptions[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12));
-            levelDescriptions[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
-            levelDescriptions[index].setWidth(4*screenWidth/9);
-            levelDescriptions[index].setHeight(2*screenHeight/11);
+            levelDescriptions[index].setX((screenWidth /36) + (screenWidth /6) + (screenWidth /12));
+            levelDescriptions[index].setY((9* screenHeight /110) + (index*2* screenHeight /11));
+            levelDescriptions[index].setWidth(4* screenWidth /9);
+            levelDescriptions[index].setHeight(2* screenHeight /11);
         }
 
         //  Just plugin 4 bec it's like levelDescriptions[4].
-        nextButton.setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12));
-        nextButton.setY((screenHeight/22) + (4*2*screenHeight/11));
-        nextButton.setWidth(screenWidth/6);
-        nextButton.setHeight(screenHeight/11);
+        nextButton.setX((screenWidth /36) + (screenWidth /6) + (screenWidth /12));
+        nextButton.setY((screenHeight /22) + (4*2* screenHeight /11));
+        nextButton.setWidth(screenWidth /6);
+        nextButton.setHeight(screenHeight /11);
 
         for (int index=0; index<scoreTexts.length; index++)
         {
-            scoreTexts[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12) + (4*screenWidth/9) + (screenWidth/12));
-            scoreTexts[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
-            scoreTexts[index].setWidth(screenWidth/6);
-            scoreTexts[index].setHeight(2*screenHeight/11);
+            scoreTexts[index].setX((screenWidth /36) + (screenWidth /6) + (screenWidth /12) + (4* screenWidth /9) + (screenWidth /12));
+            scoreTexts[index].setY((9* screenHeight /110) + (index*2* screenHeight /11));
+            scoreTexts[index].setWidth(screenWidth /6);
+            scoreTexts[index].setHeight(2* screenHeight /11);
         }
 
 

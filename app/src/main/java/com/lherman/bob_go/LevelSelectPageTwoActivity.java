@@ -15,11 +15,10 @@ import android.widget.TextView;
 public class LevelSelectPageTwoActivity extends AppCompatActivity
 {
 
-    private int screenWidth, screenHeight;
-    private Button buttons[] = new Button[5];
-    private TextView levelDescriptions[] = new TextView[4];
-    private TextView scoreTexts[] = new TextView[4];
-    private int scoreInts[] = new int[4];
+    private final Button[] buttons = new Button[5];
+    private final TextView[] levelDescriptions = new TextView[4];
+    private final TextView[] scoreTexts = new TextView[4];
+    private final int[] scoreInts = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,8 +36,8 @@ public class LevelSelectPageTwoActivity extends AppCompatActivity
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        screenWidth = size.x;
-        screenHeight = size.y;
+        int screenWidth = size.x;
+        int screenHeight = size.y;
 
         buttons[0] = findViewById(R.id.levelFiveButton);
         buttons[1] = findViewById(R.id.levelSixButton);
@@ -65,26 +64,26 @@ public class LevelSelectPageTwoActivity extends AppCompatActivity
 
         for (int index=0; index<buttons.length; index++)
         {
-            buttons[index].setX(screenWidth/36);
-            buttons[index].setY((screenHeight/22) + (index*2*screenHeight/11));
-            buttons[index].setWidth(screenWidth/6);
-            buttons[index].setHeight(screenHeight/11);
+            buttons[index].setX(screenWidth /36);
+            buttons[index].setY((screenHeight /22) + (index*2* screenHeight /11));
+            buttons[index].setWidth(screenWidth /6);
+            buttons[index].setHeight(screenHeight /11);
         }
 
         for (int index=0; index<levelDescriptions.length; index++)
         {
-            levelDescriptions[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12));
-            levelDescriptions[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
-            levelDescriptions[index].setWidth(4*screenWidth/9);
-            levelDescriptions[index].setHeight(2*screenHeight/11);
+            levelDescriptions[index].setX((screenWidth /36) + (screenWidth /6) + (screenWidth /12));
+            levelDescriptions[index].setY((9* screenHeight /110) + (index*2* screenHeight /11));
+            levelDescriptions[index].setWidth(4* screenWidth /9);
+            levelDescriptions[index].setHeight(2* screenHeight /11);
         }
 
         for (int index=0; index<scoreTexts.length; index++)
         {
-            scoreTexts[index].setX((screenWidth/36) + (screenWidth/6) + (screenWidth/12) + (4*screenWidth/9) + (screenWidth/12));
-            scoreTexts[index].setY((9*screenHeight/110) + (index*2*screenHeight/11));
-            scoreTexts[index].setWidth(screenWidth/6);
-            scoreTexts[index].setHeight(2*screenHeight/11);
+            scoreTexts[index].setX((screenWidth /36) + (screenWidth /6) + (screenWidth /12) + (4* screenWidth /9) + (screenWidth /12));
+            scoreTexts[index].setY((9* screenHeight /110) + (index*2* screenHeight /11));
+            scoreTexts[index].setWidth(screenWidth /6);
+            scoreTexts[index].setHeight(2* screenHeight /11);
         }
 
         buttons[0].setOnClickListener(new View.OnClickListener()

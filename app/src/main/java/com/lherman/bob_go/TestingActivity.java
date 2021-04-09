@@ -28,18 +28,6 @@ public class TestingActivity extends AppCompatActivity
             }
         });
 
-        //  Goes to TestGridActivity:
-        Button levelOneExtrasButton = findViewById(R.id.testLevelOneExtrasButton);
-        levelOneExtrasButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent startIntent = new Intent(getApplicationContext(), TestLevelOneExtras.class);
-                startActivity(startIntent);
-            }
-        });
-
         //  Goes back to MainActivity:
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener()
