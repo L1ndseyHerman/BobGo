@@ -24,7 +24,6 @@ public class LevelSevenActivity extends AppCompatActivity
     private Button beginButton;
     private GameLogic gameLogic;
     private BrightenUpPowerUp[] powerUps = new BrightenUpPowerUp[1];
-    private ImageView[] powerUpBarsUpTop = new ImageView[12];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,6 +78,7 @@ public class LevelSevenActivity extends AppCompatActivity
         powerUps = placePowerUps(powerUps);
         ImageView brightenedUpBobImage = findViewById(R.id.brightenedUpBob7);
 
+        ImageView[] powerUpBarsUpTop = new ImageView[12];
         powerUpBarsUpTop[0] = findViewById(R.id.brightenedUpTopSun7);
         powerUpBarsUpTop[1] = findViewById(R.id.brightenedUpTopBar7_0);
         powerUpBarsUpTop[2] = findViewById(R.id.brightenedUpTopBar7_1);
