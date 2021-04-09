@@ -121,8 +121,7 @@ public class LevelSevenActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent startIntent = new Intent(getApplicationContext(), LevelSelectPageTwoActivity.class);
-                startActivity(startIntent);
+                finish();
             }
         });
 

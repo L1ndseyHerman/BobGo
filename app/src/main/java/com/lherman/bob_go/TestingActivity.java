@@ -35,8 +35,7 @@ public class TestingActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(startIntent);
+                finish();
             }
         });
 

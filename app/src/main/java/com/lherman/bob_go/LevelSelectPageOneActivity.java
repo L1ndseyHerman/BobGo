@@ -17,9 +17,10 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
 
     private final Button[] buttons = new Button[5];
     private final TextView[] levelDescriptions = new TextView[4];
-    private final TextView[] scoreTexts = new TextView[4];
+    private Button nextButton;
+    private TextView scoreTexts[] = new TextView[4];
     //private int levelOneHighScore, levelTwoHighScore, levelThreeHighScore;
-    private final int[] scoreInts = new int[4];
+    private int scoreInts[] = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,7 +58,7 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
         levelDescriptions[2] = findViewById(R.id.levelThreeDescription);
         levelDescriptions[3] = findViewById(R.id.levelFourDescription);
         //  This one is in the same column as the levelDescriptions, just a Button instead of a TextView.
-        Button nextButton = findViewById(R.id.nextButton);
+        nextButton = findViewById(R.id.nextButton);
 
         scoreTexts[0] = findViewById(R.id.levelOneScore);
         scoreTexts[0].setText("High Score: " + scoreInts[0]);
@@ -154,8 +155,7 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(startIntent);
+                finish();
             }
         });
 
