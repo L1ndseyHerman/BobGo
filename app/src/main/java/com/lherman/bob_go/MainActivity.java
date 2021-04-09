@@ -69,11 +69,6 @@ public class MainActivity extends AppCompatActivity
             buttons[index].setY(2*screenHeight/3);
             buttons[index].setWidth(screenWidth /6);
             buttons[index].setHeight(screenHeight/4);
-
-            /*buttons[index].setX(screenWidth/36);
-            buttons[index].setY((screenHeight/22) + (index*2*screenHeight/11));
-            buttons[index].setWidth(screenWidth/6);
-            buttons[index].setHeight(screenHeight/11);*/
         }
 
 
@@ -152,7 +147,7 @@ public class MainActivity extends AppCompatActivity
             else
             {
                 pauseCounter++;
-                if (pauseCounter > 10)
+                if (pauseCounter > 14)
                 {
                     pauseCounter = 0;
                     isJumping = true;

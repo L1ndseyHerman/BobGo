@@ -2,7 +2,6 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -23,6 +22,7 @@ public class LevelSixActivity extends AppCompatActivity
     private Button beginButton;
     private GameLogic gameLogic;
 
+    //  This is the first level with powerUps
     private BrightenUpPowerUp[] powerUps = new BrightenUpPowerUp[3];
 
     @Override
@@ -75,7 +75,7 @@ public class LevelSixActivity extends AppCompatActivity
         coins = placeCoins(coins);
         gameLogic.setCoinLogic(coins);
 
-
+        //  Extra code only for powerUp levels:
         powerUps = placePowerUps(powerUps);
         ImageView brightenedUpBobImage = findViewById(R.id.brightenedUpBob6);
 
@@ -95,7 +95,7 @@ public class LevelSixActivity extends AppCompatActivity
         powerUpBarsUpTop[11] = findViewById(R.id.brightenedUpTopBar6_10);
 
         gameLogic.setPowerUpLogic(powerUps, brightenedUpBobImage, powerUpBarsUpTop);
-
+        //  End of extra code only for powerUp levels.
 
         haters = placeEnemies(haters);
         gameLogic.setHaterLogic(haters);
@@ -549,7 +549,7 @@ public class LevelSixActivity extends AppCompatActivity
         return coins;
     }
 
-
+    //  powerUp levels only code:
     public BrightenUpPowerUp[] placePowerUps(BrightenUpPowerUp[] powerUps)
     {
         powerUps[0] = new BrightenUpPowerUp((ImageView) findViewById(R.id.powerUp6_0));
@@ -566,6 +566,7 @@ public class LevelSixActivity extends AppCompatActivity
 
         return powerUps;
     }
+    //  end of powerUp levels only code
 
 
     public Hater[] placeEnemies(Hater[] haters)

@@ -20,10 +20,7 @@ public class BrightenUpPowerUp
 
     public boolean isColliding()
     {
-        //  Set the coin's visibility to false based on if this returns t/f.
-
         //  Bob's right colliding with PowerUp's left:
-        //  Do invisibility in the Level, maybe?
         return (bobImage.getX() + bobImage.getLayoutParams().width > powerUpImage.getX()
                 && bobImage.getX() < powerUpImage.getX()
                 && bobImage.getY() < powerUpImage.getY() + powerUpImage.getLayoutParams().height
@@ -38,7 +35,7 @@ public class BrightenUpPowerUp
                 && bobImage.getY() < powerUpImage.getY()
                 && bobImage.getX() < powerUpImage.getX() + powerUpImage.getWidth()
                 && bobImage.getX() + bobImage.getLayoutParams().width > powerUpImage.getX())
-                //  Bob's top colliding with Coin's bottom:
+                //  Bob's top colliding with PowerUp's bottom:
                 || (bobImage.getY() < powerUpImage.getY() + powerUpImage.getLayoutParams().height
                 && bobImage.getY() > powerUpImage.getY()
                 && bobImage.getX() < powerUpImage.getX() + powerUpImage.getLayoutParams().width

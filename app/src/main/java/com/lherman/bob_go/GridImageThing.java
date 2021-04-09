@@ -4,8 +4,8 @@ import android.widget.ImageView;
 
 public interface GridImageThing
 {
-    /*  Everything in "daGrid" in LevelOneActivity will start off as this before getting cast to
-        a Square, WinCircle, or BlankGridSpace.
+    /*  Everything in "daGrid" in the level activities will start off as this before getting cast to
+        a SquareObstacle or BlankGridSpace.
      */
 
     boolean checkCollision();
@@ -21,7 +21,6 @@ public interface GridImageThing
     void setImageWidth(int widthImage);
     void setImageHeight(int heightImage);
 
-    //  Making constructors 1 param:
     void setBob(Bob bob);
     void setBobImage(ImageView bobImage);
     void setXMoveSpeedScreen(int xMoveSpeedScreen);

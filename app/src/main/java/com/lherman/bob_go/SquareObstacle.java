@@ -5,12 +5,9 @@ import android.widget.ImageView;
 //  Blue square to maneuver around
 public class SquareObstacle implements GridImageThing
 {
-    //  Images from "activity_level_one.xml", or whatever future levels use.
     private final ImageView squareImage;
     private ImageView bobImage;
-    //  These get declared in "LevelOneActivity.java" and passed in here
     private int xMoveSpeedScreen;
-    //  The Bob object:
     private Bob bob;
 
     public SquareObstacle(ImageView squareImage)
@@ -18,6 +15,8 @@ public class SquareObstacle implements GridImageThing
         this.squareImage = squareImage;
     }
 
+    //  This giant method is probably the least clean code in this video game. I split it up into multiple methods and called them,
+    //  but it's still not the greatest. I'm not sure how to make it better though.
     @Override
     public boolean checkCollision()
     {
@@ -72,7 +71,7 @@ public class SquareObstacle implements GridImageThing
         if (squareImage.getY()+squareImage.getLayoutParams().height < bobImage.getY()-1)
         {
             bob.setJumpingLittle(true);
-            //  NEEDS THE -1 !
+            //  NEEDS THE -1 ! I'm not sure why this method does and the other ones don't, really struggling with the checkCollision().
             bob.setYLittleAmount(bobImage.getY()-(squareImage.getY()+squareImage.getLayoutParams().height)-1);
         }
         else
@@ -163,7 +162,6 @@ public class SquareObstacle implements GridImageThing
         //  If Bob is coasting to the right on top of a square
         if ((bob.IsOnTopOfSquare()) && (!bob.IsJumping()) &&
                 //  and the next time the square moves, its right side will be <= Bob's left side,
-                //(squareImage.getX()+squareImage.getLayoutParams().width+xMoveSpeedScreen) <= bobImage.getX())
                 (squareImage.getX()+squareImage.getLayoutParams().width) <= bobImage.getX())
         {
             //  Make Bob fall down instead of walking on air.

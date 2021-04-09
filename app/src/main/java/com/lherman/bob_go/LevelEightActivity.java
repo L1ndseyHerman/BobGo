@@ -2,7 +2,6 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -121,7 +120,7 @@ public class LevelEightActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                finish(); 
+                finish();
             }
         });
 

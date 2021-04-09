@@ -51,11 +51,10 @@ public class GameLogic
     private Coin[] coins;
     private Hater[] haters;
 
-    //  New!
+    //  New! Only levels 6-8 have power-ups.
     private BrightenUpPowerUp[] powerUps;
     private boolean containsPowerUps = false;
     private ImageView brightenedUpBobImage;
-
     private ImageView[] powerUpBarsUpTop;
 
     //  Save the key for that level's high score that gets passed in:
@@ -87,8 +86,6 @@ public class GameLogic
     {
         this.bobImage = bobImage;
         bob = new Bob(bobImage);
-
-        //bobImage.setX(0);
         //  2 GridImageThings to the right
         bobImage.setX(2*screenWidth/12);
         bob.setDaGridX(2);
@@ -183,6 +180,7 @@ public class GameLogic
         this.scoreText = scoreText;
     }
 
+    //  This method only gets called in levels 6-8! It will set containsPowerUps == true. Levels 1-5 will have containsPowerUps == false.
     public void setPowerUpLogic(BrightenUpPowerUp[] powerUps, ImageView brightenedUpBobImage, ImageView[] powerUpBarsUpTop)
     {
         this.powerUps = powerUps;
@@ -364,19 +362,13 @@ public class GameLogic
         {
             levelTimer.cancel();
 
-            //  Save the score:
-            //  BUT ONLY IF IT'S HIGHER THAN THE EXISTING SCORE! FACEPALM!
-            //SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             int defaultValue = 0;
-            //int levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
             int levelHighScore = theSavedPreference.getInt(thisLevelsHighScoreKey, defaultValue);
             //  If the current high score is greater than the existing one,
             //  or if there is no high score yet (first time level beaten),
             //  save the score.
             if (theScore > levelHighScore)
             {
-                //SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                //SharedPreferences.Editor editor = sharedPref.edit();
                 SharedPreferences.Editor editor = thePreferenceImSaving.edit();
                 editor.putInt(thisLevelsHighScoreKey, theScore);
                 editor.apply();
@@ -450,7 +442,7 @@ public class GameLogic
         //  Now check if Bob collided w a Coin:
         for (Coin coin: coins)
         {
-            //  DON'T RECOUNT COINS THAT ARE INVISIBLE (ALREADY GOTTEN)!!
+            //                      DON'T RECOUNT COINS THAT ARE INVISIBLE (ALREADY GOTTEN)!!
             if (coin.isColliding() && coin.IsNotInvisible())
             {
                 coin.setInvisible();
@@ -513,17 +505,15 @@ public class GameLogic
                 coin.move();
             }
 
-            //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //  Declare that Bob moved one GridImageThing:                                 // Doesn't matter what the y is.
-            //if (bobImage.getX()+bobImage.getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
+            //  Declare that Bob moved one GridImageThing:                                    Doesn't matter what the y is.
             if (bob.getBobImage().getX()+bob.getBobImage().getLayoutParams().width > daGrid[bob.getDaGridX()+1][0].getImageX())
             {
                 bob.setDaGridX(bob.getDaGridX()+1);
             }
-            //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
-        //  Move the grid somewhat, but less than the usual x-amount.
+        //  Move the grid somewhat, but less than the usual x-amount. The amount will be the size of the gaps (margins)
+        //  in the x-direction in-between the images in daGrid.
         else if (bob.IsMovingRightLittle())
         {
             for (GridImageThing[] gridImage: daGrid)
@@ -557,32 +547,30 @@ public class GameLogic
             bob.setMovingRightLittle(false);
         }
 
-        //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
         if (bob.IsJumping())
         {
-            //bobImage.setY(bobImage.getY() - bob.getJumpSpeed());
             bob.getBobImage().setY(bob.getBobImage().getY() - bob.getJumpSpeed());
         }
-        //  This is for if Bob needs to jump less than his jump speed, but more than 0:
+        //  This is for if Bob needs to jump less than his jump speed, but more than 0. The amount is based on the gaps (margins)
+        //  in the y-direction between the images in daGrid.
         else if (bob.IsJumpingLittle())
         {
             //  LittleAmount is positive here (2dp on tablet), so subtract it to make Bob jump up.
-            //bobImage.setY(bobImage.getY()-bob.getYLittleAmount());
             bob.getBobImage().setY(bob.getBobImage().getY()-bob.getYLittleAmount());
             //  Should only happen one time
             bob.setJumpingLittle(false);
             bob.setJumping(false);
             bob.setFalling(true);
         }
+        //  Falling the gap amount
         else if (bob.IsFallingLittle())
         {
-            //bobImage.setY(bobImage.getY()+bob.getYLittleAmount());
             bob.getBobImage().setY(bob.getBobImage().getY()+bob.getYLittleAmount());
             //  Should only happen one time
             bob.setFallingLittle(false);
             bob.setFalling(false);
-            //if (bobImage.getY() < bob.getLowestY())
+
             if (bob.getBobImage().getY() < bob.getLowestY())
             {
                 bob.setOnTopOfSquare(true);
@@ -590,12 +578,9 @@ public class GameLogic
         }
         else if (bob.IsFalling())
         {
-            //bobImage.setY(bobImage.getY() + bob.getJumpSpeed());
             bob.getBobImage().setY(bob.getBobImage().getY() + bob.getJumpSpeed());
         }
     }
-
-    //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
     public void looseTimerStuff()
     {

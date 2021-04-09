@@ -18,7 +18,6 @@ public class Coin
         //  Set the coin's visibility to false and inc the score by 1 in the level based on if this returns t/f.
 
         //  Bob's right colliding with Coin's left:
-        //  Do score + invisibility in the Level, maybe?
         return (bobImage.getX() + bobImage.getLayoutParams().width > coinImage.getX()
                 && bobImage.getX() < coinImage.getX()
                 && bobImage.getY() < coinImage.getY() + coinImage.getLayoutParams().height

@@ -2,7 +2,6 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -94,6 +93,8 @@ public class LevelOneActivity extends AppCompatActivity
             {
                 beginButton.setVisibility(View.INVISIBLE);
 
+                //  Preferences are like UserDefaults in XCode. A great way to store a small amount of stuff, like 8 high scores.
+                //  They auto-delete on app uninstall.
                 gameLogic.setLevelHighScoreKey("levelOneHighScore");
                 SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 gameLogic.setTheSavedPreference(sharedPrefReturn);
@@ -504,23 +505,29 @@ public class LevelOneActivity extends AppCompatActivity
         haters[0].setImageY(thePath0[0].getImageY());
         haters[0].setPath(thePath0, xHaterMoveSpeeds0, yHaterMoveSpeeds0);
 
+        //  The GridImageThings the enemy moves between. Some enemies have more complicated move paths, see "shark" enemies
+        //  in LevelEightActivity.
         GridImageThing[] thePath1 = new GridImageThing[2];
         thePath1[0] = daGrid[33][0];
         thePath1[1] = daGrid[33][5];
 
+        //  The x-move speeds. This enemy only moves vertically, so they're 0.
         float[] xHaterMoveSpeeds1 = new float[2];
         xHaterMoveSpeeds1[0] = 0;
         xHaterMoveSpeeds1[1] = 0;
 
+        //  The y-move speeds. It could move at a different speed up than it does down, see LevelSevenActivity for an example.
         float[] yHaterMoveSpeeds1 = new float[2];
         yHaterMoveSpeeds1[0] = (float)0.5;
         yHaterMoveSpeeds1[1] = (float)0.5;
 
+        //  Putting it all together to create the enemy:
         haters[1] = new Hater((ImageView) findViewById(R.id.hater1_1));
         haters[1].setImageX(thePath1[0].getImageX());
         haters[1].setImageY(thePath1[0].getImageY());
         haters[1].setPath(thePath1, xHaterMoveSpeeds1, yHaterMoveSpeeds1);
 
+        //  Next enemy:
         GridImageThing[] thePath2 = new GridImageThing[2];
         thePath2[0] = daGrid[38][5];
         thePath2[1] = daGrid[44][5];
@@ -541,6 +548,7 @@ public class LevelOneActivity extends AppCompatActivity
         return haters;
     }
 
+    //  Tap anywhere on the screen to make Bob jump:
     public boolean onTouchEvent(MotionEvent event)
     {
         gameLogic.bobJumpLogic();

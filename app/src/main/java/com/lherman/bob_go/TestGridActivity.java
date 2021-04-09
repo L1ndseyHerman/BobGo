@@ -10,12 +10,13 @@ import android.widget.TextView;
 
 public class TestGridActivity extends AppCompatActivity {
 
+    //  This class could be helpful for finding out if the game has problems on phones with larger screen sizes than the one I own
+    //  (Samsung Galaxy S6).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_grid);
 
-        //  Screen size stuff:
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -25,37 +26,6 @@ public class TestGridActivity extends AppCompatActivity {
         TextView screenSizeText = findViewById(R.id.screenSizeText);
         screenSizeText.setText("The width of your screen is " + width + " density pixels, and the height of your screen is "
                 + height + " density pixels.");
-
-        /*ImageView s1 = findViewById(R.id.s1);
-        s1.setX(0);
-        s1.setY(0);
-        s1.getLayoutParams().height = height/7;
-        s1.getLayoutParams().width = width/12;*/
-
-
-
-        //  Works
-        /*ImageView[] theSquares = new ImageView[6];
-
-        theSquares[0] = findViewById(R.id.s1);
-        theSquares[1] = findViewById(R.id.s2);
-        theSquares[2] = findViewById(R.id.s3);
-        theSquares[3] = findViewById(R.id.s4);
-        theSquares[4] = findViewById(R.id.s5);
-        theSquares[5] = findViewById(R.id.s6);
-        //theSquares[6] = findViewById(R.id.s7);
-
-        for (int index=0; index<theSquares.length; index++)
-        {
-            theSquares[index].getLayoutParams().height = height/7;
-            theSquares[index].getLayoutParams().width = width/12;
-            //  Later....
-            //theSquares[index].setX(index*width/12);
-            theSquares[index].setX(0);
-            //theSquares[index].setY(index*height/7);
-            theSquares[index].setY((height/14)+(index*height/7));
-        }*/
-
 
         ImageView[][] theSquares = new ImageView[12][6];
 
@@ -151,10 +121,7 @@ public class TestGridActivity extends AppCompatActivity {
             {
                 theSquares[index][index2].getLayoutParams().height = height / 7;
                 theSquares[index][index2].getLayoutParams().width = width / 12;
-                //  Later....
                 theSquares[index][index2].setX(index*width/12);
-                //theSquares[index][index2].setX(0);
-                //theSquares[index].setY(index*height/7);
                 theSquares[index][index2].setY((height / 14) + (index2 * height / 7));
             }
         }

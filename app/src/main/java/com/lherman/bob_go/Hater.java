@@ -4,8 +4,8 @@ import android.widget.ImageView;
 
 public class Hater
 {
-    //  The red frowny-face enemies. If Bob touches one, he will become too upset to win the level,
-    //  and get a Game Over.
+    //  The red frowny-face enemies. If Bob gets too close to one, he will become too upset to continue the level,
+    //  and gets a Game Over.
     private final ImageView haterImage;
     private ImageView bobImage;
     private int xMoveSpeedScreen, pathIndex;
@@ -50,8 +50,6 @@ public class Hater
 
     public boolean isColliding()
     {
-        //  Stop timer and get a Game Over.
-
         //  Bob's right colliding with Hater's left:
         return (bobImage.getX() + bobImage.getLayoutParams().width > haterImage.getX()
                 && bobImage.getX() < haterImage.getX()
@@ -75,7 +73,6 @@ public class Hater
     }
 
     //  1 = the same speed as the level, 2 = twice as fast, 0.5 = half as fast, etc.
-    //  AND IT NEEDS TO BE A FLOAT FOR 0.5! FACEPALM!
     public void setPath(GridImageThing[] thePath, float[] xHaterMoveSpeeds, float[] yHaterMoveSpeeds)
     {
         this.thePath = thePath;
@@ -176,7 +173,7 @@ public class Hater
             else {
                 pathIndex++;
             }
-            //  Need to check thePath seperately since its index is 1 more than for the x and y speeds.
+            //  Need to check thePath separately since its index is 1 more than for the x and y speeds.
             if (pathIndex == thePath.length-1)
             {
                 nextGridImageThing = thePath[0];

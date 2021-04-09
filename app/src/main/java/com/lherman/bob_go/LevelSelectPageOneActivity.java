@@ -17,10 +17,8 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
 
     private final Button[] buttons = new Button[5];
     private final TextView[] levelDescriptions = new TextView[4];
-    private Button nextButton;
-    private TextView scoreTexts[] = new TextView[4];
-    //private int levelOneHighScore, levelTwoHighScore, levelThreeHighScore;
-    private int scoreInts[] = new int[4];
+    private final TextView[] scoreTexts = new TextView[4];
+    private final int[] scoreInts = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,18 +26,13 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select_page_one);
 
-        //  Ok, it should be saved, so time to test it:
-        //SharedPreferences sharedPrefReturn = getPreferences(Context.MODE_PRIVATE);
+        //  Getting the saved High Scores, or 0 if there is no high score for that level yet.
         SharedPreferences sharedPrefReturn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int defaultValue = 0;
         scoreInts[0] = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
         scoreInts[1] = sharedPrefReturn.getInt("levelTwoHighScore", defaultValue);
         scoreInts[2] = sharedPrefReturn.getInt("levelThreeHighScore", defaultValue);
         scoreInts[3] = sharedPrefReturn.getInt("levelFourHighScore", defaultValue);
-
-        //levelOneHighScore = sharedPrefReturn.getInt("levelOneHighScore", defaultValue);
-        //levelTwoHighScore = sharedPrefReturn.getInt("levelTwoHighScore", defaultValue);
-        //levelThreeHighScore = sharedPrefReturn.getInt("levelThreeHighScore", defaultValue);
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -58,7 +51,7 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
         levelDescriptions[2] = findViewById(R.id.levelThreeDescription);
         levelDescriptions[3] = findViewById(R.id.levelFourDescription);
         //  This one is in the same column as the levelDescriptions, just a Button instead of a TextView.
-        nextButton = findViewById(R.id.nextButton);
+        Button nextButton = findViewById(R.id.nextButton);
 
         scoreTexts[0] = findViewById(R.id.levelOneScore);
         scoreTexts[0].setText("High Score: " + scoreInts[0]);
@@ -102,19 +95,12 @@ public class LevelSelectPageOneActivity extends AppCompatActivity
             scoreTexts[index].setHeight(2* screenHeight /11);
         }
 
-
-        //  The code below makes it go to the Game Activity when the beginButton is pressed:
         buttons[0].setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                //  This is a variable of type "Intent"... idk....
-                //                                                      Tells it to go to that screen
                 Intent startIntent = new Intent(getApplicationContext(), LevelOneActivity.class);
-                //  Passing stuff betw screens:
-                //startIntent.putExtra("com.lherman.quicklauncher.SOMETHING", "HELLO WORLD!");
-                //  Going to that screen now:
                 startActivity(startIntent);
             }
         });
