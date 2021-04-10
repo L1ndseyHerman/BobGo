@@ -152,10 +152,16 @@
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
-        android:id="@+id/gridR_4x0"
+        android:id="@+id/gridR_4x0_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_4x0_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
 
     <ImageView
         android:id="@+id/gridR_4x1"

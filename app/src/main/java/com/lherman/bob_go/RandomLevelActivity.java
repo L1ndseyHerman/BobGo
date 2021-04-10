@@ -2,10 +2,8 @@ package com.lherman.bob_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -133,7 +131,24 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[3][4] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_3x4));
         daGrid[3][5] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_3x5));
 
-        daGrid[4][0] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x0));
+        //daGrid[4][0] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x0_B));
+        //Randomly choosing either the BlankGridSpace or Square to go there.
+
+        //  2 means 0 or 1.
+        int theRandomNumber = (int)(2*Math.random());
+        //System.out.println(theRandomNumber);
+
+        if (theRandomNumber == 0)
+        {
+            daGrid[4][0] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x0_B));
+            findViewById(R.id.gridR_4x0_S).setVisibility(ImageView.INVISIBLE);
+        }
+        else
+        {
+            daGrid[4][0] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x0_S));
+            findViewById(R.id.gridR_4x0_B).setVisibility(ImageView.INVISIBLE);
+        }
+
         daGrid[4][1] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x1));
         daGrid[4][2] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x2));
         daGrid[4][3] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_4x3));
