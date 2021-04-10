@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -125,6 +127,16 @@ public class TestGridActivity extends AppCompatActivity {
                 theSquares[index][index2].setY((height / 14) + (index2 * height / 7));
             }
         }
+
+        Button backButton = findViewById(R.id.backButton5);
+        backButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
 
     }
 }
