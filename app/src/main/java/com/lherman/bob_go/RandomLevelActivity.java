@@ -131,6 +131,7 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[3][4] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_3x4));
         daGrid[3][5] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_3x5));
 
+        /*
         //  2 means 0 or 1.
         //Randomly choosing either the BlankGridSpace or Square to go there.
         int theRandomNumber;
@@ -209,6 +210,14 @@ public class RandomLevelActivity extends AppCompatActivity
             daGrid[4][5] = new SquareObstacle((ImageView) findViewById(R.id.gridR_4x5_S));
             findViewById(R.id.gridR_4x5_B).setVisibility(ImageView.INVISIBLE);
         }
+        */
+
+        daGrid[4][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x0_B), (ImageView)findViewById(R.id.gridR_4x0_S));
+        daGrid[4][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x1_B), (ImageView)findViewById(R.id.gridR_4x1_S));
+        daGrid[4][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x2_B), (ImageView)findViewById(R.id.gridR_4x2_S));
+        daGrid[4][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x3_B), (ImageView)findViewById(R.id.gridR_4x3_S));
+        daGrid[4][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x4_B), (ImageView)findViewById(R.id.gridR_4x4_S));
+        daGrid[4][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x5_B), (ImageView)findViewById(R.id.gridR_4x5_S));
 
         daGrid[5][0] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x0));
         daGrid[5][1] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x1));
@@ -218,6 +227,22 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[5][5] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x5));
 
         return daGrid;
+    }
+
+    public GridImageThing chooseSpaceOrSquare(ImageView spaceImage, ImageView squareImage)
+    {
+        //  Gets 0 or 1
+        int theRandomNumber = (int)(2*Math.random());
+
+        //  BlankGridSpace
+        if (theRandomNumber == 0)
+        {
+            squareImage.setVisibility(ImageView.INVISIBLE);
+            return new BlankGridSpace(spaceImage);
+        }
+        //  SquareObstacle
+        spaceImage.setVisibility(ImageView.INVISIBLE);
+        return new SquareObstacle(squareImage);
     }
 
     public Coin[] placeCoins(Coin[] coins)
