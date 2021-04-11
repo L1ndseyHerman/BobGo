@@ -14,13 +14,15 @@ import android.widget.TextView;
 public class RandomLevelActivity extends AppCompatActivity
 {
 
-    private GridImageThing[][] daGrid = new GridImageThing[6][6];
+    private GridImageThing[][] daGrid = new GridImageThing[7][6];
     private Hater[] haters = new Hater[1];
     private Coin[] coins = new Coin[1];
     private Button beginButton;
     private GameLogic gameLogic;
 
     private int randomBlankGridSpaceRow = -1;
+    private int previousRandomBlankGridSpaceRow = -1;
+    private boolean choseRandomBlankGridSpaceRowThisColumn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -159,34 +161,33 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[5][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x5_B), (ImageView)findViewById(R.id.gridR_5x5_S),
                 5, 5);
 
+        daGrid[6][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_6x0_B), (ImageView)findViewById(R.id.gridR_6x0_S),
+                6, 0);
+        daGrid[6][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_6x1_B), (ImageView)findViewById(R.id.gridR_6x1_S),
+                6, 1);
+        daGrid[6][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_6x2_B), (ImageView)findViewById(R.id.gridR_6x2_S),
+                6, 2);
+        daGrid[6][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_6x3_B), (ImageView)findViewById(R.id.gridR_6x3_S),
+                6, 3);
+        daGrid[6][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_6x4_B), (ImageView)findViewById(R.id.gridR_6x4_S),
+                6, 4);
+        daGrid[6][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_6x5_B), (ImageView)findViewById(R.id.gridR_6x5_S),
+                6, 5);
+
         return daGrid;
     }
 
     public GridImageThing chooseSpaceOrSquare(ImageView spaceImage, ImageView squareImage, int columnNumber, int rowNumber)
     {
-
         if (columnNumber == 4)
         {
             return chooseSpaceOrSquareFirstColumn(spaceImage, squareImage, rowNumber);
         }
-
-        //  CHANGE WHEN YOU FIGURE THE ODD/EVEN COLUMN STUFF OUT!!
-        return  chooseSpaceOrSquareOddColumn(spaceImage, squareImage, rowNumber);
-
-        /*
-        //  Gets 0 or 1
-        int theRandomNumber = (int)(2*Math.random());
-
-        //  BlankGridSpace
-        if (theRandomNumber == 0)
+        else if (columnNumber % 2 == 0)
         {
-            squareImage.setVisibility(ImageView.INVISIBLE);
-            return new BlankGridSpace(spaceImage);
+            return  chooseSpaceOrSquareEvenColumn(spaceImage, squareImage, rowNumber);
         }
-        //  SquareObstacle
-        spaceImage.setVisibility(ImageView.INVISIBLE);
-        return new SquareObstacle(squareImage);
-        */
+        return  chooseSpaceOrSquareOddColumn(spaceImage, squareImage, rowNumber);
     }
 
     public GridImageThing chooseSpaceOrSquareFirstColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
@@ -227,19 +228,21 @@ public class RandomLevelActivity extends AppCompatActivity
 
     public GridImageThing chooseSpaceOrSquareOddColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
     {
+        choseRandomBlankGridSpaceRowThisColumn = false;
+
         boolean needsBlankSpaceAboveIt;
         needsBlankSpaceAboveIt = randomBlankGridSpaceRow < 5;
 
         if ((rowNumber == randomBlankGridSpaceRow) || (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1))
         {
-            System.out.println("Row number = " + rowNumber);
+            //System.out.println("Row number = " + rowNumber);
             squareImage.setVisibility(ImageView.INVISIBLE);
             return new BlankGridSpace(spaceImage);
         }
         //  If Bob jumped last column, need a SquareObstacle for him to land on in this column:
         else if (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow + 1)
         {
-            System.out.println("Row number = " + rowNumber);
+            //System.out.println("Row number = " + rowNumber);
             spaceImage.setVisibility(ImageView.INVISIBLE);
             return new SquareObstacle(squareImage);
         }
@@ -255,6 +258,72 @@ public class RandomLevelActivity extends AppCompatActivity
             spaceImage.setVisibility(ImageView.INVISIBLE);
             return new SquareObstacle(squareImage);
         }
+    }
+
+    public GridImageThing chooseSpaceOrSquareEvenColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
+    {
+        if (!choseRandomBlankGridSpaceRowThisColumn)
+        {
+            previousRandomBlankGridSpaceRow = randomBlankGridSpaceRow;
+            //  Make sure the GridImageThing it chooses is at most two away from the previous one, less if that goes above 0 or below 5.
+            if (previousRandomBlankGridSpaceRow == 0)
+            {
+                randomBlankGridSpaceRow = (int)(3*Math.random());
+            }
+            else if (previousRandomBlankGridSpaceRow == 1)
+            {
+                randomBlankGridSpaceRow = (int)(4*Math.random());
+            }
+            else if (previousRandomBlankGridSpaceRow == 2)
+            {
+                randomBlankGridSpaceRow = (int)(5*Math.random());
+            }
+            else if (previousRandomBlankGridSpaceRow == 3)
+            {
+                randomBlankGridSpaceRow = (int)(5*Math.random()+1);
+            }
+            else if (previousRandomBlankGridSpaceRow == 4)
+            {
+                randomBlankGridSpaceRow = (int)(4*Math.random()+2);
+            }
+            else if (previousRandomBlankGridSpaceRow == 5)
+            {
+                randomBlankGridSpaceRow = (int)(3*Math.random()+3);
+            }
+
+        }
+        choseRandomBlankGridSpaceRowThisColumn = true;
+
+        boolean needsBlankSpaceAboveIt;
+        needsBlankSpaceAboveIt = (randomBlankGridSpaceRow < 5) && (randomBlankGridSpaceRow > 0) ;
+
+        //if ((rowNumber == randomBlankGridSpaceRow) || (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1))
+        //  Since the above code doesn't keep track of whether randomBlankGridSpaceRow or previousRandomBlankGridSpaceRow
+        //  is larger, need both OR statements.
+        if ((rowNumber == randomBlankGridSpaceRow) ||
+                (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1) ||
+                (rowNumber == previousRandomBlankGridSpaceRow) ||
+                (rowNumber > randomBlankGridSpaceRow && rowNumber < previousRandomBlankGridSpaceRow) ||
+                (rowNumber > previousRandomBlankGridSpaceRow && rowNumber < randomBlankGridSpaceRow))
+        {
+            System.out.println("randomBlankGridSpaceRow = " + randomBlankGridSpaceRow);
+            System.out.println("previousRandomBlankGridSpaceRow = " + previousRandomBlankGridSpaceRow);
+            System.out.println("Row number = " + rowNumber);
+            squareImage.setVisibility(ImageView.INVISIBLE);
+            return new BlankGridSpace(spaceImage);
+        }
+        else
+        {
+            int theRandomNumber = (int) (2 * Math.random());
+
+            if (theRandomNumber == 0) {
+                squareImage.setVisibility(ImageView.INVISIBLE);
+                return new BlankGridSpace(spaceImage);
+            }
+            spaceImage.setVisibility(ImageView.INVISIBLE);
+            return new SquareObstacle(squareImage);
+        }
+
     }
 
     public Coin[] placeCoins(Coin[] coins)
