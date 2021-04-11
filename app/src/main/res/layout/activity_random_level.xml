@@ -224,40 +224,76 @@
         app:srcCompat="@drawable/squareseventy" />
 
     <ImageView
-        android:id="@+id/gridR_5x0"
+        android:id="@+id/gridR_5x0_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
-        android:id="@+id/gridR_5x1"
+        android:id="@+id/gridR_5x0_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_5x1_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
-        android:id="@+id/gridR_5x2"
+        android:id="@+id/gridR_5x1_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_5x2_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
-        android:id="@+id/gridR_5x3"
+        android:id="@+id/gridR_5x2_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_5x3_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
-        android:id="@+id/gridR_5x4"
+        android:id="@+id/gridR_5x3_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_5x4_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
 
     <ImageView
-        android:id="@+id/gridR_5x5"
+        android:id="@+id/gridR_5x4_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_5x5_B"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gridbackgroundseventy" />
+
+    <ImageView
+        android:id="@+id/gridR_5x5_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/squareseventy" />
 
     <ImageView
         android:id="@+id/winCircleR"

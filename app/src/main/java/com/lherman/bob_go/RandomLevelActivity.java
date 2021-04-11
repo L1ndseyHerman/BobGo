@@ -3,7 +3,6 @@ package com.lherman.bob_go;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -147,12 +146,18 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[4][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_4x5_B), (ImageView)findViewById(R.id.gridR_4x5_S),
                 4, 5);
 
-        daGrid[5][0] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x0));
-        daGrid[5][1] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x1));
-        daGrid[5][2] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x2));
-        daGrid[5][3] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x3));
-        daGrid[5][4] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x4));
-        daGrid[5][5] = new BlankGridSpace((ImageView) findViewById(R.id.gridR_5x5));
+        daGrid[5][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x0_B), (ImageView)findViewById(R.id.gridR_5x0_S),
+                5, 0);
+        daGrid[5][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x1_B), (ImageView)findViewById(R.id.gridR_5x1_S),
+                5, 1);
+        daGrid[5][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x2_B), (ImageView)findViewById(R.id.gridR_5x2_S),
+                5, 2);
+        daGrid[5][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x3_B), (ImageView)findViewById(R.id.gridR_5x3_S),
+                5, 3);
+        daGrid[5][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x4_B), (ImageView)findViewById(R.id.gridR_5x4_S),
+                5, 4);
+        daGrid[5][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_5x5_B), (ImageView)findViewById(R.id.gridR_5x5_S),
+                5, 5);
 
         return daGrid;
     }
@@ -166,7 +171,7 @@ public class RandomLevelActivity extends AppCompatActivity
         }
 
         //  CHANGE WHEN YOU FIGURE THE ODD/EVEN COLUMN STUFF OUT!!
-        return  chooseSpaceOrSquareFirstColumn(spaceImage, squareImage, rowNumber);
+        return  chooseSpaceOrSquareOddColumn(spaceImage, squareImage, rowNumber);
 
         /*
         //  Gets 0 or 1
@@ -215,6 +220,38 @@ public class RandomLevelActivity extends AppCompatActivity
                 return new BlankGridSpace(spaceImage);
             }
             //  SquareObstacle
+            spaceImage.setVisibility(ImageView.INVISIBLE);
+            return new SquareObstacle(squareImage);
+        }
+    }
+
+    public GridImageThing chooseSpaceOrSquareOddColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
+    {
+        boolean needsBlankSpaceAboveIt;
+        needsBlankSpaceAboveIt = randomBlankGridSpaceRow < 5;
+
+        if ((rowNumber == randomBlankGridSpaceRow) || (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1))
+        {
+            System.out.println("Row number = " + rowNumber);
+            squareImage.setVisibility(ImageView.INVISIBLE);
+            return new BlankGridSpace(spaceImage);
+        }
+        //  If Bob jumped last column, need a SquareObstacle for him to land on in this column:
+        else if (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow + 1)
+        {
+            System.out.println("Row number = " + rowNumber);
+            spaceImage.setVisibility(ImageView.INVISIBLE);
+            return new SquareObstacle(squareImage);
+        }
+        else
+        {
+            int theRandomNumber = (int) (2 * Math.random());
+
+            if (theRandomNumber == 0)
+            {
+                squareImage.setVisibility(ImageView.INVISIBLE);
+                return new BlankGridSpace(spaceImage);
+            }
             spaceImage.setVisibility(ImageView.INVISIBLE);
             return new SquareObstacle(squareImage);
         }
