@@ -221,7 +221,7 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[10][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_10x0_B), (ImageView)findViewById(R.id.gridR_10x0_S),
                 10, 0);
         daGrid[10][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_10x1_B), (ImageView)findViewById(R.id.gridR_10x1_S),
-                9, 1);
+                10, 1);
         daGrid[10][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_10x2_B), (ImageView)findViewById(R.id.gridR_10x2_S),
                 10, 2);
         daGrid[10][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_10x3_B), (ImageView)findViewById(R.id.gridR_10x3_S),
@@ -422,7 +422,10 @@ public class RandomLevelActivity extends AppCompatActivity
             if (theRandomNumber == 0)
             {
 
-                if ((!columnHasHaterAlready) && (haterCounter < haters.length))
+                //if ((!columnHasHaterAlready) && (haterCounter < haters.length))
+                //  While SquareObstacles can be 2 BlankGridSpaces away from randomBlankGridSpaceRow, Haters need to be 3.
+                if ((!columnHasHaterAlready) && (haterCounter < haters.length) &&
+                        ((rowNumber < randomBlankGridSpaceRow - 2)||(rowNumber > randomBlankGridSpaceRow + 2)))
                 {
                     haterCoordinates[haterCounter][0] = columnNumber;
                     haterCoordinates[haterCounter][1] = rowNumber;
