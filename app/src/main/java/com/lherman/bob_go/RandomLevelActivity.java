@@ -14,8 +14,8 @@ import android.widget.TextView;
 public class RandomLevelActivity extends AppCompatActivity
 {
 
-    private GridImageThing[][] daGrid = new GridImageThing[14][6];
-    private Hater[] haters = new Hater[4];
+    private GridImageThing[][] daGrid = new GridImageThing[15][6];
+    private Hater[] haters = new Hater[5];
     private Coin[] coins = new Coin[1];
     private Button beginButton;
     private GameLogic gameLogic;
@@ -270,6 +270,19 @@ public class RandomLevelActivity extends AppCompatActivity
         daGrid[13][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_13x5_B), (ImageView)findViewById(R.id.gridR_13x5_S),
                 13, 5);
 
+        daGrid[14][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x0_B), (ImageView)findViewById(R.id.gridR_14x0_S),
+                14, 0);
+        daGrid[14][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x1_B), (ImageView)findViewById(R.id.gridR_14x1_S),
+                14, 1);
+        daGrid[14][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x2_B), (ImageView)findViewById(R.id.gridR_14x2_S),
+                14, 2);
+        daGrid[14][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x3_B), (ImageView)findViewById(R.id.gridR_14x3_S),
+                14, 3);
+        daGrid[14][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x4_B), (ImageView)findViewById(R.id.gridR_14x4_S),
+                14, 4);
+        daGrid[14][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x5_B), (ImageView)findViewById(R.id.gridR_14x5_S),
+                14, 5);
+
         return daGrid;
     }
 
@@ -279,7 +292,7 @@ public class RandomLevelActivity extends AppCompatActivity
         {
             return chooseSpaceOrSquareFirstColumn(spaceImage, squareImage, rowNumber);
         }
-        else if (columnNumber == 13)
+        else if (columnNumber == 49)
         {
             return chooseSpaceOrSquareLastColumn(spaceImage, squareImage, columnNumber, rowNumber);
         }
@@ -292,6 +305,9 @@ public class RandomLevelActivity extends AppCompatActivity
 
     public GridImageThing chooseSpaceOrSquareFirstColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
     {
+        //  Need this for before the level is all the way done.
+        winCircleCoordinates[0][0] = 0;
+        winCircleCoordinates[0][1] = 0;
 
         //  One of the bottom GridImageThings (3, 4, or 5) needs to be a BlankGridSpace, so Bob has somewhere to move.
         //  If it's 4 or 3, the one above it must be a BlankGridSpace too, so Bob can jump to land on it.
@@ -502,64 +518,53 @@ public class RandomLevelActivity extends AppCompatActivity
             }
         }
 
+        //  Whoops, all Haters are stationary, so only make one xMoveSpeed and one yMoveSpeed of 0:
+        float[] allXHaterMoveSpeeds = new float[1];
+        allXHaterMoveSpeeds[0] = 0;
+
+        float[] allYHaterMoveSpeeds = new float[1];
+        allYHaterMoveSpeeds[0] = 0;
+
+
         GridImageThing[] thePath0 = new GridImageThing[1];
-        //thePath0[0] = daGrid[0][0];
         thePath0[0] = daGrid[haterCoordinates[0][0]][haterCoordinates[0][1]];
-
-        float[] xHaterMoveSpeeds0 = new float[1];
-        xHaterMoveSpeeds0[0] = 0;
-
-        float[] yHaterMoveSpeeds0 = new float[1];
-        yHaterMoveSpeeds0[0] = 0;
 
         haters[0] = new Hater((ImageView) findViewById(R.id.haterR_0));
         haters[0].setImageX(thePath0[0].getImageX());
         haters[0].setImageY(thePath0[0].getImageY());
-        haters[0].setPath(thePath0, xHaterMoveSpeeds0, yHaterMoveSpeeds0);
+        haters[0].setPath(thePath0, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
 
         GridImageThing[] thePath1 = new GridImageThing[1];
-        //thePath1[0] = daGrid[0][0];
         thePath1[0] = daGrid[haterCoordinates[1][0]][haterCoordinates[1][1]];
-
-        float[] xHaterMoveSpeeds1 = new float[1];
-        xHaterMoveSpeeds1[0] = 0;
-
-        float[] yHaterMoveSpeeds1 = new float[1];
-        yHaterMoveSpeeds1[0] = 0;
 
         haters[1] = new Hater((ImageView) findViewById(R.id.haterR_1));
         haters[1].setImageX(thePath1[0].getImageX());
         haters[1].setImageY(thePath1[0].getImageY());
-        haters[1].setPath(thePath1, xHaterMoveSpeeds1, yHaterMoveSpeeds1);
+        haters[1].setPath(thePath1, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
 
         GridImageThing[] thePath2 = new GridImageThing[1];
-        //thePath2[0] = daGrid[0][0];
         thePath2[0] = daGrid[haterCoordinates[2][0]][haterCoordinates[2][1]];
-
-        float[] xHaterMoveSpeeds2 = new float[1];
-        xHaterMoveSpeeds2[0] = 0;
-
-        float[] yHaterMoveSpeeds2 = new float[1];
-        yHaterMoveSpeeds2[0] = 0;
 
         haters[2] = new Hater((ImageView) findViewById(R.id.haterR_2));
         haters[2].setImageX(thePath2[0].getImageX());
         haters[2].setImageY(thePath2[0].getImageY());
-        haters[2].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
+        haters[2].setPath(thePath2, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
 
         GridImageThing[] thePath3 = new GridImageThing[1];
         thePath3[0] = daGrid[haterCoordinates[3][0]][haterCoordinates[3][1]];
 
-        float[] xHaterMoveSpeeds3 = new float[1];
-        xHaterMoveSpeeds3[0] = 0;
-
-        float[] yHaterMoveSpeeds3 = new float[1];
-        yHaterMoveSpeeds3[0] = 0;
-
         haters[3] = new Hater((ImageView) findViewById(R.id.haterR_3));
         haters[3].setImageX(thePath3[0].getImageX());
         haters[3].setImageY(thePath3[0].getImageY());
-        haters[3].setPath(thePath3, xHaterMoveSpeeds3, yHaterMoveSpeeds3);
+        haters[3].setPath(thePath3, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
+
+        GridImageThing[] thePath4 = new GridImageThing[1];
+        thePath4[0] = daGrid[haterCoordinates[4][0]][haterCoordinates[4][1]];
+
+        haters[4] = new Hater((ImageView) findViewById(R.id.haterR_4));
+        haters[4].setImageX(thePath4[0].getImageX());
+        haters[4].setImageY(thePath4[0].getImageY());
+        haters[4].setPath(thePath4, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
 
         return haters;
     }
