@@ -607,6 +607,18 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/haterseventy" />
 
+    <ImageView
+        android:id="@+id/haterR_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
+    <ImageView
+        android:id="@+id/haterR_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/haterseventy" />
+
     <Button
         android:id="@+id/startButtonR"
         android:layout_width="wrap_content"

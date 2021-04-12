@@ -15,7 +15,7 @@ public class RandomLevelActivity extends AppCompatActivity
 {
 
     private GridImageThing[][] daGrid = new GridImageThing[10][6];
-    private Hater[] haters = new Hater[1];
+    private Hater[] haters = new Hater[3];
     private Coin[] coins = new Coin[1];
     private Button beginButton;
     private GameLogic gameLogic;
@@ -23,6 +23,9 @@ public class RandomLevelActivity extends AppCompatActivity
     private int randomBlankGridSpaceRow = -1;
     private int previousRandomBlankGridSpaceRow = -1;
     private boolean choseRandomBlankGridSpaceRowThisColumn = false;
+    private final int[][] haterCoordinates = new int[haters.length][2];
+    private boolean columnHasHaterAlready = false;
+    private int haterCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -224,7 +227,7 @@ public class RandomLevelActivity extends AppCompatActivity
         }
         else if (columnNumber % 2 == 0)
         {
-            return  chooseSpaceOrSquareEvenColumn(spaceImage, squareImage, rowNumber);
+            return  chooseSpaceOrSquareEvenColumn(spaceImage, squareImage, columnNumber, rowNumber);
         }
         return  chooseSpaceOrSquareOddColumn(spaceImage, squareImage, rowNumber);
     }
@@ -299,10 +302,13 @@ public class RandomLevelActivity extends AppCompatActivity
         }
     }
 
-    public GridImageThing chooseSpaceOrSquareEvenColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
+    public GridImageThing chooseSpaceOrSquareEvenColumn(ImageView spaceImage, ImageView squareImage, int columnNumber, int rowNumber)
     {
         if (!choseRandomBlankGridSpaceRowThisColumn)
         {
+            //  Means can't have chosen Hater coordinates yet either:
+            columnHasHaterAlready = false;
+
             previousRandomBlankGridSpaceRow = randomBlankGridSpaceRow;
             //  Make sure the GridImageThing it chooses is at most two away from the previous one, less if that goes above 0 or below 5.
             if (previousRandomBlankGridSpaceRow == 0)
@@ -345,9 +351,9 @@ public class RandomLevelActivity extends AppCompatActivity
                 (rowNumber > randomBlankGridSpaceRow && rowNumber < previousRandomBlankGridSpaceRow) ||
                 (rowNumber > previousRandomBlankGridSpaceRow && rowNumber < randomBlankGridSpaceRow))
         {
-            System.out.println("randomBlankGridSpaceRow = " + randomBlankGridSpaceRow);
-            System.out.println("previousRandomBlankGridSpaceRow = " + previousRandomBlankGridSpaceRow);
-            System.out.println("Row number = " + rowNumber);
+            //System.out.println("randomBlankGridSpaceRow = " + randomBlankGridSpaceRow);
+            //System.out.println("previousRandomBlankGridSpaceRow = " + previousRandomBlankGridSpaceRow);
+            //System.out.println("Row number = " + rowNumber);
             squareImage.setVisibility(ImageView.INVISIBLE);
             return new BlankGridSpace(spaceImage);
         }
@@ -355,7 +361,17 @@ public class RandomLevelActivity extends AppCompatActivity
         {
             int theRandomNumber = (int) (2 * Math.random());
 
-            if (theRandomNumber == 0) {
+            if (theRandomNumber == 0)
+            {
+
+                if ((!columnHasHaterAlready) && (haterCounter < haters.length))
+                {
+                    haterCoordinates[haterCounter][0] = columnNumber;
+                    haterCoordinates[haterCounter][1] = rowNumber;
+                    haterCounter++;
+                    columnHasHaterAlready = true;
+                }
+
                 squareImage.setVisibility(ImageView.INVISIBLE);
                 return new BlankGridSpace(spaceImage);
             }
@@ -376,8 +392,19 @@ public class RandomLevelActivity extends AppCompatActivity
 
     public Hater[] placeEnemies(Hater[] haters)
     {
+        //  If there are too many SquareObstacles, some Haters might not have gotten coordinates. Make those [0][0].
+        if (haterCounter < haters.length - 1)
+        {
+            for (int index=haterCounter; index<haters.length-1; index++)
+            {
+                haterCoordinates[index][0] = 0;
+                haterCoordinates[index][1] = 0;
+            }
+        }
+
         GridImageThing[] thePath0 = new GridImageThing[1];
-        thePath0[0] = daGrid[0][0];
+        //thePath0[0] = daGrid[0][0];
+        thePath0[0] = daGrid[haterCoordinates[0][0]][haterCoordinates[0][1]];
 
         float[] xHaterMoveSpeeds0 = new float[1];
         xHaterMoveSpeeds0[0] = 0;
@@ -389,6 +416,36 @@ public class RandomLevelActivity extends AppCompatActivity
         haters[0].setImageX(thePath0[0].getImageX());
         haters[0].setImageY(thePath0[0].getImageY());
         haters[0].setPath(thePath0, xHaterMoveSpeeds0, yHaterMoveSpeeds0);
+
+        GridImageThing[] thePath1 = new GridImageThing[1];
+        //thePath1[0] = daGrid[0][0];
+        thePath1[0] = daGrid[haterCoordinates[1][0]][haterCoordinates[1][1]];
+
+        float[] xHaterMoveSpeeds1 = new float[1];
+        xHaterMoveSpeeds1[0] = 0;
+
+        float[] yHaterMoveSpeeds1 = new float[1];
+        yHaterMoveSpeeds1[0] = 0;
+
+        haters[1] = new Hater((ImageView) findViewById(R.id.haterR_1));
+        haters[1].setImageX(thePath1[0].getImageX());
+        haters[1].setImageY(thePath1[0].getImageY());
+        haters[1].setPath(thePath1, xHaterMoveSpeeds1, yHaterMoveSpeeds1);
+
+        GridImageThing[] thePath2 = new GridImageThing[1];
+        //thePath2[0] = daGrid[0][0];
+        thePath2[0] = daGrid[haterCoordinates[2][0]][haterCoordinates[2][1]];
+
+        float[] xHaterMoveSpeeds2 = new float[1];
+        xHaterMoveSpeeds2[0] = 0;
+
+        float[] yHaterMoveSpeeds2 = new float[1];
+        yHaterMoveSpeeds2[0] = 0;
+
+        haters[2] = new Hater((ImageView) findViewById(R.id.haterR_2));
+        haters[2].setImageX(thePath2[0].getImageX());
+        haters[2].setImageY(thePath2[0].getImageY());
+        haters[2].setPath(thePath2, xHaterMoveSpeeds2, yHaterMoveSpeeds2);
 
         return haters;
     }
