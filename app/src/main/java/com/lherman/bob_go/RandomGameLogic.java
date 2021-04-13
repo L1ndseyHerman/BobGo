@@ -1,11 +1,9 @@
 package com.lherman.bob_go;
 
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,7 +20,8 @@ public class RandomGameLogic
     private final Timer levelTimer = new Timer();
 
     private int gameOverTimerCounter = 0;
-    private int gameOverSquaresUpTopLeft = 11;
+    private int gameOverSquaresUpTopLeft = 3;
+    private boolean gameOverBarsAreVisible = false;
 
     //  Will be the width and height of the user's phone/tablet screen, decided at runtime.
     private int screenWidth, screenHeight;
@@ -209,12 +208,15 @@ public class RandomGameLogic
             //  Get rid of one bar in the power-up thing at the top for every GridImageThing that Bob did/could pass.
             if (gameOverTimerCounter % 14 == 0)
             {
+                System.out.println("Got here");
                 gameOverBarsUpTop[gameOverSquaresUpTopLeft].setVisibility(ImageView.INVISIBLE);
                 gameOverSquaresUpTopLeft--;
             }
 
             //  This number comes from xMoveSpeedScreen. screenWidth / 12 Squares / 14 timer calls per square = 168.
-            if (gameOverTimerCounter == 168)
+            //if (gameOverTimerCounter == 168)
+            //  14 * 4 = 56.
+            if (gameOverTimerCounter == 56)
             {
                 //  Game over, you got stuck, or got too distracted to jump, idk.
                 levelTimer.cancel();
@@ -237,6 +239,11 @@ public class RandomGameLogic
         else
         {
             gameOverTimerCounter = 0;
+
+            for (ImageView gameOverBar: gameOverBarsUpTop)
+            {
+                gameOverBar.setVisibility(ImageView.INVISIBLE);
+            }
         }
 
         //  Checking to see if Bob collided with an enemy first to get a Game Over right away:
@@ -312,6 +319,11 @@ public class RandomGameLogic
         //  Move all of the grid if Bob isn't colliding w any of the grid.
         if (gridShouldMove)
         {
+
+            //  Get rid of gameOverBars:
+            bob.setIsHittingDeadEndInRandomLevel(false);
+            gameOverBarsAreVisible = false;
+
             for (GridImageThing[] gridImage: daGrid)
             {
                 for (GridImageThing gridImage2: gridImage)
@@ -339,6 +351,11 @@ public class RandomGameLogic
         //  in the x-direction in-between the images in daGrid.
         else if (bob.IsMovingRightLittle())
         {
+
+            //  Get rid of gameOverBars:
+            bob.setIsHittingDeadEndInRandomLevel(false);
+            gameOverBarsAreVisible = false; 
+
             for (GridImageThing[] gridImage: daGrid)
             {
                 for (GridImageThing gridImage2: gridImage)
@@ -355,6 +372,20 @@ public class RandomGameLogic
             winCircle.move(bob.getXLittleAmount());
 
             bob.setMovingRightLittle(false);
+        }
+
+        //  Start GameOver bars:
+        else
+        {
+            bob.setIsHittingDeadEndInRandomLevel(true);
+            if (!gameOverBarsAreVisible)
+            {
+                for (ImageView gameOverBar : gameOverBarsUpTop)
+                {
+                    gameOverBar.setVisibility(ImageView.VISIBLE);
+                }
+                gameOverBarsAreVisible = true;
+            }
         }
 
         //  Check to see if Bob should move ONE TIME HERE instead of in every SquareObstacle!
