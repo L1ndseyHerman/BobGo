@@ -14,11 +14,10 @@ import android.widget.TextView;
 public class RandomLevelActivity extends AppCompatActivity
 {
 
-    private GridImageThing[][] daGrid = new GridImageThing[15][6];
-    private Hater[] haters = new Hater[5];
-    private Coin[] coins = new Coin[1];
+    private GridImageThing[][] daGrid = new GridImageThing[23][6];
+    private Hater[] haters = new Hater[9];
     private Button beginButton;
-    private GameLogic gameLogic;
+    private RandomGameLogic randomGameLogic;
 
     private int randomBlankGridSpaceRow = -1;
     private int previousRandomBlankGridSpaceRow = -1;
@@ -34,53 +33,47 @@ public class RandomLevelActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_level);
 
-        gameLogic = new GameLogic();
+        randomGameLogic = new RandomGameLogic();
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int screenWidth = size.x;
         int screenHeight = size.y;
-        gameLogic.setScreenWidth(screenWidth);
-        gameLogic.setScreenHeight(screenHeight);
+        randomGameLogic.setScreenWidth(screenWidth);
+        randomGameLogic.setScreenHeight(screenHeight);
 
-        gameLogic.setXMoveSpeedScreen(screenWidth /168);
+        randomGameLogic.setXMoveSpeedScreen(screenWidth /168);
 
         ImageView bobImage = findViewById(R.id.bobR);
-        gameLogic.setBobLogic(bobImage);
+        randomGameLogic.setBobLogic(bobImage);
 
         ImageView endBobImage0 = findViewById(R.id.winLooseBobR_0);
-        gameLogic.setEndBobImage0(endBobImage0);
+        randomGameLogic.setEndBobImage0(endBobImage0);
 
         ImageView badEndBobImage1 = findViewById(R.id.looseBobR_1);
-        gameLogic.setBadEndBobImage1(badEndBobImage1);
+        randomGameLogic.setBadEndBobImage1(badEndBobImage1);
         ImageView badEndBobImage2 = findViewById(R.id.looseBobR_2);
-        gameLogic.setBadEndBobImage2(badEndBobImage2);
+        randomGameLogic.setBadEndBobImage2(badEndBobImage2);
         ImageView badEndBobImage3 = findViewById(R.id.looseBobR_3);
-        gameLogic.setBadEndBobImage3(badEndBobImage3);
+        randomGameLogic.setBadEndBobImage3(badEndBobImage3);
 
         ImageView goodEndBobImage1 = findViewById(R.id.winBobR_1);
-        gameLogic.setGoodEndBobImage1(goodEndBobImage1);
+        randomGameLogic.setGoodEndBobImage1(goodEndBobImage1);
         ImageView goodEndBobImage2 = findViewById(R.id.winBobR_2);
-        gameLogic.setGoodEndBobImage2(goodEndBobImage2);
+        randomGameLogic.setGoodEndBobImage2(goodEndBobImage2);
         ImageView goodEndBobImage3 = findViewById(R.id.winBobR_3);
-        gameLogic.setGoodEndBobImage3(goodEndBobImage3);
+        randomGameLogic.setGoodEndBobImage3(goodEndBobImage3);
 
         daGrid = placeGridImages(daGrid);
-        gameLogic.setDaGridLogic(daGrid);
+        randomGameLogic.setDaGridLogic(daGrid);
 
         WinCircle winCircle = new WinCircle((ImageView) findViewById(R.id.winCircleR));
         //gameLogic.setWinCircleLogic(winCircle, daGrid[0][0]);
-        gameLogic.setWinCircleLogic(winCircle, daGrid[winCircleCoordinates[0][0]][winCircleCoordinates[0][1]]);
-
-        TextView scoreText = findViewById(R.id.scoreTextR);
-        gameLogic.setScoreLogic(scoreText);
-
-        coins = placeCoins(coins);
-        gameLogic.setCoinLogic(coins);
+        randomGameLogic.setWinCircleLogic(winCircle, daGrid[winCircleCoordinates[0][0]][winCircleCoordinates[0][1]]);
 
         haters = placeEnemies(haters);
-        gameLogic.setHaterLogic(haters);
+        randomGameLogic.setHaterLogic(haters);
 
         beginButton = findViewById(R.id.startButtonR);
         beginButton.setOnClickListener(new View.OnClickListener()
@@ -93,12 +86,12 @@ public class RandomLevelActivity extends AppCompatActivity
                 //  Not saving the score for this, in fact the Coin is only there bec I'm too lazy to code if-statements
                 //  around everything coin-related the way I did for if the powerUps are present vs absent in that level.
 
-                gameLogic.setLevelTimerLogic();
+                randomGameLogic.setLevelTimerLogic();
             }
         });
 
         Button endButton = findViewById(R.id.endButtonR);
-        gameLogic.setEndButtonLogic(endButton);
+        randomGameLogic.setEndButtonLogic(endButton);
         endButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -282,6 +275,110 @@ public class RandomLevelActivity extends AppCompatActivity
                 14, 4);
         daGrid[14][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_14x5_B), (ImageView)findViewById(R.id.gridR_14x5_S),
                 14, 5);
+
+        daGrid[15][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_15x0_B), (ImageView)findViewById(R.id.gridR_15x0_S),
+                15, 0);
+        daGrid[15][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_15x1_B), (ImageView)findViewById(R.id.gridR_15x1_S),
+                15, 1);
+        daGrid[15][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_15x2_B), (ImageView)findViewById(R.id.gridR_15x2_S),
+                15, 2);
+        daGrid[15][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_15x3_B), (ImageView)findViewById(R.id.gridR_15x3_S),
+                15, 3);
+        daGrid[15][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_15x4_B), (ImageView)findViewById(R.id.gridR_15x4_S),
+                15, 4);
+        daGrid[15][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_15x5_B), (ImageView)findViewById(R.id.gridR_15x5_S),
+                15, 5);
+
+        daGrid[16][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_16x0_B), (ImageView)findViewById(R.id.gridR_16x0_S),
+                16, 0);
+        daGrid[16][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_16x1_B), (ImageView)findViewById(R.id.gridR_16x1_S),
+                16, 1);
+        daGrid[16][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_16x2_B), (ImageView)findViewById(R.id.gridR_16x2_S),
+                16, 2);
+        daGrid[16][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_16x3_B), (ImageView)findViewById(R.id.gridR_16x3_S),
+                16, 3);
+        daGrid[16][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_16x4_B), (ImageView)findViewById(R.id.gridR_16x4_S),
+                16, 4);
+        daGrid[16][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_16x5_B), (ImageView)findViewById(R.id.gridR_16x5_S),
+                16, 5);
+
+        daGrid[17][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_17x0_B), (ImageView)findViewById(R.id.gridR_17x0_S),
+                17, 0);
+        daGrid[17][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_17x1_B), (ImageView)findViewById(R.id.gridR_17x1_S),
+                17, 1);
+        daGrid[17][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_17x2_B), (ImageView)findViewById(R.id.gridR_17x2_S),
+                17, 2);
+        daGrid[17][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_17x3_B), (ImageView)findViewById(R.id.gridR_17x3_S),
+                17, 3);
+        daGrid[17][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_17x4_B), (ImageView)findViewById(R.id.gridR_17x4_S),
+                17, 4);
+        daGrid[17][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_17x5_B), (ImageView)findViewById(R.id.gridR_17x5_S),
+                17, 5);
+
+        daGrid[18][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_18x0_B), (ImageView)findViewById(R.id.gridR_18x0_S),
+                18, 0);
+        daGrid[18][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_18x1_B), (ImageView)findViewById(R.id.gridR_18x1_S),
+                18, 1);
+        daGrid[18][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_18x2_B), (ImageView)findViewById(R.id.gridR_18x2_S),
+                18, 2);
+        daGrid[18][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_18x3_B), (ImageView)findViewById(R.id.gridR_18x3_S),
+                18, 3);
+        daGrid[18][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_18x4_B), (ImageView)findViewById(R.id.gridR_18x4_S),
+                18, 4);
+        daGrid[18][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_18x5_B), (ImageView)findViewById(R.id.gridR_18x5_S),
+                18, 5);
+
+        daGrid[19][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_19x0_B), (ImageView)findViewById(R.id.gridR_19x0_S),
+                19, 0);
+        daGrid[19][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_19x1_B), (ImageView)findViewById(R.id.gridR_19x1_S),
+                19, 1);
+        daGrid[19][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_19x2_B), (ImageView)findViewById(R.id.gridR_19x2_S),
+                19, 2);
+        daGrid[19][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_19x3_B), (ImageView)findViewById(R.id.gridR_19x3_S),
+                19, 3);
+        daGrid[19][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_19x4_B), (ImageView)findViewById(R.id.gridR_19x4_S),
+                19, 4);
+        daGrid[19][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_19x5_B), (ImageView)findViewById(R.id.gridR_19x5_S),
+                19, 5);
+
+        daGrid[20][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_20x0_B), (ImageView)findViewById(R.id.gridR_20x0_S),
+                20, 0);
+        daGrid[20][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_20x1_B), (ImageView)findViewById(R.id.gridR_20x1_S),
+                20, 1);
+        daGrid[20][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_20x2_B), (ImageView)findViewById(R.id.gridR_20x2_S),
+                20, 2);
+        daGrid[20][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_20x3_B), (ImageView)findViewById(R.id.gridR_20x3_S),
+                20, 3);
+        daGrid[20][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_20x4_B), (ImageView)findViewById(R.id.gridR_20x4_S),
+                20, 4);
+        daGrid[20][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_20x5_B), (ImageView)findViewById(R.id.gridR_20x5_S),
+                20, 5);
+
+        daGrid[21][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_21x0_B), (ImageView)findViewById(R.id.gridR_21x0_S),
+                21, 0);
+        daGrid[21][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_21x1_B), (ImageView)findViewById(R.id.gridR_21x1_S),
+                21, 1);
+        daGrid[21][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_21x2_B), (ImageView)findViewById(R.id.gridR_21x2_S),
+                21, 2);
+        daGrid[21][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_21x3_B), (ImageView)findViewById(R.id.gridR_21x3_S),
+                21, 3);
+        daGrid[21][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_21x4_B), (ImageView)findViewById(R.id.gridR_21x4_S),
+                21, 4);
+        daGrid[21][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_21x5_B), (ImageView)findViewById(R.id.gridR_21x5_S),
+                21, 5);
+
+        daGrid[22][0] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_22x0_B), (ImageView)findViewById(R.id.gridR_22x0_S),
+                22, 0);
+        daGrid[22][1] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_22x1_B), (ImageView)findViewById(R.id.gridR_22x1_S),
+                22, 1);
+        daGrid[22][2] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_22x2_B), (ImageView)findViewById(R.id.gridR_22x2_S),
+                22, 2);
+        daGrid[22][3] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_22x3_B), (ImageView)findViewById(R.id.gridR_22x3_S),
+                22, 3);
+        daGrid[22][4] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_22x4_B), (ImageView)findViewById(R.id.gridR_22x4_S),
+                22, 4);
+        daGrid[22][5] = chooseSpaceOrSquare((ImageView)findViewById(R.id.gridR_22x5_B), (ImageView)findViewById(R.id.gridR_22x5_S),
+                22, 5);
 
         return daGrid;
     }
@@ -497,15 +594,6 @@ public class RandomLevelActivity extends AppCompatActivity
         }
     }
 
-    public Coin[] placeCoins(Coin[] coins)
-    {
-        coins[0] = new Coin((ImageView) findViewById(R.id.coinR_0));
-        coins[0].setImageX(daGrid[0][0].getImageX());
-        coins[0].setImageY(daGrid[0][0].getImageY());
-
-        return coins;
-    }
-
     public Hater[] placeEnemies(Hater[] haters)
     {
         //  If there are too many SquareObstacles, some Haters might not have gotten coordinates. Make those [0][0].
@@ -566,12 +654,44 @@ public class RandomLevelActivity extends AppCompatActivity
         haters[4].setImageY(thePath4[0].getImageY());
         haters[4].setPath(thePath4, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
 
+        GridImageThing[] thePath5 = new GridImageThing[1];
+        thePath5[0] = daGrid[haterCoordinates[5][0]][haterCoordinates[5][1]];
+
+        haters[5] = new Hater((ImageView) findViewById(R.id.haterR_5));
+        haters[5].setImageX(thePath5[0].getImageX());
+        haters[5].setImageY(thePath5[0].getImageY());
+        haters[5].setPath(thePath5, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
+
+        GridImageThing[] thePath6 = new GridImageThing[1];
+        thePath6[0] = daGrid[haterCoordinates[6][0]][haterCoordinates[6][1]];
+
+        haters[6] = new Hater((ImageView) findViewById(R.id.haterR_6));
+        haters[6].setImageX(thePath6[0].getImageX());
+        haters[6].setImageY(thePath6[0].getImageY());
+        haters[6].setPath(thePath6, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
+
+        GridImageThing[] thePath7 = new GridImageThing[1];
+        thePath7[0] = daGrid[haterCoordinates[7][0]][haterCoordinates[7][1]];
+
+        haters[7] = new Hater((ImageView) findViewById(R.id.haterR_7));
+        haters[7].setImageX(thePath7[0].getImageX());
+        haters[7].setImageY(thePath7[0].getImageY());
+        haters[7].setPath(thePath7, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
+
+        GridImageThing[] thePath8 = new GridImageThing[1];
+        thePath8[0] = daGrid[haterCoordinates[8][0]][haterCoordinates[8][1]];
+
+        haters[8] = new Hater((ImageView) findViewById(R.id.haterR_8));
+        haters[8].setImageX(thePath8[0].getImageX());
+        haters[8].setImageY(thePath8[0].getImageY());
+        haters[8].setPath(thePath8, allXHaterMoveSpeeds, allYHaterMoveSpeeds);
+
         return haters;
     }
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        gameLogic.bobJumpLogic();
+        randomGameLogic.bobJumpLogic();
         return true;
     }
 
