@@ -323,6 +323,7 @@ public class RandomGameLogic
             //  Get rid of gameOverBars:
             bob.setIsHittingDeadEndInRandomLevel(false);
             gameOverBarsAreVisible = false;
+            gameOverSquaresUpTopLeft = 3;
 
             for (GridImageThing[] gridImage: daGrid)
             {
@@ -354,7 +355,8 @@ public class RandomGameLogic
 
             //  Get rid of gameOverBars:
             bob.setIsHittingDeadEndInRandomLevel(false);
-            gameOverBarsAreVisible = false; 
+            gameOverBarsAreVisible = false;
+            gameOverSquaresUpTopLeft = 3;
 
             for (GridImageThing[] gridImage: daGrid)
             {
