@@ -208,7 +208,6 @@ public class RandomGameLogic
             //  Get rid of one bar in the power-up thing at the top for every GridImageThing that Bob did/could pass.
             if (gameOverTimerCounter % 14 == 0)
             {
-                System.out.println("Got here");
                 gameOverBarsUpTop[gameOverSquaresUpTopLeft].setVisibility(ImageView.INVISIBLE);
                 gameOverSquaresUpTopLeft--;
             }
@@ -236,6 +235,7 @@ public class RandomGameLogic
             }
 
         }
+        //  Means Bob is able to move again, like he was hitting a Square for a bit, but then he jumped or something.
         else
         {
             gameOverTimerCounter = 0;

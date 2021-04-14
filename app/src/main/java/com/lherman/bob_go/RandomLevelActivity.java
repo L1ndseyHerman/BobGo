@@ -68,11 +68,10 @@ public class RandomLevelActivity extends AppCompatActivity
         randomGameLogic.setDaGridLogic(daGrid);
 
         WinCircle winCircle = new WinCircle((ImageView) findViewById(R.id.winCircleR));
-        //gameLogic.setWinCircleLogic(winCircle, daGrid[0][0]);
         randomGameLogic.setWinCircleLogic(winCircle, daGrid[winCircleCoordinates[0][0]][winCircleCoordinates[0][1]]);
 
         ImageView[] gameOverBarsUpTop = new ImageView[4];
-        //  Sun is included, bars move down by 1:
+        //  Hater image is included, bars move down by 1:
         gameOverBarsUpTop[0] = findViewById(R.id.haterUpTopR);
         gameOverBarsUpTop[1] = findViewById(R.id.haterUpTopBarR_0);
         gameOverBarsUpTop[2] = findViewById(R.id.haterUpTopBarR_1);
@@ -91,8 +90,7 @@ public class RandomLevelActivity extends AppCompatActivity
             {
                 beginButton.setVisibility(View.INVISIBLE);
 
-                //  Not saving the score for this, in fact the Coin is only there bec I'm too lazy to code if-statements
-                //  around everything coin-related the way I did for if the powerUps are present vs absent in that level.
+                //  No high score for Random mode.
 
                 randomGameLogic.setLevelTimerLogic();
             }
@@ -768,25 +766,19 @@ public class RandomLevelActivity extends AppCompatActivity
 
     public GridImageThing chooseSpaceOrSquareFirstColumn(ImageView spaceImage, ImageView squareImage, int rowNumber)
     {
-        //  Need this for before the level is all the way done.
-        winCircleCoordinates[0][0] = 0;
-        winCircleCoordinates[0][1] = 0;
 
         //  One of the bottom GridImageThings (3, 4, or 5) needs to be a BlankGridSpace, so Bob has somewhere to move.
         //  If it's 4 or 3, the one above it must be a BlankGridSpace too, so Bob can jump to land on it.
-        //int randomBlankGridSpaceRow = (int)(3*Math.random()+3);
-        //  AND MAKE SURE THE NUMBER ONLY GETS SET THE FIRST METHOD CALL!
         if (randomBlankGridSpaceRow == -1)
         {
             randomBlankGridSpaceRow = (int)(3*Math.random()+3);
         }
-        boolean needsBlankSpaceAboveIt;
-        needsBlankSpaceAboveIt = randomBlankGridSpaceRow < 5;
+
+        boolean needsBlankSpaceAboveIt = randomBlankGridSpaceRow < 5;
 
         if ((rowNumber == randomBlankGridSpaceRow) || (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1))
         {
-            //System.out.println("Row number = " + rowNumber);
-            squareImage.setVisibility(ImageView.INVISIBLE);
+            squareImage.setVisibility(ImageView.GONE);
             return new BlankGridSpace(spaceImage);
         }
         else
@@ -796,11 +788,11 @@ public class RandomLevelActivity extends AppCompatActivity
 
             //  BlankGridSpace
             if (theRandomNumber == 0) {
-                squareImage.setVisibility(ImageView.INVISIBLE);
+                squareImage.setVisibility(ImageView.GONE);
                 return new BlankGridSpace(spaceImage);
             }
             //  SquareObstacle
-            spaceImage.setVisibility(ImageView.INVISIBLE);
+            spaceImage.setVisibility(ImageView.GONE);
             return new SquareObstacle(squareImage);
         }
     }
@@ -814,15 +806,13 @@ public class RandomLevelActivity extends AppCompatActivity
 
         if ((rowNumber == randomBlankGridSpaceRow) || (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1))
         {
-            //System.out.println("Row number = " + rowNumber);
-            squareImage.setVisibility(ImageView.INVISIBLE);
+            squareImage.setVisibility(ImageView.GONE);
             return new BlankGridSpace(spaceImage);
         }
         //  If Bob jumped last column, need a SquareObstacle for him to land on in this column:
         else if (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow + 1)
         {
-            //System.out.println("Row number = " + rowNumber);
-            spaceImage.setVisibility(ImageView.INVISIBLE);
+            spaceImage.setVisibility(ImageView.GONE);
             return new SquareObstacle(squareImage);
         }
         else
@@ -831,10 +821,10 @@ public class RandomLevelActivity extends AppCompatActivity
 
             if (theRandomNumber == 0)
             {
-                squareImage.setVisibility(ImageView.INVISIBLE);
+                squareImage.setVisibility(ImageView.GONE);
                 return new BlankGridSpace(spaceImage);
             }
-            spaceImage.setVisibility(ImageView.INVISIBLE);
+            spaceImage.setVisibility(ImageView.GONE);
             return new SquareObstacle(squareImage);
         }
     }
@@ -888,10 +878,7 @@ public class RandomLevelActivity extends AppCompatActivity
                 (rowNumber > randomBlankGridSpaceRow && rowNumber < previousRandomBlankGridSpaceRow) ||
                 (rowNumber > previousRandomBlankGridSpaceRow && rowNumber < randomBlankGridSpaceRow))
         {
-            //System.out.println("randomBlankGridSpaceRow = " + randomBlankGridSpaceRow);
-            //System.out.println("previousRandomBlankGridSpaceRow = " + previousRandomBlankGridSpaceRow);
-            //System.out.println("Row number = " + rowNumber);
-            squareImage.setVisibility(ImageView.INVISIBLE);
+            squareImage.setVisibility(ImageView.GONE);
             return new BlankGridSpace(spaceImage);
         }
         else
@@ -912,10 +899,10 @@ public class RandomLevelActivity extends AppCompatActivity
                     columnHasHaterAlready = true;
                 }
 
-                squareImage.setVisibility(ImageView.INVISIBLE);
+                squareImage.setVisibility(ImageView.GONE);
                 return new BlankGridSpace(spaceImage);
             }
-            spaceImage.setVisibility(ImageView.INVISIBLE);
+            spaceImage.setVisibility(ImageView.GONE);
             return new SquareObstacle(squareImage);
         }
 
@@ -935,15 +922,13 @@ public class RandomLevelActivity extends AppCompatActivity
 
         if ((rowNumber == randomBlankGridSpaceRow) || (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow - 1))
         {
-            //System.out.println("Row number = " + rowNumber);
-            squareImage.setVisibility(ImageView.INVISIBLE);
+            squareImage.setVisibility(ImageView.GONE);
             return new BlankGridSpace(spaceImage);
         }
         //  If Bob jumped last column, need a SquareObstacle for him to land on in this column:
         else if (needsBlankSpaceAboveIt && rowNumber == randomBlankGridSpaceRow + 1)
         {
-            //System.out.println("Row number = " + rowNumber);
-            spaceImage.setVisibility(ImageView.INVISIBLE);
+            spaceImage.setVisibility(ImageView.GONE);
             return new SquareObstacle(squareImage);
         }
         else
@@ -952,10 +937,10 @@ public class RandomLevelActivity extends AppCompatActivity
 
             if (theRandomNumber == 0)
             {
-                squareImage.setVisibility(ImageView.INVISIBLE);
+                squareImage.setVisibility(ImageView.GONE);
                 return new BlankGridSpace(spaceImage);
             }
-            spaceImage.setVisibility(ImageView.INVISIBLE);
+            spaceImage.setVisibility(ImageView.GONE);
             return new SquareObstacle(squareImage);
         }
     }
